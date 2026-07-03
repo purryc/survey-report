@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:,">
+<title>Agent PC · 8 方案设计评审与补充可能性</title>
+<style>
+  :root{
+    --paper:#f7f4ee; --card:#fffdf8; --ink:#23211c; --ink2:#57534a;
+    --line:#d8d2c4; --line2:#b9b2a1; --accent:#b5442a; --accent2:#2a5d8a; --ok:#3d7a4a;
+    --mono:"SF Mono","JetBrains Mono",Consolas,monospace;
+    --serif:"Songti SC","Noto Serif SC","Source Han Serif SC",STSong,serif;
+    --sans:-apple-system,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.75}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  .cover{border-bottom:3px double var(--line2);padding:64px 0 40px}
+  .cover .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.35em;color:var(--accent);text-transform:uppercase}
+  .cover h1{font-family:var(--serif);font-size:40px;line-height:1.25;font-weight:700;margin:14px 0 6px}
+  .cover h2{font-family:var(--serif);font-size:18px;font-weight:400;color:var(--ink2);margin-bottom:22px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px 26px;font-family:var(--mono);font-size:12px;color:var(--ink2)}
+  .meta b{color:var(--ink)}
+  section{padding:48px 0 10px}
+  .sechead{display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--line2);padding-bottom:12px;margin-bottom:26px}
+  .sechead .no{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.2em}
+  .sechead h2{font-family:var(--serif);font-size:27px;font-weight:700}
+  .sechead .en{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--line2);letter-spacing:.15em;text-transform:uppercase}
+  h3.sub{font-family:var(--serif);font-size:19px;margin:36px 0 14px;padding-left:12px;border-left:4px solid var(--accent)}
+  p.lead{color:var(--ink2);max-width:880px;margin-bottom:16px}
+  /* scheme card */
+  .scard{background:var(--card);border:1px solid var(--line);margin:22px 0}
+  .scard .skimg{background:#fff;border-bottom:1px solid var(--line);padding:6px 10px}
+  .scard .skimg img{width:100%;display:block}
+  .scard .head{display:flex;align-items:center;gap:12px;padding:12px 18px 0}
+  .scard .idx{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--accent);min-width:44px}
+  .scard .head h4{font-family:var(--serif);font-size:18px;font-weight:700;flex:1}
+  .verdict{font-family:var(--mono);font-size:11px;padding:3px 12px;border-radius:2px;letter-spacing:.1em;white-space:nowrap}
+  .v-rec{background:#e5efe7;color:var(--ok);border:1px solid var(--ok)}
+  .v-mod{background:#eef2f5;color:var(--accent2);border:1px solid var(--accent2)}
+  .v-risk{background:#f7ece7;color:var(--accent);border:1px solid var(--accent)}
+  .scard .cols{display:grid;grid-template-columns:1fr 1fr;gap:0 26px;padding:10px 18px 16px}
+  .scard .cols div h6{font-family:var(--mono);font-size:11px;letter-spacing:.15em;margin:8px 0 4px}
+  .scard .cols .plus h6{color:var(--ok)} .scard .cols .minus h6{color:var(--accent)}
+  .scard .cols p{font-size:13px;color:var(--ink2)}
+  .scard .cols p b{color:var(--ink)}
+  .scard .ref{margin:0 18px 16px;border-top:1px dashed var(--line);padding-top:9px;font-size:12px;color:var(--ink2)}
+  .scard .ref b{color:var(--accent2)}
+  .flaw{margin:0 18px 12px;border-left:4px solid var(--accent);background:#f7ece7;padding:9px 14px;font-size:13px}
+  @media(max-width:720px){.scard .cols{grid-template-columns:1fr}}
+  /* matrix */
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--line);background:var(--card);margin:20px 0}
+  table.big{border-collapse:collapse;width:100%;min-width:900px;font-size:12.5px}
+  table.big th{background:var(--ink);color:var(--paper);font-weight:600;text-align:left;padding:9px 10px;font-size:12px;white-space:nowrap}
+  table.big td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.big tr:nth-child(even) td{background:#f5f2e9}
+  td.sc{font-family:var(--mono);text-align:center}
+  td.sc.hi{color:var(--ok);font-weight:700} td.sc.lo{color:var(--accent);font-weight:700}
+  figure.draw{background:var(--card);border:1px solid var(--line);padding:22px 18px 10px;margin:22px 0}
+  figure.draw svg{width:100%;height:auto;display:block}
+  figure.draw figcaption{font-family:var(--mono);font-size:11.5px;color:var(--ink2);text-align:center;padding:10px 0 8px;border-top:1px dashed var(--line);margin-top:14px}
+  figure.draw figcaption b{color:var(--accent)}
+  .note{border-left:4px solid var(--accent2);background:#eef2f5;padding:14px 18px;font-size:13.5px;margin:18px 0}
+  .risk{border-left:4px solid var(--accent);background:#f7ece7;padding:14px 18px;font-size:13.5px;margin:18px 0}
+  .final{border:2px solid var(--ink);background:var(--card);padding:22px 26px;margin:26px 0}
+  .final h5{font-family:var(--serif);font-size:19px;margin-bottom:10px}
+  .final p{font-size:13.5px;color:var(--ink2);margin-bottom:8px}
+  .final p b{color:var(--ink)}
+  .constraint-box{display:grid;grid-template-columns:300px 1fr;gap:22px;align-items:start;margin:24px 0}
+  .constraint-box img{width:100%;border:1px solid var(--line);background:#fff}
+  .constraint-box ol{margin-left:20px;font-size:14px}
+  .constraint-box li{margin-bottom:10px}
+  @media(max-width:720px){.constraint-box{grid-template-columns:1fr}}
+  footer{border-top:3px double var(--line2);margin-top:56px;padding:24px 0 56px;font-family:var(--mono);font-size:11.5px;color:var(--ink2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="cover">
+  <div class="kicker">Agent PC · Design Review</div>
+  <h1>8 方案设计评审 &amp; 尚未画出的可能性</h1>
+  <h2>对手绘 8 案逐一评价 · 七维评分矩阵 · 补充 6 个未覆盖方向 · 收敛建议</h2>
+  <div class="meta">
+    <span>日期 <b>2026-07-03</b></span>
+    <span>输入 <b>Shino 手绘方案 ×8</b></span>
+    <span>基准 <b>《带屏迷你主机屏幕设计调研报告》20 款样本</b></span>
+  </div>
+</header>
+
+<section id="c0">
+  <div class="sechead"><span class="no">§ 00</span><h2>约束回顾</h2><span class="en">Constraints</span></div>
+  <div class="constraint-box">
+    <img src="report_assets/sketch-constraints.png" alt="手写约束">
+    <ol>
+      <li><b>① 5–7″ 触控屏</b> —— 落在调研的「副屏级」与「一体交互级」交界,注意 6″ 档是市场真空(规律 01),供应链在 5″ 与 7″ 两侧。</li>
+      <li><b>② 摄像头三视野:桌面 / 人脸 / 白板</b> —— 这是 8 案中最有区分度的约束:三个视野方向跨度接近 180°,固定镜头不可能全覆盖,必然引出「翻转 / 云台 / 广角+裁切」三种解法。</li>
+      <li><b>③ 灯带</b> —— 语义灯(聆听/思考/执行/待授权),360° 可读性优于单向条。</li>
+      <li><b>④ 算力可堆叠</b> —— 最容易被造型绑架的约束:<b>它真正约束的不是屏幕怎么动,而是屏幕属于谁</b>(每台都带屏,还是只有头部模组带屏)。评审中反复出现。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 01 逐案评审 ============ -->
+<section id="c1">
+  <div class="sechead"><span class="no">§ 01</span><h2>逐案评审</h2><span class="en">Scheme by Scheme</span></div>
+
+  <!-- 方案1 -->
+  <div class="scard">
+    <div class="skimg"><img src="report_assets/agent-pc-scheme-01-imagegen.png" alt="方案1 imagegen 白描草图"></div>
+    <div class="head"><span class="idx">案 1</span><h4>一体机 · 固定倾角屏 + 可下翻广角摄像头 + 底部光带</h4><span class="verdict v-rec">推荐 · 基线</span></div>
+    <div class="cols">
+      <div class="plus"><h6>+ 亮点</h6><p>零屏幕机构 = 全场<b>成本与可靠性最优</b>;摄像头单轴翻转是三视野约束的最便宜解(上翻看人/白板,下翻看桌面);底部光环 360° 可读。整体与调研推荐的「灯塔」基线几乎重合,量产路径最短。</p></div>
+      <div class="minus"><h6>− 硬伤</h6><p>屏幕<b>固定倾角对使用者身高/坐姿敏感</b>——样本中固定斜面全部是 15–30°,对站姿俯视和沙发仰视都不友好;屏幕常年裸露无收纳态;摄像头翻下看桌面时就看不到人脸,<b>三视野是「分时」不是「同时」</b>(视频会议+看白板场景会打架)。</p></div>
+    </div>
+    <div class="ref">对照调研:等于 PiPO X8 的楔形身 + Echo Show 的灯环 + 独创的翻转摄像头。建议:摄像头翻转档位做 2–3 个定位点(人脸 0° / 白板 -15° / 桌面 70°),并给<b>翻转到底=物理遮挡</b>兼做隐私盖,一个机构解决两件事。</div>
+  </div>
+
+  <!-- 方案2 -->
+  <div class="scard">
+    <div class="skimg"><img src="report_assets/agent-pc-scheme-02-imagegen.png" alt="方案2 imagegen 白描草图"></div>
+    <div class="head"><span class="idx">案 2</span><h4>一体机 · 顶部可伸缩小云台摄像头(左右+上下)</h4><span class="verdict v-mod">可行 · 高配变体</span></div>
+    <div class="cols">
+      <div class="plus"><h6>+ 亮点</h6><p>唯一能<b>同时满足三视野「任意指向」</b>的方案;而且「缩回=物理消失」是比滑盖更强的隐私语言——Agent 设备的信任痛点被机构本身回答了,潜望起降还自带产品人格(抬头=在听)。</p></div>
+      <div class="minus"><h6>− 硬伤</h6><p>伸缩 + 双轴云台 = 8 案中<b>摄像头机构成本最高</b>(两个微型电机+升降,BOM 估 +$15–25);细杆上的摄像头在触屏操作震动下会晃;升降孔进灰;跌落测试是噩梦。调研样本中没有任何量产先例(最接近的是安防云台,不是桌面消费品)。</p></div>
+    </div>
+    <div class="ref">对照调研:Lenovo 用电机转「整块屏」($1,649),你只电机化「几克的摄像头」——<b>思路比 Lenovo 便宜且聪明</b>。建议作为案 1 的 Pro SKU:基础款用案 1 翻转,高配款换云台模组,外观公用。</div>
+  </div>
+
+  <!-- 方案3 -->
+  <div class="scard">
+    <div class="skimg"><img src="report_assets/agent-pc-scheme-03-imagegen.png" alt="方案3 imagegen 白描草图"></div>
+    <div class="head"><span class="idx">案 3</span><h4>盒子 · 屏幕沿前缘铰链翻起 + 顶部固定广角</h4><span class="verdict v-rec">推荐 · 需修一处</span></div>
+    <div class="flaw"><b>如画有一个视线 bug:</b>摄像头固定在盒顶,屏幕沿前缘翻起后,摄像头看到的是<b>屏幕背面</b>。修正:把摄像头移到<b>屏幕上边框</b>(随屏翻起自然朝人,俯角还能扫到桌面),或者偏置到盒顶后角避开屏幕遮挡——前者更优,业界(UH185)已验证屏摄同模组。</div>
+    <div class="cols">
+      <div class="plus"><h6>+ 亮点</h6><p>与 2024–26 行业收敛完全一致(G-Flip / Miniproca / AM01S 全是这个结构,规律 04/05):<b>合拢=收纳保护、顶面平整可堆叠、翻起角度即视角调节</b>。铰链参数有现成工程基线(0–90°、摩擦扭矩轴、FPC 过轴 2 万次)。四个约束里它天然答对三个半。</p></div>
+      <div class="minus"><h6>− 硬伤</h6><p>屏幕翻起后盒顶被屏占据,那一面不能再放东西;5–7″ 屏合拢后盒子 footprint 由屏决定(≥7″ 屏 → 盒长 ≥160mm);翻起状态屏幕吃正面碰撞。</p></div>
+    </div>
+    <div class="ref">对照调研:这就是调研方案 B「潜望」的本体,风险最小的可动方案。<b>摄像头移上屏缘后,建议与案 1 合并成同一平台的两种姿态</b>。</div>
+  </div>
+
+  <!-- 方案4 -->
+  <div class="scard">
+    <div class="skimg"><img src="report_assets/agent-pc-scheme-04-imagegen.png" alt="方案4 imagegen 白描草图"></div>
+    <div class="head"><span class="idx">案 4</span><h4>盒子 · 屏幕内藏、沿后缘铰链翻起 + 顶部固定广角</h4><span class="verdict v-mod">可改 · 人机存疑</span></div>
+    <div class="cols">
+      <div class="plus"><h6>+ 亮点</h6><p><b>收纳态最完整</b>:屏幕完全藏进机身,合上就是一块干净的方砖,运输/防尘/防窥全解;屏幕起于后缘,腾出的前半顶面可以复用(Qi 充电板 / 放手机,ViewDock 已验证);摄像头在前不被屏挡,视线成立。</p></div>
+      <div class="minus"><h6>− 硬伤</h6><p><b>触控人机是真问题</b>:屏幕立在盒子后缘,手指要跨过 140–175mm 的机身去点 5–7″ 屏,悬臂触控 + 手臂正好经过顶面出风区;屏幕离用户远了一个盒深,5″ 屏的触控目标变小。内藏式滑槽+铰链复合机构比案 3 贵一档,防尘唇条、屏幕升起限位都要做。调研中<b>没有任何量产品用后缘铰链触屏</b>——不是没人想到,是人机不过关。</p></div>
+    </div>
+    <div class="ref">对照调研:收纳思路值得保留,但建议改为「前缘铰链 + 屏幕藏于顶盖下」(即案 3 + 内藏),或干脆接受案 3 的合拢即收纳。若坚持后缘,屏幕必须只做「展示/状态位」,触控降级为次要输入。</div>
+  </div>
+
+  <!-- 方案5 -->
+  <div class="scard">
+    <div class="skimg"><img src="report_assets/agent-pc-scheme-05-imagegen.png" alt="方案5 imagegen 白描草图"></div>
+    <div class="head"><span class="idx">案 5</span><h4>盒子 · Auto Twist 式单点旋转+翻转铰链</h4><span class="verdict v-risk">慎用 · 机构风险最高</span></div>
+    <div class="cols">
+      <div class="plus"><h6>+ 亮点</h6><p>横竖屏切换对 Agent 对话流(竖)/ 视频(横)确实有真实价值;单柱造型有辨识度,「屏幕会转」的剧场感强。</p></div>
+      <div class="minus"><h6>− 硬伤</h6><p><b>单点双轴铰链 + 触控 = 物理矛盾</b>:手指按屏幕角落时,力臂全部变成单柱上的扭矩,屏幕会点头/摆头——Lenovo 敢做是因为 14″ 屏用电机锁死姿态且整机 $1,649,还不指望你频繁戳它;5–7″ 触控屏恰恰是被频繁戳的。手动版晃、电机版贵(参考调研风险①),两头不讨好。转轴还要过 FPC(显示+触控+摄像头),单点过线可靠性差。</p></div>
+    </div>
+    <div class="ref">对照调研:规律 04——电机/复杂铰链只有 Amazon、Lenovo 两家大厂敢碰。<b>横竖屏需求建议用软件旋转 UI(G-sensor)+ 案 3 的单轴铰链</b>替代,90% 价值,10% 成本。</div>
+  </div>
+
+  <!-- 方案6 -->
+  <div class="scard">
+    <div class="skimg"><img src="report_assets/agent-pc-scheme-06-imagegen.png" alt="方案6 imagegen 白描草图"></div>
+    <div class="head"><span class="idx">案 6</span><h4>盒子+独立云台摄像头 · 侧面长条屏 · 立起时底边光带</h4><span class="verdict v-mod">可改 · 洞察最独特</span></div>
+    <div class="cols">
+      <div class="plus"><h6>+ 亮点</h6><p><b>全场唯一「堆叠原生」方案</b>:屏幕在侧面,盒子叠起来时每层屏幕都可见——多节点状态一目了然,这是其他 7 案都做不到的(它们的屏都在顶面,叠即遮)。独立云台摄像头是三视野的完美解,还能放到白板正对面。</p></div>
+      <div class="minus"><h6>− 硬伤</h6><p><b>与约束①冲突</b>:侧面(盒厚 ~50mm)放不下 5–7″ 常规比例触控屏,只能放窄条;立起来当塔用时又不能叠了,两个姿态互相打架。独立摄像头=第二台设备:供电、配对、桌面走线、丢失,产品完整性被拆散(调研中 Violoop 之所以做成一体,就是为了零部署)。</p></div>
+    </div>
+    <div class="ref">对照调研:建议<b>拆解这个方案的两个好点子分别复用</b>——(a) 侧面长条屏降级为「堆叠节点状态条」(低分辨率灯屏,非主交互屏),给每台算力盒标配;(b) 主交互屏回到头部模组。云台摄像头做选配件而非标配。</div>
+  </div>
+
+  <!-- 方案7 -->
+  <div class="scard">
+    <div class="skimg"><img src="report_assets/agent-pc-scheme-07-imagegen.png" alt="方案7 imagegen 白描草图"></div>
+    <div class="head"><span class="idx">案 7</span><h4>盒面屏 + 可翻转广角摄像头 + 整机支架立起调角 + 屏下灯带</h4><span class="verdict v-mod">可改 · 与案 1 合并</span></div>
+    <div class="cols">
+      <div class="plus"><h6>+ 亮点</h6><p>用整机支架代替屏幕铰链来调视角——机构从「精密铰链」降级为「粗壮支架」,便宜且抗造;摄像头翻转继承案 1 的优点;平放时是低调的盒子,立起时是终端,一物两态。</p></div>
+      <div class="minus"><h6>− 硬伤</h6><p>整机立起=<b>散热姿态、端口出线、脚垫受力全部换方向</b>,风道要按两种姿态双重设计(调研规律 08:65W 级全靠固定风道);立起时插着的线缆被抬离桌面产生应力;立起状态不可堆叠、平放状态屏幕朝天反光。屏下单向灯带弱于环形(只有正面可读)。</p></div>
+    </div>
+    <div class="ref">对照调研:8″ 白牌一体机就是这个思路(背撑支架)。它和案 1 是同一方案的两种倾角策略——<b>固定楔角(案1) vs 可调支架(案7)</b>,建议合并后做人因测试定生死,不必并行两案。</div>
+  </div>
+
+  <!-- 方案8 -->
+  <div class="scard">
+    <div class="skimg"><img src="report_assets/agent-pc-scheme-08-imagegen.png" alt="方案8 imagegen 白描草图"></div>
+    <div class="head"><span class="idx">案 8</span><h4>Echo 式 · 旋转光带底座 + 贴合屏可伸出/tilt + 顶部固定广角</h4><span class="verdict v-risk">慎用 · 与约束④正面冲突</span></div>
+    <div class="cols">
+      <div class="plus"><h6>+ 亮点</h6><p>桌面存在感最强:旋转=朝向你,是 Agent「有身体」的最直接表达;屏幕平贴机身+按需伸出 tilt,收纳与人机兼顾;底座光环与旋转组合的「表情」空间大。</p></div>
+      <div class="minus"><h6>− 硬伤</h6><p><b>旋转底座在最底下,与堆叠约束物理互斥</b>:底座要转,上面却要叠 1–4 台算力盒——电机(或手动转盘)得带着整塔的质量和线缆转,线缆缠绕要上滑环,成本与故障率飙升;Echo Show 10 单机尚且要求 38×25cm 旋转净空(调研风险①),一塔更甚。屏幕「伸出+tilt」又是一套独立机构,全案机构数=8 案之最。</p></div>
+    </div>
+    <div class="ref">对照调研:旋转的价值可以保留,但<b>把转盘从「塔底」搬到「头模组脖子上」</b>——只转头(屏+摄+麦几百克),不转塔(几公斤),手动阻尼转环即可,见 §03 补充方案 G5。</div>
+  </div>
+</section>
+
+<!-- ============ 02 评分矩阵 ============ -->
+<section id="c2">
+  <div class="sechead"><span class="no">§ 02</span><h2>七维评分矩阵</h2><span class="en">Scoring Matrix</span></div>
+  <p class="lead">1–5 分。C1 屏幕约束达成 / C2 摄像头三视野 / C3 灯带表达 / C4 堆叠兼容 / C5 结构成本与可靠性(高分=低风险)/ C6 收纳与保护 / C7 触控稳定性。案 3 的 C2 按「摄像头移至屏上缘」修正后计。</p>
+  <div class="tbl-wrap"><table class="big">
+    <tr><th>方案</th><th>C1 屏约束</th><th>C2 三视野</th><th>C3 灯带</th><th>C4 堆叠</th><th>C5 成本可靠</th><th>C6 收纳</th><th>C7 触控稳定</th><th>总分/35</th><th>判级</th></tr>
+    <tr><td><b>案 1</b> 固定倾角+翻转摄像头</td><td class="sc hi">5</td><td class="sc">3.5</td><td class="sc hi">5</td><td class="sc">4</td><td class="sc hi">5</td><td class="sc lo">2</td><td class="sc hi">5</td><td class="sc"><b>29.5</b></td><td><span class="verdict v-rec">推荐</span></td></tr>
+    <tr><td><b>案 2</b> 伸缩云台摄像头</td><td class="sc hi">5</td><td class="sc hi">5</td><td class="sc hi">5</td><td class="sc">4</td><td class="sc lo">2.5</td><td class="sc">3</td><td class="sc hi">5</td><td class="sc"><b>29.5</b></td><td><span class="verdict v-mod">高配变体</span></td></tr>
+    <tr><td><b>案 3</b> 前缘铰链翻起屏</td><td class="sc hi">5</td><td class="sc">4</td><td class="sc">4</td><td class="sc hi">5</td><td class="sc">4</td><td class="sc">4</td><td class="sc">4</td><td class="sc"><b>30</b></td><td><span class="verdict v-rec">推荐 · 最高分</span></td></tr>
+    <tr><td><b>案 4</b> 后缘铰链内藏屏</td><td class="sc hi">5</td><td class="sc">4</td><td class="sc">4</td><td class="sc">4</td><td class="sc">3</td><td class="sc hi">5</td><td class="sc lo">2.5</td><td class="sc"><b>27.5</b></td><td><span class="verdict v-mod">可改</span></td></tr>
+    <tr><td><b>案 5</b> 单点旋转+翻转</td><td class="sc hi">5</td><td class="sc">3</td><td class="sc">3</td><td class="sc">3</td><td class="sc lo">2</td><td class="sc">4</td><td class="sc lo">2</td><td class="sc"><b>22</b></td><td><span class="verdict v-risk">慎用</span></td></tr>
+    <tr><td><b>案 6</b> 侧条屏+独立云台</td><td class="sc lo">2.5</td><td class="sc hi">5</td><td class="sc">4</td><td class="sc hi">5</td><td class="sc">3</td><td class="sc">4</td><td class="sc">4</td><td class="sc"><b>27.5</b></td><td><span class="verdict v-mod">可改 · 拆点复用</span></td></tr>
+    <tr><td><b>案 7</b> 整机支架立起</td><td class="sc hi">5</td><td class="sc">4</td><td class="sc">3</td><td class="sc">3</td><td class="sc">4</td><td class="sc lo">2</td><td class="sc">4</td><td class="sc"><b>25</b></td><td><span class="verdict v-mod">并入案 1</span></td></tr>
+    <tr><td><b>案 8</b> 旋转底座 Echo 式</td><td class="sc hi">5</td><td class="sc">3.5</td><td class="sc hi">5</td><td class="sc lo">1.5</td><td class="sc lo">2.5</td><td class="sc">4</td><td class="sc">3.5</td><td class="sc"><b>25</b></td><td><span class="verdict v-risk">慎用 · 与④冲突</span></td></tr>
+  </table></div>
+  <div class="note"><b>矩阵读法:</b>没有一案七维全绿——因为约束②(三视野)和约束④(堆叠)在造型层面天然打架:摄像头想动,堆叠想静。得分最高的案 3 也只是「都不差」。结论不是选一案,而是<b>拆件重组</b>,见 §04。</div>
+</section>
+
+<!-- ============ 03 未覆盖可能性 ============ -->
+<section id="c3">
+  <div class="sechead"><span class="no">§ 03</span><h2>还没画出的 6 种可能性</h2><span class="en">Unexplored Directions</span></div>
+  <p class="lead">对照形态学矩阵,8 案集中在「屏幕绕水平轴转动 / 整机姿态变化」两条线上;以下方向尚未出现在你的草图里 —— 前 4 个值得认真对待,后 2 个是激进项。</p>
+  <figure class="draw">
+    <svg viewBox="0 0 960 560" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-linecap="round" stroke-linejoin="round" font-family="'PingFang SC',sans-serif">
+      <!-- G1 升降潜望 -->
+      <g>
+        <rect x="60" y="170" width="200" height="60" rx="7" stroke="#23211c" stroke-width="2"/>
+        <rect x="94" y="164" width="132" height="9" rx="3" stroke="#23211c" stroke-width="1.3"/>
+        <g stroke="#23211c" stroke-width="2"><rect x="100" y="58" width="120" height="102" rx="4"/><rect x="109" y="67" width="102" height="84" stroke-width="1.2"/></g>
+        <rect x="104" y="180" width="112" height="42" rx="3" stroke="#57534a" stroke-width="1.2" stroke-dasharray="4 3"/>
+        <path d="M276 150 L276 104 M269 112 L276 102 L283 112" stroke="#b5442a" stroke-width="1.5"/>
+        <text x="290" y="130" font-size="10" fill="#b5442a" stroke="none">推出即开机</text>
+        <text x="160" y="252" font-size="13" fill="#23211c" stroke="none" text-anchor="middle" font-weight="700">G1 升降潜望屏</text>
+        <text x="160" y="270" font-size="10" fill="#57534a" stroke="none" text-anchor="middle">垂直导轨滑出,收纳全隐藏且触控距离不变</text>
+      </g>
+      <!-- G2 Z形双铰链 -->
+      <g transform="translate(320,0)">
+        <rect x="55" y="180" width="210" height="50" rx="7" stroke="#23211c" stroke-width="2"/>
+        <line x1="105" y1="178" x2="148" y2="108" stroke="#23211c" stroke-width="3.2"/>
+        <circle cx="105" cy="178" r="5" stroke="#b5442a" stroke-width="1.6"/>
+        <circle cx="148" cy="108" r="5" stroke="#b5442a" stroke-width="1.6"/>
+        <g stroke="#23211c" stroke-width="2" transform="rotate(-18 195 95)"><rect x="135" y="62" width="124" height="72" rx="4"/><rect x="143" y="70" width="108" height="56" stroke-width="1.2"/></g>
+        <rect x="120" y="164" width="130" height="12" rx="3" stroke="#57534a" stroke-width="1.2" stroke-dasharray="4 3"/>
+        <text x="262" y="176" font-size="9.5" fill="#57534a" stroke="none">压平=桌面触控板</text>
+        <text x="160" y="252" font-size="13" fill="#23211c" stroke="none" text-anchor="middle" font-weight="700">G2 Z 形双铰链</text>
+        <text x="160" y="270" font-size="10" fill="#57534a" stroke="none" text-anchor="middle">高度与俯仰解耦(Surface Studio 微缩),坐站两用</text>
+      </g>
+      <!-- G3 磁吸分体 -->
+      <g transform="translate(640,0)">
+        <g stroke="#23211c" stroke-width="2" transform="rotate(-3 160 80)"><rect x="72" y="44" width="176" height="80" rx="5"/><rect x="81" y="52" width="158" height="64" stroke-width="1.2"/></g>
+        <rect x="216" y="34" width="24" height="9" rx="2" stroke="#57534a" stroke-width="1.1" transform="rotate(-3 228 38)"/>
+        <g stroke="#b5442a" stroke-width="1.5"><path d="M120 136 L120 154 M114 148 L120 155 L126 148"/><path d="M200 133 L200 151 M194 145 L200 152 L206 145"/></g>
+        <g stroke="#23211c" stroke-width="2"><rect x="84" y="162" width="152" height="34" rx="6"/><rect x="84" y="200" width="152" height="34" rx="6"/></g>
+        <text x="160" y="252" font-size="13" fill="#23211c" stroke="none" text-anchor="middle" font-weight="700">G3 磁吸分体屏(带电池)</text>
+        <text x="160" y="270" font-size="10" fill="#57534a" stroke="none" text-anchor="middle">取下全屋漫游,算力柱 headless 续跑;Gen2 预研</text>
+      </g>
+      <!-- G4 头部模组架构 -->
+      <g transform="translate(0,290)">
+        <path d="M80 40 L240 40 L232 96 L88 96 Z" stroke="#23211c" stroke-width="2"/>
+        <path d="M92 50 L228 50 L221 88 L99 88 Z" stroke="#23211c" stroke-width="1.2"/>
+        <circle cx="160" cy="45" r="2.4" fill="#23211c" stroke="none"/>
+        <ellipse cx="160" cy="104" rx="72" ry="7" stroke="#b5442a" stroke-width="1.4" stroke-dasharray="6 4"/>
+        <g stroke="#23211c" stroke-width="2"><rect x="88" y="116" width="144" height="32" rx="6"/><rect x="88" y="152" width="144" height="32" rx="6"/></g>
+        <g fill="#b5442a" stroke="none"><circle cx="118" cy="113" r="2"/><circle cx="160" cy="113" r="2"/><circle cx="202" cy="113" r="2"/></g>
+        <text x="252" y="70" font-size="11" fill="#3d7a4a" stroke="none">✓ 案1/3/7 造型均可为「头」</text>
+        <text x="252" y="90" font-size="11" fill="#3d7a4a" stroke="none">✓ 算力盒无屏,向下生长</text>
+        <text x="160" y="215" font-size="13" fill="#23211c" stroke="none" text-anchor="middle" font-weight="700">G4 头部模组架构</text>
+        <text x="160" y="233" font-size="10" fill="#57534a" stroke="none" text-anchor="middle">不是第 9 个造型,而是约束④的正确解法</text>
+      </g>
+      <!-- G5 头模组转环 -->
+      <g transform="translate(320,290)">
+        <path d="M110 44 L214 44 L208 128 L116 128 Z" stroke="#23211c" stroke-width="2"/>
+        <path d="M118 52 L206 52 L201 120 L123 120 Z" stroke="#23211c" stroke-width="1.2"/>
+        <ellipse cx="162" cy="142" rx="66" ry="11" stroke="#23211c" stroke-width="2"/>
+        <path d="M84 156 A80 20 0 0 0 190 160" stroke="#b5442a" stroke-width="1.4" stroke-dasharray="6 4"/>
+        <path d="M184 154 L192 161 L181 165" fill="#b5442a" stroke="none"/>
+        <text x="240" y="150" font-size="10" fill="#b5442a" stroke="none">手动阻尼 ±60°</text>
+        <rect x="92" y="166" width="140" height="38" rx="6" stroke="#23211c" stroke-width="2"/>
+        <text x="240" y="190" font-size="10" fill="#57534a" stroke="none">塔身不动</text>
+        <text x="162" y="215" font-size="13" fill="#23211c" stroke="none" text-anchor="middle" font-weight="700">G5 头模组阻尼转环</text>
+        <text x="162" y="233" font-size="10" fill="#57534a" stroke="none" text-anchor="middle">只转几百克的头,不转几公斤的塔;替代案 8 的底座电机</text>
+      </g>
+      <!-- G6 环带屏 -->
+      <g transform="translate(640,290)">
+        <rect x="88" y="52" width="150" height="118" rx="9" stroke="#23211c" stroke-width="2"/>
+        <path d="M88 118 L238 118 M88 142 L238 142" stroke="#b5442a" stroke-width="1.4"/>
+        <g stroke="#b5442a" stroke-width="1.2" stroke-dasharray="2 4"><line x1="94" y1="130" x2="232" y2="130"/></g>
+        <path d="M238 118 L252 112 M238 142 L252 136" stroke="#b5442a" stroke-width="1.2" stroke-dasharray="3 3"/>
+        <text x="163" y="106" font-size="9.5" fill="#57534a" stroke="none" text-anchor="middle">上方留白 = 主屏区(可选)</text>
+        <text x="163" y="215" font-size="13" fill="#23211c" stroke="none" text-anchor="middle" font-weight="700">G6 环幕状态带(激进项)</text>
+        <text x="163" y="233" font-size="10" fill="#57534a" stroke="none" text-anchor="middle">灯带×屏幕合体:低清环绕显示;供应链非标,慎入</text>
+      </g>
+    </svg>
+    <figcaption>图 · 未覆盖方向白描 —— <b>G4 是架构级答案,G1/G2/G5 是机构级补全,G3 是 Gen2 路线,G6 是差异化赌注</b></figcaption>
+  </figure>
+  <div class="note"><b>为什么 8 案没穷尽:</b>你的 8 案全部让屏幕「绕水平轴动」或「整机动」。形态学上还有三条轴没动过——<b>垂直平移</b>(G1 升降)、<b>多连杆复合</b>(G2)、<b>分离</b>(G3);外加两个系统级重组:屏幕归属重定义(G4)、灯与屏合并(G6)。案 8 的旋转诉求其实属于「绕垂直轴」,但转错了部位(转塔底 → 应转头,G5)。</div>
+</section>
+
+<!-- ============ 04 结论 ============ -->
+<section id="c4">
+  <div class="sechead"><span class="no">§ 04</span><h2>收敛建议</h2><span class="en">Verdict</span></div>
+  <div class="final">
+    <h5>一个平台,拆件重组,而不是八选一</h5>
+    <p><b>① 主线 = 案 3 × 案 1 融合 + G4 架构:</b>前缘铰链翻起屏(案 3 结构)+ 摄像头装在<b>屏幕上边框且自带下翻档位</b>(案 1 的翻转摄像头嫁接过来,翻到底=物理遮挡),底部 360° 灯环,整体作为「头部模组」;算力盒无屏、同 footprint 向下堆叠。四条约束全部闭环。</p>
+    <p><b>② 固定角 vs 铰链,用样机定生死:</b>案 1(固定楔角)和案 3(铰链)的真正分歧只有一个变量——视角可调性值不值一套铰链的钱。打两个 1:1 快速样机做人因测试(坐/站/沙发三姿态),数据说话。</p>
+    <p><b>③ 案 2 留作 Pro SKU:</b>伸缩云台摄像头外观兼容主线,高配款替换;「缩回=隐私」的叙事值得保留。</p>
+    <p><b>④ 案 6 拆件复用:</b>侧面长条屏降级为算力盒的「节点状态条」(每台盒子标配,叠起来每层可见);独立云台摄像头改为选配件。</p>
+    <p><b>⑤ 案 5 / 案 8 不进首发:</b>单点双轴铰链与旋转底座都是电机级复杂度,和 5–7″ 触控、可堆叠两条约束正面冲突;案 8 的「旋转朝向你」由 G5 头部阻尼转环低成本实现。</p>
+    <p><b>下一步(EVT 前):</b>翻转摄像头 3 档定位的手感样件 / 铰链扭矩与触控晃动测试(戳屏角 100 次不位移)/ 头模组+2 层算力盒的热仿真 / 6″ 档屏幕供应链询价(5″ 与 7″ 为主,6″ 可能要开模)。</p>
+  </div>
+  <div class="risk"><b>最后一句实话:</b>8 案里最容易被团队投票选中的往往是案 5、案 8(最有戏剧性),但它们恰恰是约束②④下工程性价比最差的两个。Agent PC 的「活着的感觉」建议交给灯光、声音和摄像头的小动作,而不是让最重的部件(屏幕/整机)去表演。</div>
+</section>
+
+<footer>
+  Agent PC 8 方案设计评审 · 基于 2026-07-03 调研报告 20 款样本 · 手绘草图版权归 Shino
+</footer>
+
+</div>
+</body>
+</html>

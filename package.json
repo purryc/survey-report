@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "slidev --host 0.0.0.0",
+    "dev": "slidev --host 0.0.0.0 --router-mode hash",
     "extract": "node scripts/extract-claude-report.mjs",
-    "build": "slidev build --base /survey-report/",
+    "build": "slidev build --base /survey-report/ --router-mode hash",
     "check": "node scripts/check-report.mjs",
     "deploy": "npm run build && npm run check && gh workflow run \"Deploy Pages\" --ref main"
   },

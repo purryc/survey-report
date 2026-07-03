@@ -15,6 +15,10 @@ mdc: true
 面向 Desky Agent PC 工业设计的竞品洞察、结构规律与推荐方案<br>
 Competitor insights, structural patterns, and recommendations for Desky Agent PC industrial design
 
+完整报告 / Full reports:
+[竞品屏幕设计调研](/survey-report/reports/screen-integrated-mini-pc-display-design/) ·
+[Agent PC 8 方案设计评审](/survey-report/reports/agent-pc-8-design-review/)
+
 ---
 <style>
 .slidev-layout {
