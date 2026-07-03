@@ -392,9 +392,9 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 
 <div class="product">
   <div class="image-grid">
-    <img :src="'/survey-report/images/competitors/local/gflip-render.png'" />
-    <img :src="'/survey-report/images/competitors/local/flip-desk-monitor.png'" />
-    <img :src="'/survey-report/images/competitors/local/flip-table-scene.png'" />
+    <img :src="'/images/competitors/local/gflip-render.png'" />
+    <img :src="'/images/competitors/local/flip-desk-monitor.png'" />
+    <img :src="'/images/competitors/local/flip-table-scene.png'" />
   </div>
   <div>
     <div class="spec-list">
@@ -445,8 +445,8 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 <div class="product">
   <div class="image-grid">
     <img src="https://liliputing.com/wp-content/uploads/2026/03/viewdock-g2_04.jpg" />
-    <img :src="'/survey-report/images/competitors/local/viewdock-wireless-top.png'" />
-    <img :src="'/survey-report/images/competitors/local/viewdock-dock-scene.png'" />
+    <img :src="'/images/competitors/local/viewdock-wireless-top.png'" />
+    <img :src="'/images/competitors/local/viewdock-dock-scene.png'" />
   </div>
   <div>
     <div class="spec-list">
@@ -472,7 +472,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 
 <div class="product">
   <div class="image-grid">
-    <img :src="'/survey-report/images/competitors/local/am01s-pair.png'" />
+    <img :src="'/images/competitors/local/am01s-pair.png'" />
     <img src="https://liliputing.com/wp-content/uploads/2025/03/am01s_01.jpg" />
     <img src="https://liliputing.com/wp-content/uploads/2025/03/am01s_06.jpg" />
   </div>
@@ -501,7 +501,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 <div class="product">
   <div class="image-grid">
     <img src="https://liliputing.com/wp-content/uploads/2024/01/uh185_01.jpg" />
-    <img :src="'/survey-report/images/competitors/local/uh185-stand.png'" />
+    <img :src="'/images/competitors/local/uh185-stand.png'" />
   </div>
   <div>
     <div class="spec-list">
@@ -526,7 +526,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 # AOOSTAR GEM12 Pro Max / GEM12 Pro Max
 
 <div class="product">
-  <div class="image-grid"><img :src="'/survey-report/images/competitors/local/gem12-promax.png'" /></div>
+  <div class="image-grid"><img :src="'/images/competitors/local/gem12-promax.png'" /></div>
   <div>
     <div class="spec-list">
       <b>屏幕 / Screen</b><span>3.5", IPS information display; no touch</span>
@@ -550,7 +550,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 # ACEMAGIC S1 / ACEMAGIC S1 Mini PC
 
 <div class="product">
-  <div class="image-grid"><img :src="'/survey-report/images/competitors/local/acemagic-s1.png'" /></div>
+  <div class="image-grid"><img :src="'/images/competitors/local/acemagic-s1.png'" /></div>
   <div>
     <div class="spec-list">
       <b>屏幕 / Screen</b><span>1.9", 170x320, LCD/TFT information display; no touch</span>
@@ -626,7 +626,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 # PiPO X8 / PiPO X8 Mini PC
 
 <div class="product">
-  <div class="image-grid"><img :src="'/survey-report/images/competitors/local/pipo-x8.png'" /></div>
+  <div class="image-grid"><img :src="'/images/competitors/local/pipo-x8.png'" /></div>
   <div>
     <div class="spec-list">
       <b>屏幕 / Screen</b><span>7", 1280x800, IPS touch</span>
@@ -651,8 +651,8 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 
 <div class="product">
   <div class="image-grid">
-    <img :src="'/survey-report/images/competitors/local/n150-8inch-views.png'" />
-    <img :src="'/survey-report/images/competitors/local/tablet-8inch-pink.png'" />
+    <img :src="'/images/competitors/local/n150-8inch-views.png'" />
+    <img :src="'/images/competitors/local/tablet-8inch-pink.png'" />
   </div>
   <div>
     <div class="spec-list">
@@ -677,7 +677,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 # Seeed Studio reTerminal / Seeed reTerminal 5"
 
 <div class="product">
-  <div class="image-grid"><img :src="'/survey-report/images/competitors/local/reterminal-banner.png'" /></div>
+  <div class="image-grid"><img :src="'/images/competitors/local/reterminal-banner.png'" /></div>
   <div>
     <div class="spec-list">
       <b>屏幕 / Screen</b><span>5", 1280x720, IPS capacitive multi-touch</span>
@@ -701,7 +701,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 # BMG800 edge gateway / 佰马 BMG800 边缘计算网关
 
 <div class="product">
-  <div class="image-grid"><img :src="'/survey-report/images/competitors/local/bmg800-diagram.png'" /></div>
+  <div class="image-grid"><img :src="'/images/competitors/local/bmg800-diagram.png'" /></div>
   <div>
     <div class="spec-list">
       <b>屏幕 / Screen</b><span>7" optional, 800x480, TFT HMI touch variants</span>
@@ -855,7 +855,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 # 五种机械原型
 
 <div class="grid2">
-  <div class="concept-art"><img :src="'/survey-report/images/generated/market-archetypes-synthesis.png'" /></div>
+  <div class="concept-art"><img :src="'/images/generated/market-archetypes-synthesis.png'" /></div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
     <div class="panel"><h3>1 固定嵌入屏</h3><p class="small">低风险、低成本、低可调。<br>Low risk, low cost, low adjustability.</p></div>
     <div class="panel"><h3>2 翻转副屏</h3><p class="small">可收纳、可保护、可表达开合仪式。<br>Storable, protective, expressive.</p></div>
@@ -1009,7 +1009,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 # Fixed Wide-Angle Compact Screen / 固定广角紧凑屏
 
 <div class="grid2">
-  <div class="concept-art"><img :src="'/survey-report/images/generated/agent-screen-fixed-wide-angle.png'" /></div>
+  <div class="concept-art"><img :src="'/images/generated/agent-screen-fixed-wide-angle.png'" /></div>
   <div class="panel">
     <h3>Generated sketch / 生成白描图</h3>
     <p>6.0-6.7 英寸横向触控屏，顶部细条内置固定广角摄像头、物理隐私滑盖、语义灯带和麦克风孔。</p>
@@ -1024,7 +1024,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 # Micro PTZ Camera Variant / 微型云台摄像头变体
 
 <div class="grid2">
-  <div class="concept-art"><img :src="'/survey-report/images/generated/agent-screen-micro-ptz.png'" /></div>
+  <div class="concept-art"><img :src="'/images/generated/agent-screen-micro-ptz.png'" /></div>
   <div class="panel">
     <h3>Generated sketch / 生成白描图</h3>
     <p>小型 pan-tilt 摄像头 pod 位于屏幕上方，必须友好、精密、非监控感，并带隐私遮挡与状态灯。</p>
@@ -1039,7 +1039,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 # Flip Screen Developer Box / 翻转屏开发者盒
 
 <div class="grid2">
-  <div class="concept-art"><img :src="'/survey-report/images/generated/flip-screen-developer-box.png'" /></div>
+  <div class="concept-art"><img :src="'/images/generated/flip-screen-developer-box.png'" /></div>
   <div class="panel">
     <h3>Generated sketch / 生成白描图</h3>
     <p>5 英寸顶面翻转触控屏，展示合盖、65° 常用、90° 直立三种 ghosted 状态，强调铰链与侧后风道。</p>
@@ -1054,7 +1054,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 # Stackable Compute Dock / 可堆叠算力底座
 
 <div class="grid2">
-  <div class="concept-art"><img :src="'/survey-report/images/generated/stackable-compute-dock.png'" /></div>
+  <div class="concept-art"><img :src="'/images/generated/stackable-compute-dock.png'" /></div>
   <div class="panel">
     <h3>Generated sketch / 生成白描图</h3>
     <p>1-4 个 Mac-mini-like 算力盒整齐堆叠，前方或上方放独立 5-7.x 英寸 Agent 屏幕模块。</p>
@@ -1069,7 +1069,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 # Large PTZ Caution Route / 大云台谨慎路线
 
 <div class="grid2">
-  <div class="concept-art"><img :src="'/survey-report/images/generated/large-ptz-caution-route.png'" /></div>
+  <div class="concept-art"><img :src="'/images/generated/large-ptz-caution-route.png'" /></div>
   <div class="panel">
     <h3>Generated sketch / 生成白描图</h3>
     <p>用同样白线风格画出大摄像头压过屏幕的对比路线，并用红色标出体积和桌面 footprint 风险。</p>
@@ -1084,7 +1084,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 # Screen Size Band Diagram / 屏幕尺寸带图
 
 <div class="grid2">
-  <div class="concept-art"><img :src="'/survey-report/images/generated/screen-size-band-diagram.png'" /></div>
+  <div class="concept-art"><img :src="'/images/generated/screen-size-band-diagram.png'" /></div>
   <div class="panel">
     <h3>Generated sketch / 生成白描图</h3>
     <p>并排绘制三种屏幕模块相对尺度：状态带、审批带、小 hub 带，用最少 UI 暗示用途。</p>

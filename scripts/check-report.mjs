@@ -135,6 +135,7 @@ function imageReferenceCandidates(image) {
   if (typeof image.path === "string") {
     candidates.add(image.path);
     candidates.add(image.path.replace(/^public\//, ""));
+    candidates.add(`/${image.path.replace(/^public\//, "")}`);
     candidates.add(`/survey-report/${image.path.replace(/^public\//, "")}`);
     candidates.add(path.basename(image.path));
   }
@@ -210,7 +211,7 @@ function checkSlides(slidesText, products) {
   });
 
   requiredGeneratedImages.forEach((imageName) => {
-    if (!slidesText.includes(`/survey-report/images/generated/${imageName}`)) {
+    if (!slidesText.includes(`/images/generated/${imageName}`)) {
       addError(`slides.md does not reference generated image: ${imageName}`);
     }
   });
