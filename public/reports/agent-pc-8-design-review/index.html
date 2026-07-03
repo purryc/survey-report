@@ -32,8 +32,13 @@
   p.lead{color:var(--ink2);max-width:880px;margin-bottom:16px}
   /* scheme card */
   .scard{background:var(--card);border:1px solid var(--line);margin:22px 0}
-  .scard .skimg{background:#fff;border-bottom:1px solid var(--line);padding:6px 10px}
+  .scard .skimg{background:#fff;border-bottom:1px solid var(--line);padding:10px}
   .scard .skimg img{width:100%;display:block}
+  .scard .skimg.compare{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,32%);gap:10px;align-items:stretch}
+  .scard .skimg .main-sketch{height:100%;object-fit:contain}
+  .hand-sketch{border:1px solid var(--line);background:#fffdf8;padding:7px;display:flex;flex-direction:column;justify-content:center;gap:6px;overflow:hidden}
+  .hand-sketch img{border:1px solid #eadfca;background:#fff;object-fit:cover;object-position:center center;width:100%;height:150px;max-width:100%;margin-left:0}
+  .hand-sketch figcaption{font-family:var(--mono);font-size:10px;color:var(--ink2);text-align:center;letter-spacing:.05em}
   .scard .head{display:flex;align-items:center;gap:12px;padding:12px 18px 0}
   .scard .idx{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--accent);min-width:44px}
   .scard .head h4{font-family:var(--serif);font-size:18px;font-weight:700;flex:1}
@@ -49,7 +54,7 @@
   .scard .ref{margin:0 18px 16px;border-top:1px dashed var(--line);padding-top:9px;font-size:12px;color:var(--ink2)}
   .scard .ref b{color:var(--accent2)}
   .flaw{margin:0 18px 12px;border-left:4px solid var(--accent);background:#f7ece7;padding:9px 14px;font-size:13px}
-  @media(max-width:720px){.scard .cols{grid-template-columns:1fr}}
+  @media(max-width:720px){.scard .cols{grid-template-columns:1fr}.scard .skimg.compare{grid-template-columns:1fr}.hand-sketch{max-width:360px;margin:0 auto}.hand-sketch img{width:100%;margin-left:0}}
   /* matrix */
   .tbl-wrap{overflow-x:auto;border:1px solid var(--line);background:var(--card);margin:20px 0}
   table.big{border-collapse:collapse;width:100%;min-width:900px;font-size:12.5px}
@@ -109,7 +114,10 @@
 
   <!-- 方案1 -->
   <div class="scard">
-    <div class="skimg"><img src="report_assets/agent-pc-scheme-01-imagegen.png" alt="方案1 imagegen 白描草图"></div>
+    <div class="skimg compare">
+      <img class="main-sketch" src="report_assets/agent-pc-scheme-01-imagegen.png" alt="方案1 imagegen 白描草图">
+      <figure class="hand-sketch"><img src="report_assets/agent-pc-scheme-01-hand-sketch.png" alt="方案1 原始手绘草图"><figcaption>原始手绘 / Original sketch</figcaption></figure>
+    </div>
     <div class="head"><span class="idx">案 1</span><h4>一体机 · 固定倾角屏 + 可下翻广角摄像头 + 底部光带</h4><span class="verdict v-rec">推荐 · 基线</span></div>
     <div class="cols">
       <div class="plus"><h6>+ 亮点</h6><p>零屏幕机构 = 全场<b>成本与可靠性最优</b>;摄像头单轴翻转是三视野约束的最便宜解(上翻看人/白板,下翻看桌面);底部光环 360° 可读。整体与调研推荐的「灯塔」基线几乎重合,量产路径最短。</p></div>
@@ -120,7 +128,10 @@
 
   <!-- 方案2 -->
   <div class="scard">
-    <div class="skimg"><img src="report_assets/agent-pc-scheme-02-imagegen.png" alt="方案2 imagegen 白描草图"></div>
+    <div class="skimg compare">
+      <img class="main-sketch" src="report_assets/agent-pc-scheme-02-imagegen.png" alt="方案2 imagegen 白描草图">
+      <figure class="hand-sketch"><img src="report_assets/agent-pc-scheme-02-hand-sketch.png" alt="方案2 原始手绘草图"><figcaption>原始手绘 / Original sketch</figcaption></figure>
+    </div>
     <div class="head"><span class="idx">案 2</span><h4>一体机 · 顶部可伸缩小云台摄像头(左右+上下)</h4><span class="verdict v-mod">可行 · 高配变体</span></div>
     <div class="cols">
       <div class="plus"><h6>+ 亮点</h6><p>唯一能<b>同时满足三视野「任意指向」</b>的方案;而且「缩回=物理消失」是比滑盖更强的隐私语言——Agent 设备的信任痛点被机构本身回答了,潜望起降还自带产品人格(抬头=在听)。</p></div>
@@ -131,7 +142,10 @@
 
   <!-- 方案3 -->
   <div class="scard">
-    <div class="skimg"><img src="report_assets/agent-pc-scheme-03-imagegen.png" alt="方案3 imagegen 白描草图"></div>
+    <div class="skimg compare">
+      <img class="main-sketch" src="report_assets/agent-pc-scheme-03-imagegen.png" alt="方案3 imagegen 白描草图">
+      <figure class="hand-sketch"><img src="report_assets/agent-pc-scheme-03-hand-sketch.png" alt="方案3 原始手绘草图"><figcaption>原始手绘 / Original sketch</figcaption></figure>
+    </div>
     <div class="head"><span class="idx">案 3</span><h4>盒子 · 屏幕沿前缘铰链翻起 + 顶部固定广角</h4><span class="verdict v-rec">推荐 · 需修一处</span></div>
     <div class="flaw"><b>如画有一个视线 bug:</b>摄像头固定在盒顶,屏幕沿前缘翻起后,摄像头看到的是<b>屏幕背面</b>。修正:把摄像头移到<b>屏幕上边框</b>(随屏翻起自然朝人,俯角还能扫到桌面),或者偏置到盒顶后角避开屏幕遮挡——前者更优,业界(UH185)已验证屏摄同模组。</div>
     <div class="cols">
@@ -143,7 +157,10 @@
 
   <!-- 方案4 -->
   <div class="scard">
-    <div class="skimg"><img src="report_assets/agent-pc-scheme-04-imagegen.png" alt="方案4 imagegen 白描草图"></div>
+    <div class="skimg compare">
+      <img class="main-sketch" src="report_assets/agent-pc-scheme-04-imagegen.png" alt="方案4 imagegen 白描草图">
+      <figure class="hand-sketch"><img src="report_assets/agent-pc-scheme-04-hand-sketch.png" alt="方案4 原始手绘草图"><figcaption>原始手绘 / Original sketch</figcaption></figure>
+    </div>
     <div class="head"><span class="idx">案 4</span><h4>盒子 · 屏幕内藏、沿后缘铰链翻起 + 顶部固定广角</h4><span class="verdict v-mod">可改 · 人机存疑</span></div>
     <div class="cols">
       <div class="plus"><h6>+ 亮点</h6><p><b>收纳态最完整</b>:屏幕完全藏进机身,合上就是一块干净的方砖,运输/防尘/防窥全解;屏幕起于后缘,腾出的前半顶面可以复用(Qi 充电板 / 放手机,ViewDock 已验证);摄像头在前不被屏挡,视线成立。</p></div>
@@ -154,7 +171,10 @@
 
   <!-- 方案5 -->
   <div class="scard">
-    <div class="skimg"><img src="report_assets/agent-pc-scheme-05-imagegen.png" alt="方案5 imagegen 白描草图"></div>
+    <div class="skimg compare">
+      <img class="main-sketch" src="report_assets/agent-pc-scheme-05-imagegen.png" alt="方案5 imagegen 白描草图">
+      <figure class="hand-sketch"><img src="report_assets/agent-pc-scheme-05-hand-sketch.png" alt="方案5 原始手绘草图"><figcaption>原始手绘 / Original sketch</figcaption></figure>
+    </div>
     <div class="head"><span class="idx">案 5</span><h4>盒子 · Auto Twist 式单点旋转+翻转铰链</h4><span class="verdict v-risk">慎用 · 机构风险最高</span></div>
     <div class="cols">
       <div class="plus"><h6>+ 亮点</h6><p>横竖屏切换对 Agent 对话流(竖)/ 视频(横)确实有真实价值;单柱造型有辨识度,「屏幕会转」的剧场感强。</p></div>
@@ -165,7 +185,10 @@
 
   <!-- 方案6 -->
   <div class="scard">
-    <div class="skimg"><img src="report_assets/agent-pc-scheme-06-imagegen.png" alt="方案6 imagegen 白描草图"></div>
+    <div class="skimg compare">
+      <img class="main-sketch" src="report_assets/agent-pc-scheme-06-imagegen.png" alt="方案6 imagegen 白描草图">
+      <figure class="hand-sketch"><img src="report_assets/agent-pc-scheme-06-hand-sketch.png" alt="方案6 原始手绘草图"><figcaption>原始手绘 / Original sketch</figcaption></figure>
+    </div>
     <div class="head"><span class="idx">案 6</span><h4>盒子+独立云台摄像头 · 侧面长条屏 · 立起时底边光带</h4><span class="verdict v-mod">可改 · 洞察最独特</span></div>
     <div class="cols">
       <div class="plus"><h6>+ 亮点</h6><p><b>全场唯一「堆叠原生」方案</b>:屏幕在侧面,盒子叠起来时每层屏幕都可见——多节点状态一目了然,这是其他 7 案都做不到的(它们的屏都在顶面,叠即遮)。独立云台摄像头是三视野的完美解,还能放到白板正对面。</p></div>
@@ -176,7 +199,10 @@
 
   <!-- 方案7 -->
   <div class="scard">
-    <div class="skimg"><img src="report_assets/agent-pc-scheme-07-imagegen.png" alt="方案7 imagegen 白描草图"></div>
+    <div class="skimg compare">
+      <img class="main-sketch" src="report_assets/agent-pc-scheme-07-imagegen.png" alt="方案7 imagegen 白描草图">
+      <figure class="hand-sketch"><img src="report_assets/agent-pc-scheme-07-hand-sketch.png" alt="方案7 原始手绘草图"><figcaption>原始手绘 / Original sketch</figcaption></figure>
+    </div>
     <div class="head"><span class="idx">案 7</span><h4>盒面屏 + 可翻转广角摄像头 + 整机支架立起调角 + 屏下灯带</h4><span class="verdict v-mod">可改 · 与案 1 合并</span></div>
     <div class="cols">
       <div class="plus"><h6>+ 亮点</h6><p>用整机支架代替屏幕铰链来调视角——机构从「精密铰链」降级为「粗壮支架」,便宜且抗造;摄像头翻转继承案 1 的优点;平放时是低调的盒子,立起时是终端,一物两态。</p></div>
@@ -187,7 +213,10 @@
 
   <!-- 方案8 -->
   <div class="scard">
-    <div class="skimg"><img src="report_assets/agent-pc-scheme-08-imagegen.png" alt="方案8 imagegen 白描草图"></div>
+    <div class="skimg compare">
+      <img class="main-sketch" src="report_assets/agent-pc-scheme-08-imagegen.png" alt="方案8 imagegen 白描草图">
+      <figure class="hand-sketch"><img src="report_assets/agent-pc-scheme-08-hand-sketch.png" alt="方案8 原始手绘草图"><figcaption>原始手绘 / Original sketch</figcaption></figure>
+    </div>
     <div class="head"><span class="idx">案 8</span><h4>Echo 式 · 旋转光带底座 + 贴合屏可伸出/tilt + 顶部固定广角</h4><span class="verdict v-risk">慎用 · 与约束④正面冲突</span></div>
     <div class="cols">
       <div class="plus"><h6>+ 亮点</h6><p>桌面存在感最强:旋转=朝向你,是 Agent「有身体」的最直接表达;屏幕平贴机身+按需伸出 tilt,收纳与人机兼顾;底座光环与旋转组合的「表情」空间大。</p></div>
