@@ -10,7 +10,7 @@ Draw a compact 6.0-6.7 inch landscape touch screen module for an Agent PC. A fix
 
 ## 02 Micro PTZ Camera Variant
 
-Draw a compact Agent PC foreground screen with a small micro pan-tilt camera pod above the display, not a large surveillance head. The screen is 6.0-7.x inch landscape touch. The camera pod has a visible privacy shutter and small status light. Show the pod as a friendly precision sensor, not a robot pet. Add callouts for micro PTZ, light state, privacy shutter, and screen.
+Draw a compact Agent PC foreground screen with a small micro pan-tilt camera pod above the display, not a large surveillance head. The screen is 6.0-7.x inch landscape touch. The camera pod has a visible privacy shutter and small status light. Add a subtle far-field mic array or small microphone perforation row along the top bar or lower bezel for voice interaction. Show the pod as a friendly precision sensor, not a robot pet. Add callouts for micro PTZ, light state, privacy shutter, touch screen, mic array, and voice input.
 
 ## 03 Flip Screen Developer Box
 
@@ -18,7 +18,7 @@ Draw a mini PC with a 5 inch flip-up touch screen on the top front edge. Show th
 
 ## 04 Stackable Compute Dock
 
-Draw a stackable compute-box dock for 1-4 Mac-mini-like boxes. The Agent PC screen module sits in front or on top as a separate foreground interface. Show magnetic alignment points, side/back airflow, short rear data bridges, and one clean power path. The stack should look organized, not like loose boxes.
+Draw a stackable compute-box dock for 1-4 Mac-mini-like boxes. The Agent PC foreground module sits in front or on top as a separate 5-7.x inch landscape touch screen interface with an integrated camera, semantic light strip, and voice/mic module. Show magnetic alignment points, side/back airflow, short rear data bridges, and one clean power path. Keep the stack organized, not like loose boxes, while making the sensing/interface module clearly visible with callouts for camera, light, touch screen, and mic/voice.
 
 ## 05 Large PTZ Caution Route
 
