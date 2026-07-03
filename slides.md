@@ -8,7 +8,6 @@ drawings:
 transition: fade
 mdc: true
 ---
-
 # 带屏迷你主机屏幕设计调研
 
 ## Mini PC Screen Design Survey
@@ -17,7 +16,6 @@ mdc: true
 Competitor insights, structural patterns, and recommendations for Desky Agent PC industrial design
 
 ---
-
 <style>
 .slidev-layout {
   background: #ffffff;
@@ -117,6 +115,26 @@ p, li {
 .image-grid .wide img {
   height: 220px;
 }
+.concept-art img {
+  width: 100%;
+  height: 330px;
+  object-fit: contain;
+  border: 1px solid #d9e0e8;
+  border-radius: 8px;
+  background: #ffffff;
+}
+.factline {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 10px;
+  margin-top: 8px;
+  color: #4b5563;
+  font-size: 9.5px;
+  line-height: 1.25;
+}
+.factline b {
+  color: #111827;
+}
 .spec-list {
   display: grid;
   grid-template-columns: 130px 1fr;
@@ -175,7 +193,6 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 </div>
 
 ---
-
 <div class="kicker">Section 1 · What The Screen Must Do</div>
 
 # 屏幕必须承担的四个任务
@@ -202,7 +219,6 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 <p class="muted" style="margin-top:24px">Desky ID implication: 屏幕是前景协作面，不是把完整桌面系统缩小到盒子上。The screen is a foreground collaboration surface, not a tiny copy of the desktop OS.</p>
 
 ---
-
 <div class="kicker">Section 1 · Why Not 8 Inch By Default</div>
 
 # 保留 8 英寸证据，但收窄产品姿态
@@ -223,7 +239,6 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 <div class="decision" style="margin-top:22px">中文决策：8 英寸作为上界和供应链参考保留，首代默认从 6.0-6.7 英寸审批屏开始。<br>English summary: Keep 8 inch as the upper-bound evidence, but start the first-generation default from the 6.0-6.7 inch approval-screen band.</div>
 
 ---
-
 <div class="kicker">Section 1 · Research Method</div>
 
 # 研究方法：Claude 基线 + 本地证据 + live web 校验 + 图片 ledger
@@ -236,7 +251,6 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 </div>
 
 ---
-
 <div class="kicker">Section 2 · Market Map</div>
 
 # 六类市场样本 A-F
@@ -251,7 +265,6 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 </div>
 
 ---
-
 <div class="kicker">Section 2 · Screen Role Map</div>
 
 # 屏幕角色地图：从状态到 companion
@@ -266,7 +279,6 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 </div>
 
 ---
-
 <div class="kicker">Section 2 · Mechanism Map</div>
 
 # 机构地图：fixed / flip / rotate / detach / stack / dock
@@ -284,7 +296,6 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 <p class="small muted">中文决策：Desky 可以借鉴 flip 与 stack，但首代屏幕模块应优先与算力盒解耦。English summary: Desky can borrow from flip and stack patterns, while keeping the screen module decoupled from compute boxes.</p>
 
 ---
-
 <div class="kicker">Section 2 · Camera Route Map</div>
 
 # 摄像头路线地图
@@ -299,7 +310,6 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 <p class="muted">Remote module / 远程模块：适合 Gen2 或专业桌面，不作为默认随盒方案。Remote camera modules fit Gen2 or pro desks, not the default in-box route.</p>
 
 ---
-
 <div class="kicker">Competitor Teardown · A</div>
 
 # Lenovo Auto Twist / Lenovo ThinkBook Plus Gen 7 Auto Twist
@@ -313,12 +323,17 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <b>感知 / Sensing</b><span>10MP camera for face tracking; voice-commanded AI scenarios.</span>
       <b>Desky 启示</b><span>电机是展示性强但成本、噪音、寿命风险高的旗舰路线。Motorization is a flagship proof, not a compact default.</span>
     </div>
+    <div class="factline">
+      <span><b>Camera / 摄像头</b> 10MP webcam for face tracking</span>
+      <span><b>Light / 灯光</b> n/a</span>
+      <span><b>Voice / 语音</b> AI assistant / voice-commanded screen motion and translation scenarios</span>
+      <span><b>Storage / 收纳</b> Laptop clamshell; portable but not a stackable desk-compute module</span>
+    </div>
     <div class="source">Source note: Lenovo PSREF + TechRadar + The Verge; image from GadgetBond media reference.</div>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Competitor Teardown · A</div>
 
 # Amazon Echo Show 10 / Amazon Echo Show 10 (3rd Gen)
@@ -332,12 +347,17 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <b>感知 / Sensing</b><span>13MP camera, auto-framing, far-field Alexa voice.</span>
       <b>Desky 启示</b><span>大底座旋转需要桌面净空，会把 Desky 推向智能音箱姿态。Rotating clearance pushes the product toward smart-display territory.</span>
     </div>
+    <div class="factline">
+      <span><b>Camera / 摄像头</b> 13MP camera with auto-framing / user tracking</span>
+      <span><b>Light / 灯光</b> n/a</span>
+      <span><b>Voice / 语音</b> Far-field Alexa voice control</span>
+      <span><b>Storage / 收纳</b> Countertop smart-display appliance; rotating base needs clearance and is not st...</span>
+    </div>
     <div class="source">Source note: Tom's Guide, PCWorld, SHI spec mirror; image from Future media reference.</div>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Competitor Teardown · A</div>
 
 # LG StanbyME Go / LG StanbyME Go 27LX5QKNA
@@ -355,12 +375,17 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <b>感知 / Sensing</b><span>No built-in camera; voice through remote / LG ecosystem; 20W 4-channel audio.</span>
       <b>Desky 启示</b><span>收纳形态可以增强可信赖感，但 27 英寸证明这是“屏幕产品”而非前景屏。Storage can build trust, but this is screen-as-product.</span>
     </div>
+    <div class="factline">
+      <span><b>Camera / 摄像头</b> n/a</span>
+      <span><b>Light / 灯光</b> n/a</span>
+      <span><b>Voice / 语音</b> Voice control through remote / LG ThinQ ecosystem</span>
+      <span><b>Storage / 收纳</b> Briefcase storage; built-in battery; can be carried closed or used flat in tabl...</span>
+    </div>
     <div class="source">Source note: LG official galleries and product pages; three images show use, storage, and table states.</div>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Competitor Teardown · B</div>
 
 # AOOSTAR G-Flip 370 / G-Flip 370
@@ -378,12 +403,17 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <b>感知 / Sensing</b><span>No camera, light, or voice module.</span>
       <b>Desky 启示</b><span>5 英寸翻转屏证明“前景屏”可以维持迷你主机尺度。5 inch flip proves the foreground screen can stay compact.</span>
     </div>
+    <div class="factline">
+      <span><b>Camera / 摄像头</b> n/a</span>
+      <span><b>Light / 灯光</b> n/a</span>
+      <span><b>Voice / 语音</b> n/a</span>
+      <span><b>Storage / 收纳</b> Flip screen folds down to protect the display; compact 130×130mm-class desk foo...</span>
+    </div>
     <div class="source">Source note: AOOSTAR official articles and Notebookcheck; local Claude assets retained for use, desk, and storage states.</div>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Competitor Teardown · B</div>
 
 # Miniproca AiO / Ryzen 7-inch 4K flip-screen mini PC
@@ -397,12 +427,17 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <b>感知 / Sensing</b><span>No built-in camera, light, or voice module.</span>
       <b>Desky 启示</b><span>4K 小屏是参数炫技，不是 Agent PC 的默认价值。4K on a small secondary screen is spec theater, not default agent value.</span>
     </div>
+    <div class="factline">
+      <span><b>Camera / 摄像头</b> n/a</span>
+      <span><b>Light / 灯光</b> n/a</span>
+      <span><b>Voice / 语音</b> n/a</span>
+      <span><b>Storage / 收纳</b> Display folds down over the top for storage; not a stacking design</span>
+    </div>
     <div class="source">Source note: Tom's Hardware, Liliputing, Kickstarter FAQ; image from Future media reference.</div>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Competitor Teardown · B</div>
 
 # ViewDock Gen2 / ViewDock G2
@@ -420,12 +455,17 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <b>感知 / Sensing</b><span>No camera, light, or voice module; audio jack reported.</span>
       <b>Desky 启示</b><span>顶面是稀缺资源：翻转屏、充电、散热、堆叠会互相抢位。The top surface is contested by screen, charging, airflow, and stacking.</span>
     </div>
+    <div class="factline">
+      <span><b>Camera / 摄像头</b> n/a</span>
+      <span><b>Light / 灯光</b> n/a</span>
+      <span><b>Voice / 语音</b> n/a</span>
+      <span><b>Storage / 收纳</b> Folded top surface doubles as a wireless charging dock; compact vertical deskto...</span>
+    </div>
     <div class="source">Source note: Liliputing, Kickstarter, Notebookcheck; images show mechanism, storage top, and desk dock state.</div>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Competitor Teardown · B</div>
 
 # AYANEO AM01S / AYANEO Retro Mini PC AM01S
@@ -443,12 +483,17 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <b>感知 / Sensing</b><span>No camera, light, or voice module.</span>
       <b>Desky 启示</b><span>4 英寸适合系统状态，但审批卡片和摄像头预览会紧张。4 inch works for status but is tight for approvals and camera preview.</span>
     </div>
+    <div class="factline">
+      <span><b>Camera / 摄像头</b> n/a</span>
+      <span><b>Light / 灯光</b> n/a</span>
+      <span><b>Voice / 语音</b> n/a</span>
+      <span><b>Storage / 收纳</b> Screen folds low/flat into the top; retro 1L-class desk mini PC, not stackable</span>
+    </div>
     <div class="source">Source note: AYANEO official articles and Liliputing; images cover use, desk, and mechanism states.</div>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Competitor Teardown · C</div>
 
 # Minisforum UH185 Ultra / AtomMan UH185 Ultra
@@ -465,12 +510,17 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <b>感知 / Sensing</b><span>1080p camera with physical privacy shutter; built-in microphone.</span>
       <b>Desky 启示</b><span>物理遮挡是信任底线；屏幕归属必须在系统架构期定义。Physical shutter is a trust baseline; screen ownership must be architected early.</span>
     </div>
+    <div class="factline">
+      <span><b>Camera / 摄像头</b> 1080p camera with physical privacy shutter</span>
+      <span><b>Light / 灯光</b> n/a</span>
+      <span><b>Voice / 语音</b> Built-in microphone</span>
+      <span><b>Storage / 收纳</b> Top-fixed display with optional vertical stand posture; no stackable storage de...</span>
+    </div>
     <div class="source">Source note: Liliputing, TechRadar, Notebookcheck; local stand asset retained from Claude HTML.</div>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Competitor Teardown · C</div>
 
 # AOOSTAR GEM12 Pro Max / GEM12 Pro Max
@@ -484,12 +534,17 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <b>感知 / Sensing</b><span>No camera or voice; boot/status animation on screen.</span>
       <b>Desky 启示</b><span>状态屏能降低黑盒感，但不能承载 Agent 授权。Status screens reduce black-box anxiety but cannot carry agent approval.</span>
     </div>
+    <div class="factline">
+      <span><b>Camera / 摄像头</b> n/a</span>
+      <span><b>Light / 灯光</b> Boot/status animation on secondary screen</span>
+      <span><b>Voice / 语音</b> n/a</span>
+      <span><b>Storage / 收纳</b> Horizontal mini PC with fixed front display; no stacking claim reported</span>
+    </div>
     <div class="source">Source note: AOOSTAR official secondary-screen article, Notebookcheck, TechSpot; local Claude asset retained.</div>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Competitor Teardown · C</div>
 
 # ACEMAGIC S1 / ACEMAGIC S1 Mini PC
@@ -503,12 +558,17 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <b>感知 / Sensing</b><span>No camera or voice; customizable RGB light strip.</span>
       <b>Desky 启示</b><span>灯光若无语义，只会停留在装饰；Desky 需要状态语言。Without semantics, light remains decoration; Desky needs a state language.</span>
     </div>
+    <div class="factline">
+      <span><b>Camera / 摄像头</b> n/a</span>
+      <span><b>Light / 灯光</b> Customizable RGB light strip</span>
+      <span><b>Voice / 语音</b> n/a</span>
+      <span><b>Storage / 收纳</b> Vertical tower placement; magnetic side access for upgrades; not stackable</span>
+    </div>
     <div class="source">Source note: ACEMAGIC official page, TechRadar, CNX Software; local Claude asset retained.</div>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Competitor Teardown · C</div>
 
 # AYANEO AM02 / AYANEO Retro Mini PC AM02
@@ -526,12 +586,17 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <b>感知 / Sensing</b><span>No camera or voice; power/status indicator reported.</span>
       <b>Desky 启示</b><span>游戏机隐喻强，但 Agent PC 需要更克制的工作台语言。Console nostalgia is expressive; an Agent PC needs calmer desk language.</span>
     </div>
+    <div class="factline">
+      <span><b>Camera / 摄像头</b> n/a</span>
+      <span><b>Light / 灯光</b> Power/status indicator reported</span>
+      <span><b>Voice / 语音</b> n/a</span>
+      <span><b>Storage / 收纳</b> Console-like horizontal desk placement; no stacking design reported</span>
+    </div>
     <div class="source">Source note: AYANEO official product/article pages, Liliputing review, Tom's Hardware; images from Liliputing.</div>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Competitor Teardown · D</div>
 
 # Higole / Gole1 Pro / HIGOLEPC Gole 1 Pro
@@ -545,12 +610,17 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <b>感知 / Sensing</b><span>No built-in camera; built-in microphone, speaker, and 3.5mm audio jack.</span>
       <b>Desky 启示</b><span>5.5 英寸可以完整触控，但 slab 形态不应成为 Desky 的默认桌面姿态。5.5 inch can carry touch, but the slab posture is not Desky's default desk object.</span>
     </div>
+    <div class="factline">
+      <span><b>Camera / 摄像头</b> n/a</span>
+      <span><b>Light / 灯光</b> n/a</span>
+      <span><b>Voice / 语音</b> Built-in microphone</span>
+      <span><b>Storage / 收纳</b> Pocket/handheld slab; current official retail page lists a 2500mAh battery; not...</span>
+    </div>
     <div class="source">Source note: corrected CNX Software image and Gole retail cross-check. The legacy higole-scene.png is not used as Higole evidence.</div>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Competitor Teardown · D</div>
 
 # PiPO X8 / PiPO X8 Mini PC
@@ -564,12 +634,17 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <b>感知 / Sensing</b><span>No built-in camera or voice; integrated speakers reported.</span>
       <b>Desky 启示</b><span>楔形一体屏稳定，但屏幕角度和堆叠扩展被锁死。A wedge is stable, but it fixes both viewing angle and expansion path.</span>
     </div>
+    <div class="factline">
+      <span><b>Camera / 摄像头</b> n/a</span>
+      <span><b>Light / 灯光</b> n/a</span>
+      <span><b>Voice / 语音</b> n/a</span>
+      <span><b>Storage / 收纳</b> Wedge desktop box with fixed viewing angle; not stackable</span>
+    </div>
     <div class="source">Source note: Liliputing, PiPO product family page, Home Theatre Life hands-on; local Claude asset retained.</div>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Competitor Teardown · D</div>
 
 # 8-inch N150 white-label touch mini PC / KOOFORWAY 8-inch N150
@@ -586,12 +661,17 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <b>感知 / Sensing</b><span>2MP camera on some variants; voice/audio details vary by SKU.</span>
       <b>Desky 启示</b><span>8 英寸供应链强，但白牌形态证明它容易变成小平板电脑。8 inch supply is strong, yet it easily reads as a small tablet PC.</span>
     </div>
+    <div class="factline">
+      <span><b>Camera / 摄像头</b> 2MP on some variants</span>
+      <span><b>Light / 灯光</b> n/a</span>
+      <span><b>Voice / 语音</b> unknown after source search</span>
+      <span><b>Storage / 收纳</b> Pocket mini-laptop/tablet form; convertible or kickstand desk placement; not st...</span>
+    </div>
     <div class="source">Source note: Liliputing, X-Plus, Amazon SKU references; local Claude assets retained.</div>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Competitor Teardown · D</div>
 
 # Seeed Studio reTerminal / Seeed reTerminal 5"
@@ -605,12 +685,17 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <b>感知 / Sensing</b><span>Ambient light sensor; CSI camera and voice/audio can be added through expansion.</span>
       <b>Desky 启示</b><span>5 英寸 720p 已足够做清晰控制面，但消费级外观需要重新设计。5 inch 720p is enough for control, but consumer industrial design must be redesigned.</span>
     </div>
+    <div class="factline">
+      <span><b>Camera / 摄像头</b> n/a; CSI camera expansion is available</span>
+      <span><b>Light / 灯光</b> Ambient light sensor</span>
+      <span><b>Voice / 语音</b> n/a; audio/voice can be added through expansion</span>
+      <span><b>Storage / 收纳</b> Panel/HMI module with expansion interfaces; suitable for mounted or embedded pl...</span>
+    </div>
     <div class="source">Source note: Seeed Wiki and product page; local Claude asset retained.</div>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Competitor Teardown · D</div>
 
 # BMG800 edge gateway / 佰马 BMG800 边缘计算网关
@@ -624,12 +709,17 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <b>感知 / Sensing</b><span>External video/voice acquisition; PWR, SYS, ONLINE, WIFI, GPS LEDs.</span>
       <b>Desky 启示</b><span>状态 LED 语言清楚，但工业 HMI 密度不适合桌面用户。Status LEDs are clear, but industrial HMI density is wrong for a desk user.</span>
     </div>
+    <div class="factline">
+      <span><b>Camera / 摄像头</b> External video/image acquisition supported; no built-in camera</span>
+      <span><b>Light / 灯光</b> PWR, SYS, ONLINE, WIFI, GPS status LEDs</span>
+      <span><b>Voice / 语音</b> External voice acquisition supported; no built-in far-field voice interface</span>
+      <span><b>Storage / 收纳</b> Industrial gateway for local configuration, data view/export, and cabinet/rail...</span>
+    </div>
     <div class="source">Source note: Baimatech Chinese/English pages; local Claude diagram retained as spec evidence.</div>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Competitor Teardown · E</div>
 
 # Violoop / Bvio Violoop
@@ -643,12 +733,17 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <b>感知 / Sensing</b><span>No camera; bottom ambient light visible; mic/voice/audio specs not published.</span>
       <b>Desky 启示</b><span>Agent 专用硬件应先解释“它为什么在桌上”，再解释算力。Agent hardware must justify its desk presence before its compute story.</span>
     </div>
+    <div class="factline">
+      <span><b>Camera / 摄像头</b> n/a; reads host screen through HDMI capture</span>
+      <span><b>Light / 灯光</b> Bottom ambient light shown in product imagery / media material</span>
+      <span><b>Voice / 语音</b> unknown after source search</span>
+      <span><b>Storage / 收纳</b> Small desktop inline appliance between host computer and monitor; no stacking d...</span>
+    </div>
     <div class="source">Source note: Violoop official site, 36Kr Europe, Pandaily; official media image used.</div>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Competitor Teardown · E</div>
 
 # Moore Threads AICUBE / 摩尔线程 MTT AICUBE
@@ -662,12 +757,17 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <b>感知 / Sensing</b><span>Four-microphone array, Xiaomai assistant, stereo speakers reported; camera not built in.</span>
       <b>Desky 启示</b><span>语音和音频可以成为 Agent PC 的默认输入输出，但没有前景屏会缺少确认层。Voice/audio can be core I/O, but no foreground screen means no approval layer.</span>
     </div>
+    <div class="factline">
+      <span><b>Camera / 摄像头</b> n/a</span>
+      <span><b>Light / 灯光</b> unknown after source search</span>
+      <span><b>Voice / 语音</b> Four-microphone array + Xiaomai assistant reported</span>
+      <span><b>Storage / 收纳</b> Desk/home AI box; storage expansion reported without opening the device; no sta...</span>
+    </div>
     <div class="source">Source note: VideoCardz, 雷科技, 搜狐; image from 雷科技 media reference.</div>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Competitor Teardown · F</div>
 
 # NVIDIA DGX Spark / DGX Spark
@@ -681,12 +781,17 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <b>感知 / Sensing</b><span>No built-in camera or voice; HDMI multichannel audio output.</span>
       <b>Desky 启示</b><span>双机成簇比无限堆叠更可信；热和互连要先被限制。Dual-unit clustering is more credible than unlimited stacking; heat and interconnect must be bounded.</span>
     </div>
+    <div class="factline">
+      <span><b>Camera / 摄像头</b> n/a</span>
+      <span><b>Light / 灯光</b> unknown after source search</span>
+      <span><b>Voice / 语音</b> n/a</span>
+      <span><b>Storage / 收纳</b> Official docs support up to 200B models on one unit and 405B dual-Spark configu...</span>
+    </div>
     <div class="source">Source note: NVIDIA hardware docs and product page; official product image used.</div>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Competitor Teardown · F</div>
 
 # Apple Mac mini M4 / Mac mini (M4)
@@ -700,12 +805,17 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <b>感知 / Sensing</b><span>No built-in camera; front status light; Siri/Dictation with external microphone.</span>
       <b>Desky 启示</b><span>Mac mini 尺寸是 Desky 算力盒参考，但前景屏不能压住散热和扩展。Mac mini scale is a compute-box reference, but the foreground screen cannot block airflow and expansion.</span>
     </div>
+    <div class="factline">
+      <span><b>Camera / 摄像头</b> n/a</span>
+      <span><b>Light / 灯光</b> Status indicator light on front</span>
+      <span><b>Voice / 语音</b> Siri and Dictation supported through macOS; external microphone required</span>
+      <span><b>Storage / 收纳</b> Small 5×5 inch footprint; external rack/vertical accessories exist, but direct...</span>
+    </div>
     <div class="source">Source note: Apple specs and support pages; official technical specification image used.</div>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Synthesis · Distribution</div>
 
 # 屏幕尺寸 × 分辨率分布
@@ -726,7 +836,6 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 </div>
 
 ---
-
 <div class="kicker">Synthesis · Mechanical Distribution</div>
 
 # 机械结构类型分布
@@ -741,22 +850,23 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 </div>
 
 ---
-
 <div class="kicker">Synthesis · Five Archetypes</div>
 
 # 五种机械原型
 
-<div class="grid3">
-  <div class="panel"><h3>1 固定嵌入屏</h3><p class="small">低风险、低成本、低可调。<br>Low risk, low cost, low adjustability.</p></div>
-  <div class="panel"><h3>2 翻转副屏</h3><p class="small">可收纳、可保护、可表达开合仪式。<br>Storable, protective, expressive.</p></div>
-  <div class="panel"><h3>3 电机旋转</h3><p class="small">强展示，但贵、吵、占桌面。<br>High demo value, high cost and clearance.</p></div>
-  <div class="panel"><h3>4 支撑臂/箱体</h3><p class="small">适合大屏终端，不适合小算力盒默认形态。<br>Good for large terminals, not compact compute.</p></div>
-  <div class="panel"><h3>5 平板/HMI 面板</h3><p class="small">工程稳定，但容易工具化或工业化。<br>Stable, but can feel too tool-like or industrial.</p></div>
-  <div class="panel"><h3>Desky 选择</h3><p class="small red">屏幕模块分离 + 固定广角基线，再评估 flip 或 micro PTZ。<br>Separate screen module + fixed wide-angle baseline, then evaluate flip or micro PTZ.</p></div>
+<div class="grid2">
+  <div class="concept-art"><img :src="'/survey-report/images/generated/market-archetypes-synthesis.png'" /></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <div class="panel"><h3>1 固定嵌入屏</h3><p class="small">低风险、低成本、低可调。<br>Low risk, low cost, low adjustability.</p></div>
+    <div class="panel"><h3>2 翻转副屏</h3><p class="small">可收纳、可保护、可表达开合仪式。<br>Storable, protective, expressive.</p></div>
+    <div class="panel"><h3>3 电机旋转</h3><p class="small">强展示，但贵、吵、占桌面。<br>High demo value, high cost and clearance.</p></div>
+    <div class="panel"><h3>4 支撑臂/箱体</h3><p class="small">适合大屏终端，不适合小算力盒默认形态。<br>Good for large terminals, not compact compute.</p></div>
+    <div class="panel"><h3>5 平板/HMI 面板</h3><p class="small">工程稳定，但容易工具化或工业化。<br>Stable, but can feel too tool-like or industrial.</p></div>
+    <div class="panel"><h3>Desky 选择</h3><p class="small red">屏幕模块分离 + 固定广角基线，再评估 flip 或 micro PTZ。<br>Separate screen module + fixed wide-angle baseline, then evaluate flip or micro PTZ.</p></div>
+  </div>
 </div>
 
 ---
-
 <div class="kicker">Synthesis · Flip Hinge Diagram</div>
 
 # 翻转铰链侧视：0° / 65° / 90°
@@ -777,7 +887,6 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 <p class="small muted">工程基线 / Engineering baseline: top-front hinge placement, friction torque hinge, FPC through-axis routing, 20k+ open-close life target.</p>
 
 ---
-
 <div class="kicker">Synthesis · Eight Pattern Laws</div>
 
 # 八条规律 1-4
@@ -790,7 +899,6 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 </div>
 
 ---
-
 <div class="kicker">Synthesis · Eight Pattern Laws</div>
 
 # 八条规律 5-8
@@ -803,7 +911,6 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 </div>
 
 ---
-
 <div class="kicker">Synthesis · Morphology Matrix</div>
 
 # 形态矩阵：1,296 种组合收敛到约 24 个可行架构
@@ -824,7 +931,6 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 <div class="decision" style="margin-top:22px">中文决策：最后不是选一个“最大屏幕”，而是选一个可靠的感知-确认-堆叠架构。<br>English summary: The decision is not the biggest screen; it is a reliable sensing, approval, and stacking architecture.</div>
 
 ---
-
 <div class="kicker">Desky Recommendation · Screen Bands</div>
 
 # 三段屏幕建议
@@ -836,7 +942,6 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 </div>
 
 ---
-
 <div class="kicker">Desky Recommendation · Camera Routes</div>
 
 # 三条摄像头路线
@@ -848,7 +953,6 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 </div>
 
 ---
-
 <div class="kicker">Desky Recommendation · Compute Dock</div>
 
 # 算力盒可堆叠，屏幕模块要分离
@@ -869,7 +973,6 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 <p class="muted">Desky ID implication: 分体不是复杂化，而是让感知层始终在最上层/最前方，让算力层在后方扩展。Separation keeps sensing in front/top and lets compute scale behind it.</p>
 
 ---
-
 <div class="kicker">Desky Recommendation · Storage And Stacking</div>
 
 # 三种收纳/堆叠方式
@@ -881,7 +984,6 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 </div>
 
 ---
-
 <div class="kicker">Desky Recommendation · Decision Checklist</div>
 
 # 最终工业设计决策清单
@@ -902,115 +1004,96 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 </div>
 
 ---
-
 <div class="kicker">Prompt-Backed Sketch · 01</div>
 
 # Fixed Wide-Angle Compact Screen / 固定广角紧凑屏
 
 <div class="grid2">
-  <svg class="svgbox" viewBox="0 0 520 330" xmlns="http://www.w3.org/2000/svg">
-    <rect x="95" y="80" width="330" height="170" rx="18" fill="none" stroke="#111" stroke-width="3"/><rect x="120" y="115" width="280" height="104" rx="8" fill="none" stroke="#9ca3af" stroke-width="2"/><rect x="180" y="62" width="160" height="28" rx="14" fill="none" stroke="#111" stroke-width="2"/><circle cx="250" cy="76" r="8" fill="none" stroke="#dc2626" stroke-width="3"/><line x1="268" y1="76" x2="320" y2="76" stroke="#dc2626" stroke-width="4"/><circle cx="220" cy="235" r="3"/><circle cx="240" cy="235" r="3"/><circle cx="260" cy="235" r="3"/><line x1="120" y1="250" x2="400" y2="250" stroke="#111" stroke-width="3"/><text x="260" y="302" text-anchor="middle" font-size="16">Concept sketch placeholder / 概念草图框架</text>
-  </svg>
+  <div class="concept-art"><img :src="'/survey-report/images/generated/agent-screen-fixed-wide-angle.png'" /></div>
   <div class="panel">
-    <h3>Prompt summary / 提示词摘要</h3>
+    <h3>Generated sketch / 生成白描图</h3>
     <p>6.0-6.7 英寸横向触控屏，顶部细条内置固定广角摄像头、物理隐私滑盖、语义灯带和麦克风孔。</p>
     <p class="small">A 6.0-6.7 inch landscape touch module with fixed wide-angle camera, physical privacy slider, semantic light strip, and mic perforations.</p>
-    <p class="small muted">Bitmap generation pending in QA; this slide uses prompt-backed inline SVG only.</p>
+    <p class="small muted">Imagegen output saved in project assets; prompt source is tracked in research/imagegen-prompts.md.</p>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Prompt-Backed Sketch · 02</div>
 
 # Micro PTZ Camera Variant / 微型云台摄像头变体
 
 <div class="grid2">
-  <svg class="svgbox" viewBox="0 0 520 330" xmlns="http://www.w3.org/2000/svg">
-    <rect x="92" y="98" width="336" height="150" rx="16" fill="none" stroke="#111" stroke-width="3"/><rect x="118" y="128" width="284" height="88" rx="8" fill="none" stroke="#9ca3af" stroke-width="2"/><rect x="225" y="58" width="70" height="44" rx="16" fill="none" stroke="#111" stroke-width="2"/><circle cx="260" cy="80" r="13" fill="none" stroke="#dc2626" stroke-width="3"/><path d="M226 58 Q260 32 294 58" fill="none" stroke="#9ca3af" stroke-width="2"/><line x1="230" y1="238" x2="290" y2="238" stroke="#dc2626" stroke-width="4"/><text x="260" y="302" text-anchor="middle" font-size="16">Prompt-backed sketch / 提示词支持草图</text>
-  </svg>
+  <div class="concept-art"><img :src="'/survey-report/images/generated/agent-screen-micro-ptz.png'" /></div>
   <div class="panel">
-    <h3>Prompt summary / 提示词摘要</h3>
+    <h3>Generated sketch / 生成白描图</h3>
     <p>小型 pan-tilt 摄像头 pod 位于屏幕上方，必须友好、精密、非监控感，并带隐私遮挡与状态灯。</p>
     <p class="small">A small micro pan-tilt pod above the display, friendly and precise rather than surveillance-like, with shutter and status light.</p>
-    <p class="small muted">Bitmap generation pending in QA; no PNG file is referenced.</p>
+    <p class="small muted">Use this as an optional route only after fixed wide-angle framing is proven insufficient.</p>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Prompt-Backed Sketch · 03</div>
 
 # Flip Screen Developer Box / 翻转屏开发者盒
 
 <div class="grid2">
-  <svg class="svgbox" viewBox="0 0 520 330" xmlns="http://www.w3.org/2000/svg">
-    <rect x="120" y="170" width="280" height="82" rx="12" fill="none" stroke="#111" stroke-width="3"/><rect x="150" y="128" width="220" height="42" rx="8" fill="none" stroke="#9ca3af" stroke-width="2"/><rect x="168" y="78" width="184" height="48" rx="8" fill="none" stroke="#111" stroke-width="2" transform="rotate(-24 260 170)"/><rect x="238" y="50" width="44" height="118" rx="8" fill="none" stroke="#9ca3af" stroke-dasharray="6 6"/><line x1="150" y1="170" x2="370" y2="170" stroke="#dc2626" stroke-width="5"/><path d="M390 196 C430 196 430 230 390 230" fill="none" stroke="#dc2626" stroke-width="3"/><text x="260" y="302" text-anchor="middle" font-size="16">0° / 65° / 90° hinge study · 铰链角度研究</text>
-  </svg>
+  <div class="concept-art"><img :src="'/survey-report/images/generated/flip-screen-developer-box.png'" /></div>
   <div class="panel">
-    <h3>Prompt summary / 提示词摘要</h3>
+    <h3>Generated sketch / 生成白描图</h3>
     <p>5 英寸顶面翻转触控屏，展示合盖、65° 常用、90° 直立三种 ghosted 状态，强调铰链与侧后风道。</p>
     <p class="small">A 5 inch flip-up touch screen with closed, 65°, and 90° ghost states, highlighting hinge and side/rear airflow.</p>
-    <p class="small muted">Bitmap generation pending in QA; inline SVG is used for the deck.</p>
+    <p class="small muted">Best used for developer-box posture, where storage protection and glance angle matter.</p>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Prompt-Backed Sketch · 04</div>
 
 # Stackable Compute Dock / 可堆叠算力底座
 
 <div class="grid2">
-  <svg class="svgbox" viewBox="0 0 520 330" xmlns="http://www.w3.org/2000/svg">
-    <rect x="250" y="70" width="160" height="44" rx="8" fill="none" stroke="#111" stroke-width="2"/><rect x="250" y="126" width="160" height="44" rx="8" fill="none" stroke="#111" stroke-width="2"/><rect x="250" y="182" width="160" height="44" rx="8" fill="none" stroke="#111" stroke-width="2"/><circle cx="274" cy="92" r="4" fill="#dc2626"/><circle cx="386" cy="92" r="4" fill="#dc2626"/><path d="M412 92 H460 V204 H412" fill="none" stroke="#dc2626" stroke-width="3"/><rect x="78" y="110" width="140" height="92" rx="14" fill="none" stroke="#111" stroke-width="3"/><circle cx="146" cy="96" r="10" fill="none" stroke="#dc2626" stroke-width="3"/><line x1="112" y1="122" x2="184" y2="122" stroke="#dc2626" stroke-width="3"/><text x="260" y="302" text-anchor="middle" font-size="16">Separate sensing module + compute stack / 分离感知模块与算力堆叠</text>
-  </svg>
+  <div class="concept-art"><img :src="'/survey-report/images/generated/stackable-compute-dock.png'" /></div>
   <div class="panel">
-    <h3>Prompt summary / 提示词摘要</h3>
+    <h3>Generated sketch / 生成白描图</h3>
     <p>1-4 个 Mac-mini-like 算力盒整齐堆叠，前方或上方放独立 5-7.x 英寸 Agent 屏幕模块。</p>
     <p class="small">A 1-4 unit compute-box stack with a separate 5-7.x inch foreground Agent screen module.</p>
-    <p class="small muted">Bitmap generation pending in QA; no generated PNG is claimed.</p>
+    <p class="small muted">Screen, camera, light, and mic stay on the foreground module so compute boxes remain stackable.</p>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Prompt-Backed Sketch · 05</div>
 
 # Large PTZ Caution Route / 大云台谨慎路线
 
 <div class="grid2">
-  <svg class="svgbox" viewBox="0 0 520 330" xmlns="http://www.w3.org/2000/svg">
-    <rect x="162" y="168" width="196" height="78" rx="12" fill="none" stroke="#111" stroke-width="3"/><rect x="178" y="192" width="164" height="36" rx="6" fill="none" stroke="#9ca3af" stroke-width="2"/><circle cx="260" cy="105" r="58" fill="none" stroke="#dc2626" stroke-width="5"/><circle cx="260" cy="105" r="26" fill="none" stroke="#111" stroke-width="3"/><path d="M110 260 H410" stroke="#dc2626" stroke-width="6"/><text x="260" y="292" text-anchor="middle" font-size="16">Camera-first volume warning / 摄像头体积警示</text>
-  </svg>
+  <div class="concept-art"><img :src="'/survey-report/images/generated/large-ptz-caution-route.png'" /></div>
   <div class="panel">
-    <h3>Prompt summary / 提示词摘要</h3>
+    <h3>Generated sketch / 生成白描图</h3>
     <p>用同样白线风格画出大摄像头压过屏幕的对比路线，并用红色标出体积和桌面 footprint 风险。</p>
     <p class="small">A contrast route where a large camera head dominates the product, with red marking the volume and desk footprint risk.</p>
-    <p class="small muted">Bitmap generation pending in QA; the caution is represented as inline SVG.</p>
+    <p class="small muted">Treat as a later enterprise-room option, not the default Agent PC identity.</p>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Prompt-Backed Sketch · 06</div>
 
 # Screen Size Band Diagram / 屏幕尺寸带图
 
 <div class="grid2">
-  <svg class="svgbox" viewBox="0 0 520 330" xmlns="http://www.w3.org/2000/svg">
-    <rect x="56" y="136" width="96" height="62" rx="10" fill="none" stroke="#111" stroke-width="2"/><rect x="204" y="116" width="126" height="82" rx="12" fill="none" stroke="#dc2626" stroke-width="3"/><rect x="382" y="96" width="104" height="102" rx="12" fill="none" stroke="#111" stroke-width="2"/><line x1="60" y1="230" x2="486" y2="230" stroke="#9ca3af" stroke-width="2"/><text x="104" y="250" text-anchor="middle" font-size="14">5.0-5.5"</text><text x="267" y="250" text-anchor="middle" font-size="14">6.0-6.7"</text><text x="434" y="250" text-anchor="middle" font-size="14">7.0-7.x"</text><text x="104" y="276" text-anchor="middle" font-size="13">status 状态</text><text x="267" y="276" text-anchor="middle" font-size="13">approval 审批</text><text x="434" y="276" text-anchor="middle" font-size="13">small hub 小 hub</text>
-  </svg>
+  <div class="concept-art"><img :src="'/survey-report/images/generated/screen-size-band-diagram.png'" /></div>
   <div class="panel">
-    <h3>Prompt summary / 提示词摘要</h3>
+    <h3>Generated sketch / 生成白描图</h3>
     <p>并排绘制三种屏幕模块相对尺度：状态带、审批带、小 hub 带，用最少 UI 暗示用途。</p>
     <p class="small">Three modules side by side showing status, approval, and small-hub bands with minimal UI hints.</p>
-    <p class="small muted">Bitmap generation pending in QA; this is an honest prompt-backed sketch frame.</p>
+    <p class="small muted">This reinforces the recommendation: 6.0-6.7 inch is the default, 7.x is the upper band.</p>
   </div>
 </div>
 
 ---
-
 <div class="kicker">Risks · From Claude HTML</div>
 
 # 五条风险注记
@@ -1024,7 +1107,6 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 </div>
 
 ---
-
 <div class="kicker">Source Appendix · Groups</div>
 
 # 来源附录分组
@@ -1043,7 +1125,6 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
 </div>
 
 ---
-
 <div class="kicker">Final Decision</div>
 
 # Desky 的下一步 ID 方向

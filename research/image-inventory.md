@@ -42,6 +42,20 @@ Higole rule: `public/images/competitors/local/higole-scene.png` is legacy/non-fi
 | Apple Mac mini M4 | https://www.apple.com/v/mac-mini/specs/a/images/meta/mac-mini__dvce2jrm11w2_og.jpg?202606241942 | reference | Apple official technical specifications page image | Internal research reference; credit source owner; do not redistribute as standalone asset |
 | Legacy/non-final local asset | public/images/competitors/local/higole-scene.png | reference | Claude HTML local asset; retained only as collected Violoop/night-scene material | Legacy/non-final; do not use as Higole product evidence |
 
+## Generated Design Illustrations
+
+These images are imagegen outputs for synthesis and recommendation slides, not competitor evidence.
+
+| Image | Project Path | Use |
+| --- | --- | --- |
+| Fixed wide-angle compact screen | public/images/generated/agent-screen-fixed-wide-angle.png | Baseline screen/camera/light/voice recommendation |
+| Micro PTZ camera variant | public/images/generated/agent-screen-micro-ptz.png | Optional compact camera route |
+| Flip screen developer box | public/images/generated/flip-screen-developer-box.png | Flip hinge design route |
+| Stackable compute dock | public/images/generated/stackable-compute-dock.png | Parallel compute-box storage route |
+| Large PTZ caution route | public/images/generated/large-ptz-caution-route.png | Camera-first risk illustration |
+| Screen size band diagram | public/images/generated/screen-size-band-diagram.png | 5-7.x inch screen-size recommendation |
+| Market archetypes synthesis | public/images/generated/market-archetypes-synthesis.png | Five mechanical archetypes summary |
+
 ## Notes
 
 - Remote URLs remain remote references unless explicitly downloaded in a later task.

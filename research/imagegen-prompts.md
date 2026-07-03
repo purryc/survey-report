@@ -27,3 +27,17 @@ Draw a contrast concept where a large camera head dominates the product and the 
 ## 06 Screen Size Band Diagram
 
 Draw three compact screen modules side by side: 5.0-5.5 inch status band, 6.0-6.7 inch approval band, and 7.0-7.x inch small-hub band. Show relative scale, not exact UI. Include simple callouts for status, approval card, short task list, and camera preview.
+
+## Generated Outputs
+
+Built-in imagegen mode was used, then selected outputs were copied into the project.
+
+| Output | Project path | Deck use |
+|---|---|---|
+| Fixed wide-angle compact screen | `public/images/generated/agent-screen-fixed-wide-angle.png` | Recommendation baseline |
+| Micro PTZ camera variant | `public/images/generated/agent-screen-micro-ptz.png` | Optional camera route |
+| Flip screen developer box | `public/images/generated/flip-screen-developer-box.png` | Flip mechanism route |
+| Stackable compute dock | `public/images/generated/stackable-compute-dock.png` | Parallel compute storage route |
+| Large PTZ caution route | `public/images/generated/large-ptz-caution-route.png` | Camera-first risk route |
+| Screen size band diagram | `public/images/generated/screen-size-band-diagram.png` | 5-7.x inch size recommendation |
+| Market archetypes synthesis | `public/images/generated/market-archetypes-synthesis.png` | Five mechanical archetypes summary |

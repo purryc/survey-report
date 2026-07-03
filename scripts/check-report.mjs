@@ -30,6 +30,15 @@ const allowedImageKinds = new Set(["local-claude-asset", "remote-source-image"])
 const correctedHigoleImageUrl =
   "https://www.cnx-software.com/wp-content/uploads/2022/07/mini-pc-with-touchscreen-display.jpg";
 const legacyHigoleLocalImage = "public/images/competitors/local/higole-scene.png";
+const requiredGeneratedImages = [
+  "agent-screen-fixed-wide-angle.png",
+  "agent-screen-micro-ptz.png",
+  "flip-screen-developer-box.png",
+  "stackable-compute-dock.png",
+  "large-ptz-caution-route.png",
+  "screen-size-band-diagram.png",
+  "market-archetypes-synthesis.png",
+];
 
 const requiredLedgerSections = [
   "Products",
@@ -120,9 +129,21 @@ function includesTerm(haystack, term) {
   return haystack.includes(normalizeText(term));
 }
 
+function imageReferenceCandidates(image) {
+  const candidates = new Set();
+  if (typeof image.url === "string") candidates.add(image.url);
+  if (typeof image.path === "string") {
+    candidates.add(image.path);
+    candidates.add(image.path.replace(/^public\//, ""));
+    candidates.add(`/survey-report/${image.path.replace(/^public\//, "")}`);
+    candidates.add(path.basename(image.path));
+  }
+  return [...candidates].filter(Boolean);
+}
+
 function checkSlides(slidesText, products) {
   const draftMarkerPattern =
-    /\b(?:TBD|TODO|FIXME)\b|待定|待补|待完善|待确认|未完成|占位|稍后补|需补充|待核实|待验证/iu;
+    /\b(?:TBD|TODO|FIXME|placeholder)\b|pending in qa|待定|待补|待完善|待确认|未完成|占位|稍后补|需补充|待核实|待验证/iu;
   const markerMatch = slidesText.match(draftMarkerPattern);
   if (markerMatch) {
     addError(`slides.md contains unresolved draft marker: ${markerMatch[0]}`);
@@ -139,12 +160,53 @@ function checkSlides(slidesText, products) {
     }
   });
 
-  const normalizedSlides = normalizeText(slidesText);
+  const productSlideChunks = slideChunks.filter((chunk) => chunk.includes('class="product"'));
+  if (Array.isArray(products) && productSlideChunks.length !== products.length) {
+    addError(`slides.md must contain one product teardown slide per product: found ${productSlideChunks.length}`);
+  }
+
   products.forEach((product) => {
     const aliases = Array.isArray(product.aliases) ? product.aliases : [];
     const candidates = [product.name, ...aliases].filter(Boolean);
-    if (!candidates.some((candidate) => includesTerm(normalizedSlides, candidate))) {
-      addError(`Product is missing from slides: ${product.name}`);
+    const productSlide = productSlideChunks.find((chunk) => {
+      const normalizedChunk = normalizeText(chunk);
+      return candidates.some((candidate) => includesTerm(normalizedChunk, candidate));
+    });
+
+    if (!productSlide) {
+      addError(`Product teardown slide is missing: ${product.name}`);
+      return;
+    }
+
+    const requiredProductSlideMarkers = [
+      'class="image-grid"',
+      'class="spec-list"',
+      'class="factline"',
+      "屏幕 / Screen",
+      "机构 / Mechanism",
+      "感知 / Sensing",
+      "Desky 启示",
+      "Camera / 摄像头",
+      "Light / 灯光",
+      "Voice / 语音",
+      "Storage / 收纳",
+    ];
+
+    requiredProductSlideMarkers.forEach((marker) => {
+      if (!productSlide.includes(marker)) {
+        addError(`Product teardown slide for ${product.name} is missing marker: ${marker}`);
+      }
+    });
+
+    const imageCandidates = Array.isArray(product.images) ? product.images.flatMap(imageReferenceCandidates) : [];
+    if (!imageCandidates.some((candidate) => productSlide.includes(candidate))) {
+      addError(`Product teardown slide for ${product.name} does not reference any listed product image`);
+    }
+  });
+
+  requiredGeneratedImages.forEach((imageName) => {
+    if (!slidesText.includes(`/survey-report/images/generated/${imageName}`)) {
+      addError(`slides.md does not reference generated image: ${imageName}`);
     }
   });
 }
@@ -309,6 +371,15 @@ async function checkLocalImages(products) {
   }
 }
 
+async function checkGeneratedImages() {
+  const generatedDir = path.join(repoRoot, "public/images/generated");
+  for (const imageName of requiredGeneratedImages) {
+    if (!(await pathExists(path.join(generatedDir, imageName)))) {
+      addError(`Generated image is missing: public/images/generated/${imageName}`);
+    }
+  }
+}
+
 function checkArchivedClaudeHtml(htmlText) {
   const remoteImageUrls = new Set(
     [...htmlText.matchAll(/<img\b[^>]*\bsrc=["'](https?:\/\/[^"']+)["']/gi)].map((match) => match[1]),
@@ -370,6 +441,7 @@ async function main() {
   if (sourceRegistryText) checkSourceRegistry(sourceRegistryText);
   if (htmlText) checkArchivedClaudeHtml(htmlText);
   await checkLocalImages(products);
+  await checkGeneratedImages();
 
   const slidesPath = path.join(repoRoot, "slides.md");
   const slidesExists = await pathExists(slidesPath);

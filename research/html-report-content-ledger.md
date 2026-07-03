@@ -40,21 +40,21 @@ The source HTML now uses a CNX remote image for the Higole / Gole1 Pro card. Tas
 
 | # | Asset | Ledger status |
 | --- | --- | --- |
-| 1 | public/images/competitors/local/acemagic-s1.png | copied from Claude report_assets; needs-live-verification |
-| 2 | public/images/competitors/local/am01s-pair.png | copied from Claude report_assets; needs-live-verification |
-| 3 | public/images/competitors/local/bmg800-diagram.png | copied from Claude report_assets; needs-live-verification |
-| 4 | public/images/competitors/local/flip-desk-monitor.png | copied from Claude report_assets; needs-live-verification |
-| 5 | public/images/competitors/local/flip-table-scene.png | copied from Claude report_assets; needs-live-verification |
-| 6 | public/images/competitors/local/gem12-promax.png | copied from Claude report_assets; needs-live-verification |
-| 7 | public/images/competitors/local/gflip-render.png | copied from Claude report_assets; needs-live-verification |
+| 1 | public/images/competitors/local/acemagic-s1.png | copied from Claude report_assets; see source registry |
+| 2 | public/images/competitors/local/am01s-pair.png | copied from Claude report_assets; see source registry |
+| 3 | public/images/competitors/local/bmg800-diagram.png | copied from Claude report_assets; see source registry |
+| 4 | public/images/competitors/local/flip-desk-monitor.png | copied from Claude report_assets; see source registry |
+| 5 | public/images/competitors/local/flip-table-scene.png | copied from Claude report_assets; see source registry |
+| 6 | public/images/competitors/local/gem12-promax.png | copied from Claude report_assets; see source registry |
+| 7 | public/images/competitors/local/gflip-render.png | copied from Claude report_assets; see source registry |
 | 8 | public/images/competitors/local/higole-scene.png | copied; legacy/non-final; not final Higole evidence; retained only for archived HTML continuity |
-| 9 | public/images/competitors/local/n150-8inch-views.png | copied from Claude report_assets; needs-live-verification |
-| 10 | public/images/competitors/local/pipo-x8.png | copied from Claude report_assets; needs-live-verification |
-| 11 | public/images/competitors/local/reterminal-banner.png | copied from Claude report_assets; needs-live-verification |
-| 12 | public/images/competitors/local/tablet-8inch-pink.png | copied from Claude report_assets; needs-live-verification |
-| 13 | public/images/competitors/local/uh185-stand.png | copied from Claude report_assets; needs-live-verification |
-| 14 | public/images/competitors/local/viewdock-dock-scene.png | copied from Claude report_assets; needs-live-verification |
-| 15 | public/images/competitors/local/viewdock-wireless-top.png | copied from Claude report_assets; needs-live-verification |
+| 9 | public/images/competitors/local/n150-8inch-views.png | copied from Claude report_assets; see source registry |
+| 10 | public/images/competitors/local/pipo-x8.png | copied from Claude report_assets; see source registry |
+| 11 | public/images/competitors/local/reterminal-banner.png | copied from Claude report_assets; see source registry |
+| 12 | public/images/competitors/local/tablet-8inch-pink.png | copied from Claude report_assets; see source registry |
+| 13 | public/images/competitors/local/uh185-stand.png | copied from Claude report_assets; see source registry |
+| 14 | public/images/competitors/local/viewdock-dock-scene.png | copied from Claude report_assets; see source registry |
+| 15 | public/images/competitors/local/viewdock-wireless-top.png | copied from Claude report_assets; see source registry |
 
 ## Remote Images Embedded In HTML
 
@@ -106,26 +106,26 @@ The source HTML now uses a CNX remote image for the Higole / Gole1 Pro card. Tas
 
 | # | Product | Claude card matched | Claude card image refs | Image status | Source status |
 | --- | --- | --- | --- | --- | --- |
-| 1 | Lenovo Auto Twist | Lenovo ThinkBook Plus Gen 7 Auto Twist | https://i0.wp.com/gadgetbond.com/wp-content/uploads/2026/01/Lenovo-ThinkBook-Plus-Gen-7-Auto-Twist_snapshot_00.40_2026-01-09_02.44.13.png?fit=1024%2C576&ssl=1 | needs-live-verification | appendix item extracted; needs-live-verification |
-| 2 | Amazon Echo Show 10 | Amazon Echo Show 10(3rd Gen) | https://cdn.mos.cms.futurecdn.net/85GLxHmBcDs8QMR7rxsZ5Q-2000-80.jpg | needs-live-verification | appendix item extracted; needs-live-verification |
-| 3 | LG StanbyME Go | LG StanbyME Go 27LX5QKNA | https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/48e24b8f-e617-4ec1-ac8f-68344e41bcaa/27LX5QKNA_gallery_01_open_3000x3000?io=transform:fill,width:800<br>https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/ccef46c6-d6a5-49be-a494-9a1c06535a7b/27LX5QKNA_gallery_02_closed_3000x3000?io=transform:fill,width:800<br>https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/2efb9479-eac2-449e-88ee-1149c2b3930e/27LX5QKNA_gallery_03_record_3000x3000?io=transform:fill,width:800 | needs-live-verification | appendix item extracted; needs-live-verification |
-| 4 | AOOSTAR G-Flip 370 | AOOSTAR G-Flip 370 | gflip-render.png<br>flip-desk-monitor.png<br>flip-table-scene.png | needs-live-verification | appendix item extracted; needs-live-verification |
-| 5 | Miniproca AiO / Ryzen 7-inch 4K flip-screen mini PC | Miniproca All-in-1 Mini PC | https://cdn.mos.cms.futurecdn.net/fvs3bMLHv5nqECXeXWgC8a.jpg | needs-live-verification | appendix item extracted; needs-live-verification |
-| 6 | ViewDock Gen2 | ViewDock Gen2 | https://liliputing.com/wp-content/uploads/2026/03/viewdock-g2_04.jpg<br>viewdock-wireless-top.png<br>viewdock-dock-scene.png | needs-live-verification | appendix item extracted; needs-live-verification |
-| 7 | AYANEO AM01S | AYANEO Retro Mini PC AM01S | am01s-pair.png<br>https://liliputing.com/wp-content/uploads/2025/03/am01s_01.jpg<br>https://liliputing.com/wp-content/uploads/2025/03/am01s_06.jpg | needs-live-verification | appendix item extracted; needs-live-verification |
-| 8 | Minisforum UH185 Ultra | Minisforum UH185 Ultra | https://liliputing.com/wp-content/uploads/2024/01/uh185_01.jpg<br>uh185-stand.png | needs-live-verification | appendix item extracted; needs-live-verification |
-| 9 | AOOSTAR GEM12 Pro Max | AOOSTAR GEM12 Pro Max | gem12-promax.png | needs-live-verification | appendix item extracted; needs-live-verification |
-| 10 | ACEMAGIC S1 | ACEMAGIC S1 | acemagic-s1.png | needs-live-verification | appendix item extracted; needs-live-verification |
-| 11 | AYANEO AM02 | AYANEO Retro Mini PC AM02 | https://liliputing.com/wp-content/uploads/2024/05/01.png<br>https://liliputing.com/wp-content/uploads/2024/05/02.png<br>https://liliputing.com/wp-content/uploads/2024/05/19.png | needs-live-verification | appendix item extracted; needs-live-verification |
+| 1 | Lenovo Auto Twist | Lenovo ThinkBook Plus Gen 7 Auto Twist | https://i0.wp.com/gadgetbond.com/wp-content/uploads/2026/01/Lenovo-ThinkBook-Plus-Gen-7-Auto-Twist_snapshot_00.40_2026-01-09_02.44.13.png?fit=1024%2C576&ssl=1 | see source registry | appendix item extracted; see source registry |
+| 2 | Amazon Echo Show 10 | Amazon Echo Show 10(3rd Gen) | https://cdn.mos.cms.futurecdn.net/85GLxHmBcDs8QMR7rxsZ5Q-2000-80.jpg | see source registry | appendix item extracted; see source registry |
+| 3 | LG StanbyME Go | LG StanbyME Go 27LX5QKNA | https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/48e24b8f-e617-4ec1-ac8f-68344e41bcaa/27LX5QKNA_gallery_01_open_3000x3000?io=transform:fill,width:800<br>https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/ccef46c6-d6a5-49be-a494-9a1c06535a7b/27LX5QKNA_gallery_02_closed_3000x3000?io=transform:fill,width:800<br>https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/2efb9479-eac2-449e-88ee-1149c2b3930e/27LX5QKNA_gallery_03_record_3000x3000?io=transform:fill,width:800 | see source registry | appendix item extracted; see source registry |
+| 4 | AOOSTAR G-Flip 370 | AOOSTAR G-Flip 370 | gflip-render.png<br>flip-desk-monitor.png<br>flip-table-scene.png | see source registry | appendix item extracted; see source registry |
+| 5 | Miniproca AiO / Ryzen 7-inch 4K flip-screen mini PC | Miniproca All-in-1 Mini PC | https://cdn.mos.cms.futurecdn.net/fvs3bMLHv5nqECXeXWgC8a.jpg | see source registry | appendix item extracted; see source registry |
+| 6 | ViewDock Gen2 | ViewDock Gen2 | https://liliputing.com/wp-content/uploads/2026/03/viewdock-g2_04.jpg<br>viewdock-wireless-top.png<br>viewdock-dock-scene.png | see source registry | appendix item extracted; see source registry |
+| 7 | AYANEO AM01S | AYANEO Retro Mini PC AM01S | am01s-pair.png<br>https://liliputing.com/wp-content/uploads/2025/03/am01s_01.jpg<br>https://liliputing.com/wp-content/uploads/2025/03/am01s_06.jpg | see source registry | appendix item extracted; see source registry |
+| 8 | Minisforum UH185 Ultra | Minisforum UH185 Ultra | https://liliputing.com/wp-content/uploads/2024/01/uh185_01.jpg<br>uh185-stand.png | see source registry | appendix item extracted; see source registry |
+| 9 | AOOSTAR GEM12 Pro Max | AOOSTAR GEM12 Pro Max | gem12-promax.png | see source registry | appendix item extracted; see source registry |
+| 10 | ACEMAGIC S1 | ACEMAGIC S1 | acemagic-s1.png | see source registry | appendix item extracted; see source registry |
+| 11 | AYANEO AM02 | AYANEO Retro Mini PC AM02 | https://liliputing.com/wp-content/uploads/2024/05/01.png<br>https://liliputing.com/wp-content/uploads/2024/05/02.png<br>https://liliputing.com/wp-content/uploads/2024/05/19.png | see source registry | appendix item extracted; see source registry |
 | 12 | Higole / Gole1 Pro | Higole Gole1 / Gole1 Pro 系列 | https://www.cnx-software.com/wp-content/uploads/2022/07/mini-pc-with-touchscreen-display.jpg | verified corrected CNX image; legacy higole-scene.png not used | appendix item extracted; source registry verified |
-| 13 | PiPO X8 | PiPO X8 | pipo-x8.png | needs-live-verification | appendix item extracted; needs-live-verification |
-| 14 | 8-inch N150 white-label touch mini PC | 白牌 8″ N150 触屏主机(KOOFORWAY 等) | n150-8inch-views.png<br>tablet-8inch-pink.png | needs-live-verification | appendix item extracted; needs-live-verification |
-| 15 | Seeed Studio reTerminal | Seeed Studio reTerminal | reterminal-banner.png | needs-live-verification | appendix item extracted; needs-live-verification |
-| 16 | BMG800 edge gateway | 佰马 BMG800 边缘计算网关 | bmg800-diagram.png | needs-live-verification | appendix item extracted; needs-live-verification |
-| 17 | Violoop | Violoop | https://violoop.ai/media/cube.webp<br>higole-scene.png | needs-live-verification | appendix item extracted; needs-live-verification |
-| 18 | Moore Threads AICUBE | 摩尔线程 MTT AICUBE | https://img.leikeji.com/resource/img/2bbc1dd2cd70443da1d63b44094c09fd.jpg | needs-live-verification | appendix item extracted; needs-live-verification |
-| 19 | NVIDIA DGX Spark | not found in product-card HTML; retained from task list | remote/no local asset | needs-live-verification | appendix item extracted; needs-live-verification |
-| 20 | Apple Mac mini M4 | not found in product-card HTML; retained from task list | remote/no local asset | needs-live-verification | needs-live-verification |
+| 13 | PiPO X8 | PiPO X8 | pipo-x8.png | see source registry | appendix item extracted; see source registry |
+| 14 | 8-inch N150 white-label touch mini PC | 白牌 8″ N150 触屏主机(KOOFORWAY 等) | n150-8inch-views.png<br>tablet-8inch-pink.png | see source registry | appendix item extracted; see source registry |
+| 15 | Seeed Studio reTerminal | Seeed Studio reTerminal | reterminal-banner.png | see source registry | appendix item extracted; see source registry |
+| 16 | BMG800 edge gateway | 佰马 BMG800 边缘计算网关 | bmg800-diagram.png | see source registry | appendix item extracted; see source registry |
+| 17 | Violoop | Violoop | https://violoop.ai/media/cube.webp<br>higole-scene.png | see source registry | appendix item extracted; see source registry |
+| 18 | Moore Threads AICUBE | 摩尔线程 MTT AICUBE | https://img.leikeji.com/resource/img/2bbc1dd2cd70443da1d63b44094c09fd.jpg | see source registry | appendix item extracted; see source registry |
+| 19 | NVIDIA DGX Spark | not found in product-card HTML; retained from task list | remote/no local asset | see source registry | appendix item extracted; see source registry |
+| 20 | Apple Mac mini M4 | not found in product-card HTML; retained from task list | remote/no local asset | see source registry | see source registry |
 
 ## Pattern Laws
 
