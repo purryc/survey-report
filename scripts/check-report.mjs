@@ -292,6 +292,7 @@ async function main() {
   if (ledgerText || sourceRegistryText || products) {
     checkHigoleSuspectMarker(ledgerText, sourceRegistryText, products);
   }
+  if (sourceRegistryText) checkSourceRegistry(sourceRegistryText);
   if (htmlText) checkArchivedClaudeHtml(htmlText);
   await checkLocalImages();
 
@@ -302,7 +303,6 @@ async function main() {
   } else {
     const slidesText = await readFile(slidesPath, "utf8");
     if (products) checkSlides(slidesText, products);
-    if (sourceRegistryText) checkSourceRegistry(sourceRegistryText);
   }
 
   await writeCheckLog();
