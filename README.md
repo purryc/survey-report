@@ -21,3 +21,7 @@ npm run build
 npm run check
 npm run deploy
 ```
+
+`npm run deploy` re-runs the GitHub Actions Pages workflow for the current
+remote `main`. When publishing fresh local changes, push `main` first, then
+verify the live GitHub Pages URL returns HTTP 200.

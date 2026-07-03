@@ -22,8 +22,9 @@ The first report is the Desky mini PC screen industrial-design survey. It uses C
 
 - Local build: `npm run build`
 - Local checks: `npm run check`
-- Publish: `npm run deploy`, then verify the GitHub Pages URL returns HTTP 200.
-- A pushed branch or successful local build is not enough; live public availability is the completion gate.
+- Publish: push `main` when publication is explicitly requested; GitHub Actions `Deploy Pages` builds and deploys GitHub Pages.
+- Re-run current remote `main` publication: `npm run deploy`.
+- A pushed branch, triggered workflow, or successful local build is not enough; live public availability is the completion gate.
 
 ## Future Reports
 
