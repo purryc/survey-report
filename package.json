@@ -1,0 +1,18 @@
+{
+  "name": "survey-report",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev --host 0.0.0.0",
+    "extract": "node scripts/extract-claude-report.mjs",
+    "build": "slidev build --base /survey-report/",
+    "check": "node scripts/check-report.mjs",
+    "deploy": "slidev build --base /survey-report/ && gh-pages -d dist -b gh-pages"
+  },
+  "dependencies": {
+    "@slidev/cli": "^52.0.0",
+    "@slidev/theme-default": "^0.25.0",
+    "gh-pages": "^6.3.0"
+  }
+}
