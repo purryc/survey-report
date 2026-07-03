@@ -11,7 +11,7 @@
 | flip-table-scene.png | copied | needs-live-verification |
 | gem12-promax.png | copied | needs-live-verification |
 | gflip-render.png | copied | needs-live-verification |
-| higole-scene.png | copied | suspect/wrong-image-needs-web-replacement; verify online and replace in Task 4/5 |
+| higole-scene.png | copied | legacy filename; not final Higole evidence; verify current CNX Higole image in Task 4/5 |
 | n150-8inch-views.png | copied | needs-live-verification |
 | pipo-x8.png | copied | needs-live-verification |
 | reterminal-banner.png | copied | needs-live-verification |
@@ -31,12 +31,12 @@
 - `report_assets/uh185-stand.png`
 - `report_assets/gem12-promax.png`
 - `report_assets/acemagic-s1.png`
-- `report_assets/higole-scene.png`
 - `report_assets/pipo-x8.png`
 - `report_assets/n150-8inch-views.png`
 - `report_assets/tablet-8inch-pink.png`
 - `report_assets/reterminal-banner.png`
 - `report_assets/bmg800-diagram.png`
+- `report_assets/higole-scene.png`
 
 ## Remote Image URLs From HTML
 
@@ -53,9 +53,10 @@
 - https://liliputing.com/wp-content/uploads/2024/05/01.png
 - https://liliputing.com/wp-content/uploads/2024/05/02.png
 - https://liliputing.com/wp-content/uploads/2024/05/19.png
+- https://www.cnx-software.com/wp-content/uploads/2022/07/mini-pc-with-touchscreen-display.jpg
 - https://violoop.ai/media/cube.webp
 - https://img.leikeji.com/resource/img/2bbc1dd2cd70443da1d63b44094c09fd.jpg
 
 ## Higole Warning
 
-`higole-scene.png` is intentionally preserved from Claude's source asset folder but is not accepted as final Higole / Gole1 Pro evidence. It needs online verification and replacement in Task 4/5.
+The current source HTML uses the CNX remote image for the Higole / Gole1 Pro card. It still needs online verification or replacement confirmation in Task 4/5 before being accepted as final evidence. `higole-scene.png` is intentionally preserved because the HTML still references it as a collected Violoop night-scene asset; it must not be reused as final Higole evidence.

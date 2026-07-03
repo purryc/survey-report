@@ -15,12 +15,12 @@ Claude HTML values are extracted as a starting point only. Task 4 must verify pr
 | AOOSTAR GEM12 Pro Max | C 固定副屏迷你主机 | 3.5″ | 未公布 | IPS(仅显示) | 前脸固定嵌入 | — | 开机动画 | — | Ryzen 7 8845HS · OCuLink + 双 USB4 · 四路 8K 输出 | 屏幕嵌在前脸左下角,与端口并列 —— 「仪表」而非「界面」 | needs-live-verification |
 | ACEMAGIC S1 | C 固定副屏迷你主机 | 1.9″ | 170×320 | TFT(仅显示) | 前脸固定 · 立式 | — | RGB 灯带 | — | RGB 氛围灯带 + 屏幕主题联动 —— 样本中「灯光语义化」的低成本先例 | 立式塔+竖置 LCD+RGB 灯带:入门价位的「状态可视化」组合 | needs-live-verification |
 | AYANEO AM02 | C 固定副屏迷你主机 | 4″ | 未公布 | 触控 | 顶面固定斜嵌 + 弹盖藏端口 | — | 电源灯 | — | Ryzen 7 7840HS · 146×134×53mm · 四热管 | 左→右:游戏机式整机 / 顶面 4″ 屏+红色弹仓键 / 副屏 TDP 触控调节 UI | needs-live-verification |
-| Higole / Gole1 Pro | D 平板一体式 / 工业 HMI | 5.5″ | 1280×720 | IPS · 触控 | 平板机身 + 电池 | — | 底部氛围灯(初代) | — | 底部环形氛围灯(初代)· Windows 完整系统直接触控 | 床头夜间场景:时钟界面+底部环形氛围灯 —— 屏幕熄不灭的「存在感」设计 | suspect/wrong-image-needs-web-replacement |
+| Higole / Gole1 Pro | D 平板一体式 / 工业 HMI | 5.5″ | 1280×720 | IPS · 触控 | 平板机身 + 电池 | — | — | 内置麦克风 | 内置扬声器+麦克风 · Windows 完整系统直接触控 · N4000/J4125 | GOLE1 Pro 官方图:5.5″ 触屏嵌入充电宝式机身,双 HDMI 可三屏输出 | suspect/wrong-image-needs-web-replacement |
 | PiPO X8 | D 平板一体式 / 工业 HMI | 7″ | 1280×800 | IPS · 触控 | 楔形固定斜面 | — | — | — | 机顶盒+触控小终端双系统;POS/展示常客 | 楔形机身自带固定倾角,屏幕即整机 A 面 —— 2015 年的形态雏形 | needs-live-verification |
 | 8-inch N150 white-label touch mini PC | D 平板一体式 / 工业 HMI | 8″ | 1280×800 | IPS · 10 点触控 | 背撑/360° 支架,横竖可摆 | 2MP(部分) | — | — | Intel N150 · 12GB · Wi-Fi 6 | 白牌 8″ 档:横竖双置+背部支架;右图为撑杆支架变体 | needs-live-verification |
 | Seeed Studio reTerminal | D 平板一体式 / 工业 HMI | 5″ | 1280×720 | IPS · 电容多点 | 面板固定 + 模块扩展 | 可扩展 | 光传感器 | 可扩展 | 光传感器+加速度计+RTC+加密芯片 —— 传感器冗余设计参考 | 工业 HMI 思路:屏幕+按键+传感器+加密芯片的「面板电脑」 | needs-live-verification |
 | BMG800 edge gateway | D 平板一体式 / 工业 HMI | 7″(选配) | 800×480 | HMI 触控 | 面板固定 · 导轨/壁挂 | — | 状态 LED | — | 本地配置/看数/导出,离线可运维 —— Agent PC 的「无网兜底」参照 | 工业网关的屏幕逻辑:屏幕是「本地运维口」,不是体验面 | needs-live-verification |
-| Violoop | E Agent 专用硬件 | 掌上小屏 | 未公布 | 触控 | 桌面固定方块 · HDMI 串接 | — | — | 主动感知 | 双芯片(AI SoC+独立安全芯片)· 端侧 NPU 视觉/OCR · 主动感知工作流 | 闹钟大小的桌面方块:小触屏只显示「Agent 正在做什么」 | needs-live-verification |
+| Violoop | E Agent 专用硬件 | 掌上小屏 | 未公布 | 触控 | 桌面固定方块 · HDMI 串接 | — | 底部氛围光 | 主动感知 | 双芯片(AI SoC+独立安全芯片)· 端侧 NPU 视觉/OCR · 主动感知工作流 | 左:官方渲染 / 右:实机夜景(收集素材)—— 小方屏显示时钟与任务状态,底部氛围光 | needs-live-verification |
 | Moore Threads AICUBE | E Agent 专用硬件 | 无屏 | 借显 | — | Type-C PD3.1 一线连电视 | — | — | 4 麦阵列+扬声器 | 4 麦克风阵列 + 立体声扬声器 + 全域智能体「小麦」(60+ 技能/36 款 APP 跨应用) | 无自带屏路线:一根 Type-C 上电视,语音麦阵承担主交互 | needs-live-verification |
 | NVIDIA DGX Spark | F 算力堆叠参考 | — | — | — | 150×150×50.5mm,双机 ConnectX-7 200Gb/s 成簇 | — | — | — | needs-live-verification | summary-table-only/no-card-image-caption | needs-live-verification |
 | Apple Mac mini M4 | F 算力堆叠参考 | — | — | — | 127×127×50mm,TB 集群/竖插收纳生态 | — | — | — | needs-live-verification | summary-table-only/no-card-image-caption | needs-live-verification |
