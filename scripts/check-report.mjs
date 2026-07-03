@@ -1,0 +1,324 @@
+import { mkdir, readdir, readFile, stat, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const scriptDir = path.dirname(fileURLToPath(import.meta.url));
+const repoRoot = path.resolve(scriptDir, "..");
+const errors = [];
+
+const requiredProductFields = [
+  "id",
+  "name",
+  "group",
+  "aliases",
+  "screen",
+  "resolution",
+  "panel",
+  "touch",
+  "mechanism",
+  "camera",
+  "light",
+  "voice",
+  "storageStacking",
+  "sourceStatus",
+  "imageStatus",
+];
+
+const requiredLedgerSections = [
+  "Products",
+  "Local Assets",
+  "Remote Images",
+  "Distribution And Structure Visuals",
+  "Eight Pattern Laws",
+  "Morphology And Recommendations",
+  "Risk Notes",
+  "Source Appendix Groups",
+];
+
+function addError(message) {
+  errors.push(message);
+}
+
+async function pathExists(filePath) {
+  try {
+    await stat(filePath);
+    return true;
+  } catch (error) {
+    if (error.code === "ENOENT") return false;
+    throw error;
+  }
+}
+
+async function readRequiredText(relativePath) {
+  const filePath = path.join(repoRoot, relativePath);
+  try {
+    return await readFile(filePath, "utf8");
+  } catch (error) {
+    if (error.code === "ENOENT") {
+      addError(`${relativePath} is missing`);
+      return "";
+    }
+    throw error;
+  }
+}
+
+async function readRequiredJson(relativePath) {
+  const text = await readRequiredText(relativePath);
+  if (!text) return null;
+  try {
+    return JSON.parse(text);
+  } catch (error) {
+    addError(`${relativePath} is not valid JSON: ${error.message}`);
+    return null;
+  }
+}
+
+function countMatches(text, regex) {
+  return [...text.matchAll(regex)].length;
+}
+
+function hasChinese(text) {
+  return /[\u3400-\u9fff]/u.test(text);
+}
+
+function hasEnglish(text) {
+  return /[A-Za-z]/.test(text);
+}
+
+function stripSlidevFrontmatter(chunk) {
+  const trimmed = chunk.trim();
+  if (!trimmed.startsWith("---")) return trimmed;
+  return trimmed.replace(/^---\s*\n[\s\S]*?\n---\s*\n?/, "").trim();
+}
+
+function isRealSlideChunk(chunk) {
+  const withoutComments = chunk
+    .replace(/<!--[\s\S]*?-->/g, "")
+    .replace(/^layout:.*$/gm, "")
+    .trim();
+  return withoutComments.length > 0;
+}
+
+function normalizeText(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/[“”‘’"'`]/g, "")
+    .replace(/[()（）[\]{}]/g, " ")
+    .replace(/[\/·:：,，.;；\-–—_]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function includesTerm(haystack, term) {
+  return haystack.includes(normalizeText(term));
+}
+
+function checkSlides(slidesText, products) {
+  const draftMarkerPattern =
+    /\b(?:TBD|TODO|FIXME)\b|待定|待补|待完善|待确认|未完成|占位|稍后补|需补充|待核实|待验证/iu;
+  const markerMatch = slidesText.match(draftMarkerPattern);
+  if (markerMatch) {
+    addError(`slides.md contains unresolved draft marker: ${markerMatch[0]}`);
+  }
+
+  const slideChunks = slidesText
+    .split(/^---\s*$/m)
+    .map(stripSlidevFrontmatter)
+    .filter(isRealSlideChunk);
+
+  slideChunks.forEach((chunk, index) => {
+    if (!hasChinese(chunk) || !hasEnglish(chunk)) {
+      addError(`Slide ${index + 1} must contain both Chinese and English`);
+    }
+  });
+
+  const normalizedSlides = normalizeText(slidesText);
+  products.forEach((product) => {
+    const aliases = Array.isArray(product.aliases) ? product.aliases : [];
+    const candidates = [product.name, ...aliases].filter(Boolean);
+    if (!candidates.some((candidate) => includesTerm(normalizedSlides, candidate))) {
+      addError(`Product is missing from slides: ${product.name}`);
+    }
+  });
+}
+
+function checkProducts(products) {
+  if (!Array.isArray(products)) {
+    addError("research/products.json must contain an array");
+    return;
+  }
+
+  if (products.length !== 20) {
+    addError(`research/products.json must contain exactly 20 products, found ${products.length}`);
+  }
+
+  let unknownAfterExtractCount = 0;
+  products.forEach((product, productIndex) => {
+    requiredProductFields.forEach((field) => {
+      if (!Object.hasOwn(product, field)) {
+        addError(`Product ${productIndex + 1} is missing field: ${field}`);
+      }
+    });
+
+    if (!Array.isArray(product.aliases)) {
+      addError(`Product ${product.name ?? productIndex + 1} aliases must be an array`);
+    }
+
+    requiredProductFields.forEach((field) => {
+      if (product[field] === "unknown-after-claude-html-extract") {
+        unknownAfterExtractCount += 1;
+      }
+    });
+  });
+
+  if (unknownAfterExtractCount > 8) {
+    addError(
+      `Too many unknown-after-claude-html-extract values in products.json: ${unknownAfterExtractCount} (max 8)`,
+    );
+  }
+}
+
+function checkLedger(ledgerText) {
+  if (/- \[ \]/.test(ledgerText)) {
+    addError("research/html-report-content-ledger.md has unchecked ledger items");
+  }
+
+  const headingText = ledgerText
+    .replace(/^## Product Coverage$/m, "## Products")
+    .replace(/^## Remote Images Embedded In HTML$/m, "## Remote Images")
+    .replace(/^## Pattern Laws$/m, "## Eight Pattern Laws")
+    .replace(/^## Source Appendix Items$/m, "## Source Appendix Groups");
+
+  requiredLedgerSections.forEach((section) => {
+    const headingPattern = new RegExp(`^##\\s+${section.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*$`, "m");
+    if (!headingPattern.test(headingText)) {
+      addError(`research/html-report-content-ledger.md is missing section: ${section}`);
+    }
+  });
+}
+
+function checkSourceRegistry(sourceRegistryText) {
+  const problemRows = sourceRegistryText
+    .split("\n")
+    .filter((line) => line.startsWith("|"))
+    .filter((line) => /\b(?:seeded|unverified|needs-live-verification)\b/i.test(line));
+
+  if (problemRows.length > 0) {
+    addError(`research/source-registry.md has seeded/unverified rows: ${problemRows.length}`);
+  }
+}
+
+function checkHigoleSuspectMarker(ledgerText, sourceRegistryText, products) {
+  const productsText = JSON.stringify(products ?? []);
+  const combined = `${ledgerText}\n${sourceRegistryText}\n${productsText}`;
+  if (!combined.includes("suspect/wrong-image-needs-web-replacement")) {
+    addError("Higole suspect/wrong-image-needs-web-replacement marker is missing");
+  }
+}
+
+async function checkLocalImages() {
+  const localImageDir = path.join(repoRoot, "public/images/competitors/local");
+  let entries = [];
+  try {
+    entries = await readdir(localImageDir, { withFileTypes: true });
+  } catch (error) {
+    if (error.code === "ENOENT") {
+      addError("public/images/competitors/local is missing");
+      return;
+    }
+    throw error;
+  }
+
+  const files = entries.filter((entry) => entry.isFile());
+  if (files.length !== 15) {
+    addError(`public/images/competitors/local must contain exactly 15 files, found ${files.length}`);
+  }
+}
+
+function checkArchivedClaudeHtml(htmlText) {
+  const remoteImageUrls = new Set(
+    [...htmlText.matchAll(/<img\b[^>]*\bsrc=["'](https?:\/\/[^"']+)["']/gi)].map((match) => match[1]),
+  );
+  const reportAssetRefs = new Set(
+    [...htmlText.matchAll(/(?:src|href)=["']([^"']*report_assets\/[^"']+)["']/gi)].map((match) => match[1]),
+  );
+  const lawBlockCount = countMatches(htmlText, /class=["'][^"']*\blaw\b[^"']*["']/gi);
+  const riskBlockCount = countMatches(htmlText, /class=["'][^"']*\brisk\b[^"']*["']/gi);
+
+  if (remoteImageUrls.size !== 16) {
+    addError(`Archived Claude HTML must contain exactly 16 remote image URLs, found ${remoteImageUrls.size}`);
+  }
+
+  if (reportAssetRefs.size !== 15) {
+    addError(`Archived Claude HTML must contain exactly 15 report_assets/ refs, found ${reportAssetRefs.size}`);
+  }
+
+  if (lawBlockCount !== 8) {
+    addError(`Archived Claude HTML must contain exactly 8 .law blocks, found ${lawBlockCount}`);
+  }
+
+  if (riskBlockCount !== 5) {
+    addError(`Archived Claude HTML must contain exactly 5 .risk blocks, found ${riskBlockCount}`);
+  }
+}
+
+async function writeCheckLog() {
+  const qaDir = path.join(repoRoot, "qa");
+  await mkdir(qaDir, { recursive: true });
+  const timestamp = new Date().toISOString();
+  const lines = [
+    "# Report QA Check Log",
+    "",
+    `Timestamp: ${timestamp}`,
+    "",
+    errors.length === 0 ? "Status: PASS" : "Status: FAIL",
+    "",
+    "## Errors",
+    "",
+    ...(errors.length === 0 ? ["- None"] : errors.map((error) => `- ${error}`)),
+    "",
+  ];
+  await writeFile(path.join(qaDir, "check-log.md"), lines.join("\n"));
+}
+
+async function main() {
+  const products = await readRequiredJson("research/products.json");
+  const ledgerText = await readRequiredText("research/html-report-content-ledger.md");
+  const sourceRegistryText = await readRequiredText("research/source-registry.md");
+  const htmlText = await readRequiredText("research/source-html/claude-report.html");
+
+  if (products) checkProducts(products);
+  if (ledgerText) checkLedger(ledgerText);
+  if (ledgerText || sourceRegistryText || products) {
+    checkHigoleSuspectMarker(ledgerText, sourceRegistryText, products);
+  }
+  if (htmlText) checkArchivedClaudeHtml(htmlText);
+  await checkLocalImages();
+
+  const slidesPath = path.join(repoRoot, "slides.md");
+  const slidesExists = await pathExists(slidesPath);
+  if (!slidesExists) {
+    addError("slides.md is missing");
+  } else {
+    const slidesText = await readFile(slidesPath, "utf8");
+    if (products) checkSlides(slidesText, products);
+    if (sourceRegistryText) checkSourceRegistry(sourceRegistryText);
+  }
+
+  await writeCheckLog();
+
+  if (errors.length > 0) {
+    console.error(`Report checks failed with ${errors.length} error(s):`);
+    errors.forEach((error) => console.error(`- ${error}`));
+    process.exit(1);
+  }
+
+  console.log("Report checks passed");
+}
+
+main().catch(async (error) => {
+  addError(`Unexpected check failure: ${error.stack ?? error.message}`);
+  await writeCheckLog();
+  console.error(error);
+  process.exit(1);
+});
