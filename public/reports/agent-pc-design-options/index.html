@@ -8,6 +8,14 @@
 <link rel="icon" href="https://cdn.jsdelivr.net/gh/slidevjs/slidev/assets/favicon.png">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta property="slidev:version" content="52.16.0">
+<script>
+  (() => {
+    const badPrefix = "#/survey-report/reports/agent-pc-design-options/";
+    if (location.hash.startsWith(badPrefix)) {
+      location.replace(`${location.pathname}${location.search}#/${location.hash.slice(badPrefix.length)}`);
+    }
+  })();
+</script>
 <meta property="og:title" content="Agent PC 设计 Option 报告 - Slidev">  <script type="module" crossorigin src="/survey-report/reports/agent-pc-design-options/assets/index-B7OpLkV4.js"></script>
   <link rel="modulepreload" crossorigin href="/survey-report/reports/agent-pc-design-options/assets/rolldown-runtime-QTnfLwEv.js">
   <link rel="modulepreload" crossorigin href="/survey-report/reports/agent-pc-design-options/assets/modules/shiki-LALC7dEw.js">

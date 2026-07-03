@@ -40,6 +40,31 @@ async function patchSlidevHashRoutes(slidevDir) {
   await writeFile(entryPath, text.replace(needle, replacement));
 }
 
+async function patchNestedSlidevHashRoutes(slidevDir, routePrefix) {
+  const assetsDir = path.join(slidevDir, "assets");
+  const assets = await readdir(assetsDir);
+  const entryFileName = assets.find((fileName) => /^index-.*\.js$/.test(fileName));
+
+  if (!entryFileName) {
+    throw new Error(`Could not find nested Slidev entry JS: ${slidevDir}`);
+  }
+
+  const normalizedRoutePrefix = routePrefix.replace(/\/$/, "");
+  const entryPath = path.join(assetsDir, entryFileName);
+  const text = await readFile(entryPath, "utf8");
+  const needle = `return\`${normalizedRoutePrefix}/\${n?\`export/\${r}\`:t?\`presenter/\${r}\`:\`\${r}\`}\``;
+  const replacement = "return`/${n?`export/${r}`:t?`presenter/${r}`:`${r}`}`";
+
+  if (text.includes(needle)) {
+    await writeFile(entryPath, text.replace(needle, replacement));
+    return;
+  }
+
+  if (!text.includes(replacement)) {
+    throw new Error(`Could not find nested Slidev route prefix to patch: ${normalizedRoutePrefix}`);
+  }
+}
+
 async function main() {
   const tmpSlidevDir = await mkdtemp(path.join(os.tmpdir(), "survey-report-slidev-"));
 
@@ -76,6 +101,10 @@ async function main() {
   await cp(path.join(repoRoot, "public", "reports"), path.join(distDir, "reports"), {
     recursive: true,
   });
+  await patchNestedSlidevHashRoutes(
+    path.join(distDir, "reports", "agent-pc-design-options"),
+    "/survey-report/reports/agent-pc-design-options",
+  );
   await copySiteFile("index.html");
   await copySiteFile("404.html");
   await rm(tmpSlidevDir, { recursive: true, force: true });

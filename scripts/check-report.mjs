@@ -423,6 +423,41 @@ async function checkStaticReports() {
       addError(`Published report asset is missing: ${assetPath}`);
     }
   }
+
+  await checkAgentPcDesignOptionsRouting();
+}
+
+async function checkAgentPcDesignOptionsRouting() {
+  const reportDir = path.join(repoRoot, "public/reports/agent-pc-design-options");
+  const indexText = await readRequiredText("public/reports/agent-pc-design-options/index.html");
+  if (!indexText.includes('const badPrefix = "#/survey-report/reports/agent-pc-design-options/"')) {
+    addError("Agent PC design options report must normalize legacy nested Slidev hashes");
+  }
+
+  let assets = [];
+  try {
+    assets = await readdir(path.join(reportDir, "assets"));
+  } catch (error) {
+    if (error.code === "ENOENT") {
+      addError("Agent PC design options assets directory is missing");
+      return;
+    }
+    throw error;
+  }
+
+  const entryFileName = assets.find((fileName) => /^index-.*\.js$/.test(fileName));
+  if (!entryFileName) {
+    addError("Agent PC design options Slidev entry JS is missing");
+    return;
+  }
+
+  const entryText = await readFile(path.join(reportDir, "assets", entryFileName), "utf8");
+  if (entryText.includes("return`/survey-report/reports/agent-pc-design-options/${n?`")) {
+    addError("Agent PC design options Slidev route generator still includes the GitHub Pages base");
+  }
+  if (!entryText.includes("return`/${n?`export/${r}`:t?`presenter/${r}`:`${r}`}`")) {
+    addError("Agent PC design options Slidev route generator must use short hash routes");
+  }
 }
 
 function checkHigoleCorrectedImage(ledgerText, sourceRegistryText, imageInventoryText, products) {
