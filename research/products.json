@@ -1,0 +1,390 @@
+[
+  {
+    "id": "lenovo-auto-twist",
+    "name": "Lenovo Auto Twist",
+    "group": "A 大屏交互终端",
+    "aliases": [
+      "Lenovo ThinkBook Plus Gen 7 Auto Twist"
+    ],
+    "screen": "needs-live-verification",
+    "resolution": "needs-live-verification",
+    "panel": "needs-live-verification",
+    "touch": "needs-live-verification",
+    "mechanism": "needs-live-verification",
+    "camera": "needs-live-verification",
+    "light": "needs-live-verification",
+    "voice": "needs-live-verification",
+    "storageStacking": "needs-live-verification",
+    "sourceStatus": "needs-live-verification",
+    "imageStatus": "needs-live-verification"
+  },
+  {
+    "id": "amazon-echo-show-10",
+    "name": "Amazon Echo Show 10",
+    "group": "A 大屏交互终端",
+    "aliases": [
+      "Echo Show 10",
+      "Amazon Echo Show 10 (3rd Gen)"
+    ],
+    "screen": "needs-live-verification",
+    "resolution": "needs-live-verification",
+    "panel": "needs-live-verification",
+    "touch": "needs-live-verification",
+    "mechanism": "needs-live-verification",
+    "camera": "needs-live-verification",
+    "light": "needs-live-verification",
+    "voice": "needs-live-verification",
+    "storageStacking": "needs-live-verification",
+    "sourceStatus": "needs-live-verification",
+    "imageStatus": "needs-live-verification"
+  },
+  {
+    "id": "lg-stanbyme-go",
+    "name": "LG StanbyME Go",
+    "group": "A 大屏交互终端",
+    "aliases": [
+      "LG StanbyME Go 27LX5QKNA"
+    ],
+    "screen": "needs-live-verification",
+    "resolution": "needs-live-verification",
+    "panel": "needs-live-verification",
+    "touch": "needs-live-verification",
+    "mechanism": "needs-live-verification",
+    "camera": "needs-live-verification",
+    "light": "needs-live-verification",
+    "voice": "needs-live-verification",
+    "storageStacking": "needs-live-verification",
+    "sourceStatus": "needs-live-verification",
+    "imageStatus": "needs-live-verification"
+  },
+  {
+    "id": "aoostar-g-flip-370",
+    "name": "AOOSTAR G-Flip 370",
+    "group": "B 翻转副屏迷你主机",
+    "aliases": [
+      "G-Flip 370"
+    ],
+    "screen": "needs-live-verification",
+    "resolution": "needs-live-verification",
+    "panel": "needs-live-verification",
+    "touch": "needs-live-verification",
+    "mechanism": "needs-live-verification",
+    "camera": "needs-live-verification",
+    "light": "needs-live-verification",
+    "voice": "needs-live-verification",
+    "storageStacking": "needs-live-verification",
+    "sourceStatus": "needs-live-verification",
+    "imageStatus": "needs-live-verification"
+  },
+  {
+    "id": "miniproca-aio-ryzen-7-inch-4k-flip-screen-mini-pc",
+    "name": "Miniproca AiO / Ryzen 7-inch 4K flip-screen mini PC",
+    "group": "B 翻转副屏迷你主机",
+    "aliases": [
+      "Miniproca AiO",
+      "Miniproca All-in-1 Mini PC"
+    ],
+    "screen": "needs-live-verification",
+    "resolution": "needs-live-verification",
+    "panel": "needs-live-verification",
+    "touch": "needs-live-verification",
+    "mechanism": "needs-live-verification",
+    "camera": "needs-live-verification",
+    "light": "needs-live-verification",
+    "voice": "needs-live-verification",
+    "storageStacking": "needs-live-verification",
+    "sourceStatus": "needs-live-verification",
+    "imageStatus": "needs-live-verification"
+  },
+  {
+    "id": "viewdock-gen2",
+    "name": "ViewDock Gen2",
+    "group": "B 翻转副屏迷你主机",
+    "aliases": [
+      "ViewDock G2"
+    ],
+    "screen": "needs-live-verification",
+    "resolution": "needs-live-verification",
+    "panel": "needs-live-verification",
+    "touch": "needs-live-verification",
+    "mechanism": "needs-live-verification",
+    "camera": "needs-live-verification",
+    "light": "needs-live-verification",
+    "voice": "needs-live-verification",
+    "storageStacking": "needs-live-verification",
+    "sourceStatus": "needs-live-verification",
+    "imageStatus": "needs-live-verification"
+  },
+  {
+    "id": "ayaneo-am01s",
+    "name": "AYANEO AM01S",
+    "group": "B 翻转副屏迷你主机",
+    "aliases": [
+      "AYANEO Retro Mini PC AM01S"
+    ],
+    "screen": "needs-live-verification",
+    "resolution": "needs-live-verification",
+    "panel": "needs-live-verification",
+    "touch": "needs-live-verification",
+    "mechanism": "needs-live-verification",
+    "camera": "needs-live-verification",
+    "light": "needs-live-verification",
+    "voice": "needs-live-verification",
+    "storageStacking": "needs-live-verification",
+    "sourceStatus": "needs-live-verification",
+    "imageStatus": "needs-live-verification"
+  },
+  {
+    "id": "minisforum-uh185-ultra",
+    "name": "Minisforum UH185 Ultra",
+    "group": "C 固定副屏迷你主机",
+    "aliases": [
+      "UH185 Ultra"
+    ],
+    "screen": "needs-live-verification",
+    "resolution": "needs-live-verification",
+    "panel": "needs-live-verification",
+    "touch": "needs-live-verification",
+    "mechanism": "needs-live-verification",
+    "camera": "needs-live-verification",
+    "light": "needs-live-verification",
+    "voice": "needs-live-verification",
+    "storageStacking": "needs-live-verification",
+    "sourceStatus": "needs-live-verification",
+    "imageStatus": "needs-live-verification"
+  },
+  {
+    "id": "aoostar-gem12-pro-max",
+    "name": "AOOSTAR GEM12 Pro Max",
+    "group": "C 固定副屏迷你主机",
+    "aliases": [
+      "GEM12 Pro Max"
+    ],
+    "screen": "needs-live-verification",
+    "resolution": "needs-live-verification",
+    "panel": "needs-live-verification",
+    "touch": "needs-live-verification",
+    "mechanism": "needs-live-verification",
+    "camera": "needs-live-verification",
+    "light": "needs-live-verification",
+    "voice": "needs-live-verification",
+    "storageStacking": "needs-live-verification",
+    "sourceStatus": "needs-live-verification",
+    "imageStatus": "needs-live-verification"
+  },
+  {
+    "id": "acemagic-s1",
+    "name": "ACEMAGIC S1",
+    "group": "C 固定副屏迷你主机",
+    "aliases": [
+      "S1"
+    ],
+    "screen": "needs-live-verification",
+    "resolution": "needs-live-verification",
+    "panel": "needs-live-verification",
+    "touch": "needs-live-verification",
+    "mechanism": "needs-live-verification",
+    "camera": "needs-live-verification",
+    "light": "needs-live-verification",
+    "voice": "needs-live-verification",
+    "storageStacking": "needs-live-verification",
+    "sourceStatus": "needs-live-verification",
+    "imageStatus": "needs-live-verification"
+  },
+  {
+    "id": "ayaneo-am02",
+    "name": "AYANEO AM02",
+    "group": "C 固定副屏迷你主机",
+    "aliases": [
+      "AYANEO Retro Mini PC AM02"
+    ],
+    "screen": "needs-live-verification",
+    "resolution": "needs-live-verification",
+    "panel": "needs-live-verification",
+    "touch": "needs-live-verification",
+    "mechanism": "needs-live-verification",
+    "camera": "needs-live-verification",
+    "light": "needs-live-verification",
+    "voice": "needs-live-verification",
+    "storageStacking": "needs-live-verification",
+    "sourceStatus": "needs-live-verification",
+    "imageStatus": "needs-live-verification"
+  },
+  {
+    "id": "higole-gole1-pro",
+    "name": "Higole / Gole1 Pro",
+    "group": "D 平板一体式 / 工业 HMI",
+    "aliases": [
+      "Higole Gole1",
+      "Higole Gole1 Pro",
+      "Higole Gole1 / Gole1 Pro 系列"
+    ],
+    "screen": "needs-live-verification",
+    "resolution": "needs-live-verification",
+    "panel": "needs-live-verification",
+    "touch": "needs-live-verification",
+    "mechanism": "needs-live-verification",
+    "camera": "needs-live-verification",
+    "light": "needs-live-verification",
+    "voice": "needs-live-verification",
+    "storageStacking": "needs-live-verification",
+    "sourceStatus": "needs-live-verification",
+    "imageStatus": "suspect/wrong-image-needs-web-replacement"
+  },
+  {
+    "id": "pipo-x8",
+    "name": "PiPO X8",
+    "group": "D 平板一体式 / 工业 HMI",
+    "aliases": [
+      "Pipo X8"
+    ],
+    "screen": "needs-live-verification",
+    "resolution": "needs-live-verification",
+    "panel": "needs-live-verification",
+    "touch": "needs-live-verification",
+    "mechanism": "needs-live-verification",
+    "camera": "needs-live-verification",
+    "light": "needs-live-verification",
+    "voice": "needs-live-verification",
+    "storageStacking": "needs-live-verification",
+    "sourceStatus": "needs-live-verification",
+    "imageStatus": "needs-live-verification"
+  },
+  {
+    "id": "8-inch-n150-white-label-touch-mini-pc",
+    "name": "8-inch N150 white-label touch mini PC",
+    "group": "D 平板一体式 / 工业 HMI",
+    "aliases": [
+      "白牌 8″ N150 触屏主机",
+      "8″ N150 白牌",
+      "KOOFORWAY 8-inch N150"
+    ],
+    "screen": "needs-live-verification",
+    "resolution": "needs-live-verification",
+    "panel": "needs-live-verification",
+    "touch": "needs-live-verification",
+    "mechanism": "needs-live-verification",
+    "camera": "needs-live-verification",
+    "light": "needs-live-verification",
+    "voice": "needs-live-verification",
+    "storageStacking": "needs-live-verification",
+    "sourceStatus": "needs-live-verification",
+    "imageStatus": "needs-live-verification"
+  },
+  {
+    "id": "seeed-studio-reterminal",
+    "name": "Seeed Studio reTerminal",
+    "group": "D 平板一体式 / 工业 HMI",
+    "aliases": [
+      "reTerminal"
+    ],
+    "screen": "needs-live-verification",
+    "resolution": "needs-live-verification",
+    "panel": "needs-live-verification",
+    "touch": "needs-live-verification",
+    "mechanism": "needs-live-verification",
+    "camera": "needs-live-verification",
+    "light": "needs-live-verification",
+    "voice": "needs-live-verification",
+    "storageStacking": "needs-live-verification",
+    "sourceStatus": "needs-live-verification",
+    "imageStatus": "needs-live-verification"
+  },
+  {
+    "id": "bmg800-edge-gateway",
+    "name": "BMG800 edge gateway",
+    "group": "D 平板一体式 / 工业 HMI",
+    "aliases": [
+      "佰马 BMG800",
+      "佰马 BMG800 边缘计算网关",
+      "Baimatech BMG800"
+    ],
+    "screen": "needs-live-verification",
+    "resolution": "needs-live-verification",
+    "panel": "needs-live-verification",
+    "touch": "needs-live-verification",
+    "mechanism": "needs-live-verification",
+    "camera": "needs-live-verification",
+    "light": "needs-live-verification",
+    "voice": "needs-live-verification",
+    "storageStacking": "needs-live-verification",
+    "sourceStatus": "needs-live-verification",
+    "imageStatus": "needs-live-verification"
+  },
+  {
+    "id": "violoop",
+    "name": "Violoop",
+    "group": "E Agent 专用硬件",
+    "aliases": [],
+    "screen": "needs-live-verification",
+    "resolution": "needs-live-verification",
+    "panel": "needs-live-verification",
+    "touch": "needs-live-verification",
+    "mechanism": "needs-live-verification",
+    "camera": "needs-live-verification",
+    "light": "needs-live-verification",
+    "voice": "needs-live-verification",
+    "storageStacking": "needs-live-verification",
+    "sourceStatus": "needs-live-verification",
+    "imageStatus": "needs-live-verification"
+  },
+  {
+    "id": "moore-threads-aicube",
+    "name": "Moore Threads AICUBE",
+    "group": "E Agent 专用硬件",
+    "aliases": [
+      "摩尔线程 MTT AICUBE",
+      "摩尔线程 AICUBE"
+    ],
+    "screen": "needs-live-verification",
+    "resolution": "needs-live-verification",
+    "panel": "needs-live-verification",
+    "touch": "needs-live-verification",
+    "mechanism": "needs-live-verification",
+    "camera": "needs-live-verification",
+    "light": "needs-live-verification",
+    "voice": "needs-live-verification",
+    "storageStacking": "needs-live-verification",
+    "sourceStatus": "needs-live-verification",
+    "imageStatus": "needs-live-verification"
+  },
+  {
+    "id": "nvidia-dgx-spark",
+    "name": "NVIDIA DGX Spark",
+    "group": "F 算力堆叠参考",
+    "aliases": [
+      "DGX Spark"
+    ],
+    "screen": "needs-live-verification",
+    "resolution": "needs-live-verification",
+    "panel": "needs-live-verification",
+    "touch": "needs-live-verification",
+    "mechanism": "needs-live-verification",
+    "camera": "needs-live-verification",
+    "light": "needs-live-verification",
+    "voice": "needs-live-verification",
+    "storageStacking": "needs-live-verification",
+    "sourceStatus": "needs-live-verification",
+    "imageStatus": "needs-live-verification"
+  },
+  {
+    "id": "apple-mac-mini-m4",
+    "name": "Apple Mac mini M4",
+    "group": "F 算力堆叠参考",
+    "aliases": [
+      "Mac mini (M4)",
+      "Mac mini M4"
+    ],
+    "screen": "needs-live-verification",
+    "resolution": "needs-live-verification",
+    "panel": "needs-live-verification",
+    "touch": "needs-live-verification",
+    "mechanism": "needs-live-verification",
+    "camera": "needs-live-verification",
+    "light": "needs-live-verification",
+    "voice": "needs-live-verification",
+    "storageStacking": "needs-live-verification",
+    "sourceStatus": "needs-live-verification",
+    "imageStatus": "needs-live-verification"
+  }
+]
