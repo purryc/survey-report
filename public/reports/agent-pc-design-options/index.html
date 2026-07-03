@@ -3,6 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  function normalizeAgentPcDeckHash() {
+    const badPrefix = "#/survey-report/reports/agent-pc-design-options/";
+    if (location.hash.startsWith(badPrefix)) {
+      location.replace(`${location.pathname}${location.search}#/${location.hash.slice(badPrefix.length)}`);
+    }
+  }
+  normalizeAgentPcDeckHash();
+  window.addEventListener("hashchange", normalizeAgentPcDeckHash);
+</script>
 <title>Agent PC 设计 Option 报告 - Slidev</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Microsoft+YaHei:wght@200;400;600&family=Fira+Code:wght@200;400;600&display=swap" type="text/css">
 <link rel="preload" as="image" href="./assets/m0-line-Dyv4Pssj.png">
@@ -65,20 +75,12 @@
 <link rel="icon" href="https://cdn.jsdelivr.net/gh/slidevjs/slidev/assets/favicon.png">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta property="slidev:version" content="52.16.0">
-<script>
-  (() => {
-    const badPrefix = "#/survey-report/reports/agent-pc-design-options/";
-    if (location.hash.startsWith(badPrefix)) {
-      location.replace(`${location.pathname}${location.search}#/${location.hash.slice(badPrefix.length)}`);
-    }
-  })();
-</script>
-<meta property="og:title" content="Agent PC 设计 Option 报告 - Slidev">  <script type="module" crossorigin src="./assets/index-Ce-Ukp_Z.js"></script>
+<meta property="og:title" content="Agent PC 设计 Option 报告 - Slidev">  <script type="module" crossorigin src="./assets/index-CaySyBUw.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/rolldown-runtime-QTnfLwEv.js">
   <link rel="modulepreload" crossorigin href="./assets/modules/shiki-LALC7dEw.js">
   <link rel="modulepreload" crossorigin href="./assets/modules/vue-C3ysp7al.js">
   <link rel="stylesheet" crossorigin href="./assets/modules/shiki-BrmBd2_v.css">
-  <link rel="stylesheet" crossorigin href="./assets/index-BbMLUFmG.css">
+  <link rel="stylesheet" crossorigin href="./assets/index-B6Ziesz4.css">
 </head>
 <body>
   <div id="app"></div>
