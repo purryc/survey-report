@@ -1,0 +1,1 @@
+var e=`/survey-report/reports/agent-pc-design-options/assets/c4-render-BvFHM-FG.png`;export{e as t};

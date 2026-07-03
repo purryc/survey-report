@@ -63,6 +63,15 @@ const requiredReportRoutes = [
     markers: ["8 方案设计评审", "report_assets/agent-pc-scheme-01-imagegen.png"],
   },
   {
+    path: "public/reports/agent-pc-design-options/index.html",
+    label: "Agent PC design options Slidev report",
+    markers: [
+      "Agent PC 设计 Option 报告",
+      "slidev:version",
+      "/survey-report/reports/agent-pc-design-options/assets/index-",
+    ],
+  },
+  {
     path: "public/reports/agent-pc-sketch-gallery/index.html",
     label: "Agent PC sketch gallery",
     markers: ["方案白描图集", "AGENT PC · DESIGN PLATES"],
@@ -73,6 +82,7 @@ const requiredCatalogLinks = [
   "/survey-report/reports/screen-integrated-mini-pc-display-design/",
   "/survey-report/reports/mini-pc-screen-survey/",
   "/survey-report/reports/agent-pc-8-design-review/",
+  "/survey-report/reports/agent-pc-design-options/",
   "/survey-report/reports/agent-pc-sketch-gallery/",
 ];
 
@@ -404,6 +414,7 @@ async function checkStaticReports() {
     "public/reports/agent-pc-8-design-review/report_assets/agent-pc-scheme-06-hand-sketch.png",
     "public/reports/agent-pc-8-design-review/report_assets/agent-pc-scheme-07-hand-sketch.png",
     "public/reports/agent-pc-8-design-review/report_assets/agent-pc-scheme-08-hand-sketch.png",
+    "public/reports/agent-pc-design-options/report_assets/overview-render-thumb.png",
     "public/reports/agent-pc-sketch-gallery/report_assets/sketch-thumb.png",
   ];
 

@@ -19,6 +19,7 @@ lives under its own stable subdirectory.
 - `reports/screen-integrated-mini-pc-display-design/`: restored static HTML source report from the original Claude material.
 - `reports/mini-pc-screen-survey/`: synthesized bilingual Slidev decision deck.
 - `reports/agent-pc-8-design-review/`: Agent PC eight-scheme design review.
+- `reports/agent-pc-design-options/`: Agent PC 19-option Slidev design option report.
 - `reports/agent-pc-sketch-gallery/`: engineering sketch atlas.
 
 ## Content Rules

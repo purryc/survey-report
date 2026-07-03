@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="640 280 320 280" fill="none" stroke-linecap="round" stroke-linejoin="round" font-family="PingFang SC, Microsoft YaHei, sans-serif">
+ G1 升降潜望 
+<g>
+<rect height="60" rx="7" stroke="#23211c" stroke-width="2" width="200" x="60" y="170"></rect>
+<rect height="9" rx="3" stroke="#23211c" stroke-width="1.3" width="132" x="94" y="164"></rect>
+<g stroke="#23211c" stroke-width="2"><rect height="102" rx="4" width="120" x="100" y="58"></rect><rect height="84" stroke-width="1.2" width="102" x="109" y="67"></rect></g>
+<rect height="42" rx="3" stroke="#57534a" stroke-dasharray="4 3" stroke-width="1.2" width="112" x="104" y="180"></rect>
+<path d="M276 150 L276 104 M269 112 L276 102 L283 112" stroke="#b5442a" stroke-width="1.5"></path>
+<text fill="#b5442a" font-size="10" stroke="none" x="290" y="130">推出即开机</text>
+<text fill="#23211c" font-size="13" font-weight="700" stroke="none" text-anchor="middle" x="160" y="252">G1 升降潜望屏</text>
+<text fill="#57534a" font-size="10" stroke="none" text-anchor="middle" x="160" y="270">垂直导轨滑出,收纳全隐藏且触控距离不变</text>
+</g>
+ G2 Z形双铰链 
+<g transform="translate(320,0)">
+<rect height="50" rx="7" stroke="#23211c" stroke-width="2" width="210" x="55" y="180"></rect>
+<line stroke="#23211c" stroke-width="3.2" x1="105" x2="148" y1="178" y2="108"></line>
+<circle cx="105" cy="178" r="5" stroke="#b5442a" stroke-width="1.6"></circle>
+<circle cx="148" cy="108" r="5" stroke="#b5442a" stroke-width="1.6"></circle>
+<g stroke="#23211c" stroke-width="2" transform="rotate(-18 195 95)"><rect height="72" rx="4" width="124" x="135" y="62"></rect><rect height="56" stroke-width="1.2" width="108" x="143" y="70"></rect></g>
+<rect height="12" rx="3" stroke="#57534a" stroke-dasharray="4 3" stroke-width="1.2" width="130" x="120" y="164"></rect>
+<text fill="#57534a" font-size="9.5" stroke="none" x="262" y="176">压平=桌面触控板</text>
+<text fill="#23211c" font-size="13" font-weight="700" stroke="none" text-anchor="middle" x="160" y="252">G2 Z 形双铰链</text>
+<text fill="#57534a" font-size="10" stroke="none" text-anchor="middle" x="160" y="270">高度与俯仰解耦(Surface Studio 微缩),坐站两用</text>
+</g>
+ G3 磁吸分体 
+<g transform="translate(640,0)">
+<g stroke="#23211c" stroke-width="2" transform="rotate(-3 160 80)"><rect height="80" rx="5" width="176" x="72" y="44"></rect><rect height="64" stroke-width="1.2" width="158" x="81" y="52"></rect></g>
+<rect height="9" rx="2" stroke="#57534a" stroke-width="1.1" transform="rotate(-3 228 38)" width="24" x="216" y="34"></rect>
+<g stroke="#b5442a" stroke-width="1.5"><path d="M120 136 L120 154 M114 148 L120 155 L126 148"></path><path d="M200 133 L200 151 M194 145 L200 152 L206 145"></path></g>
+<g stroke="#23211c" stroke-width="2"><rect height="34" rx="6" width="152" x="84" y="162"></rect><rect height="34" rx="6" width="152" x="84" y="200"></rect></g>
+<text fill="#23211c" font-size="13" font-weight="700" stroke="none" text-anchor="middle" x="160" y="252">G3 磁吸分体屏(带电池)</text>
+<text fill="#57534a" font-size="10" stroke="none" text-anchor="middle" x="160" y="270">取下全屋漫游,算力柱 headless 续跑;Gen2 预研</text>
+</g>
+ G4 头部模组架构 
+<g transform="translate(0,290)">
+<path d="M80 40 L240 40 L232 96 L88 96 Z" stroke="#23211c" stroke-width="2"></path>
+<path d="M92 50 L228 50 L221 88 L99 88 Z" stroke="#23211c" stroke-width="1.2"></path>
+<circle cx="160" cy="45" fill="#23211c" r="2.4" stroke="none"></circle>
+<ellipse cx="160" cy="104" rx="72" ry="7" stroke="#b5442a" stroke-dasharray="6 4" stroke-width="1.4"></ellipse>
+<g stroke="#23211c" stroke-width="2"><rect height="32" rx="6" width="144" x="88" y="116"></rect><rect height="32" rx="6" width="144" x="88" y="152"></rect></g>
+<g fill="#b5442a" stroke="none"><circle cx="118" cy="113" r="2"></circle><circle cx="160" cy="113" r="2"></circle><circle cx="202" cy="113" r="2"></circle></g>
+<text fill="#3d7a4a" font-size="11" stroke="none" x="252" y="70">✓ 案1/3/7 造型均可为「头」</text>
+<text fill="#3d7a4a" font-size="11" stroke="none" x="252" y="90">✓ 算力盒无屏,向下生长</text>
+<text fill="#23211c" font-size="13" font-weight="700" stroke="none" text-anchor="middle" x="160" y="215">G4 头部模组架构</text>
+<text fill="#57534a" font-size="10" stroke="none" text-anchor="middle" x="160" y="233">不是第 9 个造型,而是约束④的正确解法</text>
+</g>
+ G5 头模组转环 
+<g transform="translate(320,290)">
+<path d="M110 44 L214 44 L208 128 L116 128 Z" stroke="#23211c" stroke-width="2"></path>
+<path d="M118 52 L206 52 L201 120 L123 120 Z" stroke="#23211c" stroke-width="1.2"></path>
+<ellipse cx="162" cy="142" rx="66" ry="11" stroke="#23211c" stroke-width="2"></ellipse>
+<path d="M84 156 A80 20 0 0 0 190 160" stroke="#b5442a" stroke-dasharray="6 4" stroke-width="1.4"></path>
+<path d="M184 154 L192 161 L181 165" fill="#b5442a" stroke="none"></path>
+<text fill="#b5442a" font-size="10" stroke="none" x="240" y="150">手动阻尼 ±60°</text>
+<rect height="38" rx="6" stroke="#23211c" stroke-width="2" width="140" x="92" y="166"></rect>
+<text fill="#57534a" font-size="10" stroke="none" x="240" y="190">塔身不动</text>
+<text fill="#23211c" font-size="13" font-weight="700" stroke="none" text-anchor="middle" x="162" y="215">G5 头模组阻尼转环</text>
+<text fill="#57534a" font-size="10" stroke="none" text-anchor="middle" x="162" y="233">只转几百克的头,不转几公斤的塔;替代案 8 的底座电机</text>
+</g>
+ G6 环带屏 
+<g transform="translate(640,290)">
+<rect height="118" rx="9" stroke="#23211c" stroke-width="2" width="150" x="88" y="52"></rect>
+<path d="M88 118 L238 118 M88 142 L238 142" stroke="#b5442a" stroke-width="1.4"></path>
+<g stroke="#b5442a" stroke-dasharray="2 4" stroke-width="1.2"><line x1="94" x2="232" y1="130" y2="130"></line></g>
+<path d="M238 118 L252 112 M238 142 L252 136" stroke="#b5442a" stroke-dasharray="3 3" stroke-width="1.2"></path>
+<text fill="#57534a" font-size="9.5" stroke="none" text-anchor="middle" x="163" y="106">上方留白 = 主屏区(可选)</text>
+<text fill="#23211c" font-size="13" font-weight="700" stroke="none" text-anchor="middle" x="163" y="215">G6 环幕状态带(激进项)</text>
+<text fill="#57534a" font-size="10" stroke="none" text-anchor="middle" x="163" y="233">灯带×屏幕合体:低清环绕显示;供应链非标,慎入</text>
+</g>
+</svg>

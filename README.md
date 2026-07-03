@@ -8,6 +8,7 @@ Public Desky survey report library.
 - Restored static mini PC screen report: `/survey-report/reports/screen-integrated-mini-pc-display-design/`
 - Bilingual Slidev decision deck: `/survey-report/reports/mini-pc-screen-survey/`
 - Agent PC 8 design review: `/survey-report/reports/agent-pc-8-design-review/`
+- Agent PC design options Slidev report: `/survey-report/reports/agent-pc-design-options/`
 - Agent PC sketch gallery: `/survey-report/reports/agent-pc-sketch-gallery/`
 
 The root URL is the durable catalog. Individual surveys and design reviews must

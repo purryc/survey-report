@@ -1,0 +1,1 @@
+var e=`/survey-report/reports/agent-pc-design-options/assets/c2-render-Cy_XQWX7.png`;export{e as t};

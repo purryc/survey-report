@@ -1,0 +1,1 @@
+var e=`/survey-report/reports/agent-pc-design-options/assets/u4-render-BFknvnLI.png`;export{e as t};
