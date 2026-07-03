@@ -28,6 +28,10 @@ Draw a contrast concept where a large camera head dominates the product and the 
 
 Draw three compact screen modules side by side: 5.0-5.5 inch status band, 6.0-6.7 inch approval band, and 7.0-7.x inch small-hub band. Show relative scale, not exact UI. Include simple callouts for status, approval card, short task list, and camera preview.
 
+## 07 Market Archetypes Synthesis
+
+Draw one analytical industrial design sketch sheet showing five archetypes as simplified objects: a rotating screen, a foldable suitcase/display, a flip-up mini PC secondary screen, a tablet/HMI slab mini PC, and a stackable compute box with a separate front touch screen. Use white-line industrial design illustration on a clean white background, thin black and gray construction lines, and subtle red highlights only on hinge axes, rotation arcs, camera/light positions, and stacking alignment points. No brand, no logo, no readable text, no letters, no numbers, no watermark.
+
 ## Generated Outputs
 
 Built-in imagegen mode was used, then selected outputs were copied into the project.

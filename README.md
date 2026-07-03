@@ -12,6 +12,11 @@ Desky mini PC screen industrial-design survey:
 - Desky screen/camera/light/voice/compute-box recommendations;
 - GitHub Pages publication.
 
+## Public URLs
+
+- Current Slidev report: `https://purryc.github.io/survey-report/`
+- Legacy static report path: `/survey-report/reports/screen-integrated-mini-pc-display-design/` now redirects to the current Slidev report so old links do not 404.
+
 ## Commands
 
 ```bash

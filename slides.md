@@ -351,7 +351,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <span><b>Camera / 摄像头</b> 13MP camera with auto-framing / user tracking</span>
       <span><b>Light / 灯光</b> n/a</span>
       <span><b>Voice / 语音</b> Far-field Alexa voice control</span>
-      <span><b>Storage / 收纳</b> Countertop smart-display appliance; rotating base needs clearance and is not st...</span>
+      <span><b>Storage / 收纳</b> Countertop appliance; rotating base needs clearance and cannot stack.</span>
     </div>
     <div class="source">Source note: Tom's Guide, PCWorld, SHI spec mirror; image from Future media reference.</div>
   </div>
@@ -379,7 +379,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <span><b>Camera / 摄像头</b> n/a</span>
       <span><b>Light / 灯光</b> n/a</span>
       <span><b>Voice / 语音</b> Voice control through remote / LG ThinQ ecosystem</span>
-      <span><b>Storage / 收纳</b> Briefcase storage; built-in battery; can be carried closed or used flat in tabl...</span>
+      <span><b>Storage / 收纳</b> Briefcase storage; battery powered, carry-closed or flat table mode.</span>
     </div>
     <div class="source">Source note: LG official galleries and product pages; three images show use, storage, and table states.</div>
   </div>
@@ -407,7 +407,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <span><b>Camera / 摄像头</b> n/a</span>
       <span><b>Light / 灯光</b> n/a</span>
       <span><b>Voice / 语音</b> n/a</span>
-      <span><b>Storage / 收纳</b> Flip screen folds down to protect the display; compact 130×130mm-class desk foo...</span>
+      <span><b>Storage / 收纳</b> Flip screen protects the display; compact 130mm-class footprint.</span>
     </div>
     <div class="source">Source note: AOOSTAR official articles and Notebookcheck; local Claude assets retained for use, desk, and storage states.</div>
   </div>
@@ -459,7 +459,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <span><b>Camera / 摄像头</b> n/a</span>
       <span><b>Light / 灯光</b> n/a</span>
       <span><b>Voice / 语音</b> n/a</span>
-      <span><b>Storage / 收纳</b> Folded top surface doubles as a wireless charging dock; compact vertical deskto...</span>
+      <span><b>Storage / 收纳</b> Folded top becomes Qi dock; compact vertical desktop posture.</span>
     </div>
     <div class="source">Source note: Liliputing, Kickstarter, Notebookcheck; images show mechanism, storage top, and desk dock state.</div>
   </div>
@@ -514,7 +514,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <span><b>Camera / 摄像头</b> 1080p camera with physical privacy shutter</span>
       <span><b>Light / 灯光</b> n/a</span>
       <span><b>Voice / 语音</b> Built-in microphone</span>
-      <span><b>Storage / 收纳</b> Top-fixed display with optional vertical stand posture; no stackable storage de...</span>
+      <span><b>Storage / 收纳</b> Top-fixed display with vertical stand; no stackable storage design.</span>
     </div>
     <div class="source">Source note: Liliputing, TechRadar, Notebookcheck; local stand asset retained from Claude HTML.</div>
   </div>
@@ -614,7 +614,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <span><b>Camera / 摄像头</b> n/a</span>
       <span><b>Light / 灯光</b> n/a</span>
       <span><b>Voice / 语音</b> Built-in microphone</span>
-      <span><b>Storage / 收纳</b> Pocket/handheld slab; current official retail page lists a 2500mAh battery; not...</span>
+      <span><b>Storage / 收纳</b> Pocket slab with listed 2500mAh battery; handheld, not stackable.</span>
     </div>
     <div class="source">Source note: corrected CNX Software image and Gole retail cross-check. The legacy higole-scene.png is not used as Higole evidence.</div>
   </div>
@@ -665,7 +665,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <span><b>Camera / 摄像头</b> 2MP on some variants</span>
       <span><b>Light / 灯光</b> n/a</span>
       <span><b>Voice / 语音</b> unknown after source search</span>
-      <span><b>Storage / 收纳</b> Pocket mini-laptop/tablet form; convertible or kickstand desk placement; not st...</span>
+      <span><b>Storage / 收纳</b> Pocket tablet/laptop form; kickstand or hinge variants, not stackable.</span>
     </div>
     <div class="source">Source note: Liliputing, X-Plus, Amazon SKU references; local Claude assets retained.</div>
   </div>
@@ -689,7 +689,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <span><b>Camera / 摄像头</b> n/a; CSI camera expansion is available</span>
       <span><b>Light / 灯光</b> Ambient light sensor</span>
       <span><b>Voice / 语音</b> n/a; audio/voice can be added through expansion</span>
-      <span><b>Storage / 收纳</b> Panel/HMI module with expansion interfaces; suitable for mounted or embedded pl...</span>
+      <span><b>Storage / 收纳</b> Panel/HMI module for mounted or embedded placement.</span>
     </div>
     <div class="source">Source note: Seeed Wiki and product page; local Claude asset retained.</div>
   </div>
@@ -713,7 +713,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <span><b>Camera / 摄像头</b> External video/image acquisition supported; no built-in camera</span>
       <span><b>Light / 灯光</b> PWR, SYS, ONLINE, WIFI, GPS status LEDs</span>
       <span><b>Voice / 语音</b> External voice acquisition supported; no built-in far-field voice interface</span>
-      <span><b>Storage / 收纳</b> Industrial gateway for local configuration, data view/export, and cabinet/rail...</span>
+      <span><b>Storage / 收纳</b> Industrial gateway for cabinet, wall, or DIN-rail deployment.</span>
     </div>
     <div class="source">Source note: Baimatech Chinese/English pages; local Claude diagram retained as spec evidence.</div>
   </div>
@@ -737,7 +737,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <span><b>Camera / 摄像头</b> n/a; reads host screen through HDMI capture</span>
       <span><b>Light / 灯光</b> Bottom ambient light shown in product imagery / media material</span>
       <span><b>Voice / 语音</b> unknown after source search</span>
-      <span><b>Storage / 收纳</b> Small desktop inline appliance between host computer and monitor; no stacking d...</span>
+      <span><b>Storage / 收纳</b> Small inline desktop appliance; no stacking design reported.</span>
     </div>
     <div class="source">Source note: Violoop official site, 36Kr Europe, Pandaily; official media image used.</div>
   </div>
@@ -761,7 +761,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <span><b>Camera / 摄像头</b> n/a</span>
       <span><b>Light / 灯光</b> unknown after source search</span>
       <span><b>Voice / 语音</b> Four-microphone array + Xiaomai assistant reported</span>
-      <span><b>Storage / 收纳</b> Desk/home AI box; storage expansion reported without opening the device; no sta...</span>
+      <span><b>Storage / 收纳</b> Desk/home AI box with storage expansion; no stackable mechanical design.</span>
     </div>
     <div class="source">Source note: VideoCardz, 雷科技, 搜狐; image from 雷科技 media reference.</div>
   </div>
@@ -785,7 +785,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <span><b>Camera / 摄像头</b> n/a</span>
       <span><b>Light / 灯光</b> unknown after source search</span>
       <span><b>Voice / 语音</b> n/a</span>
-      <span><b>Storage / 收纳</b> Official docs support up to 200B models on one unit and 405B dual-Spark configu...</span>
+      <span><b>Storage / 收纳</b> One unit supports 200B models; dual-Spark supports larger clustered use.</span>
     </div>
     <div class="source">Source note: NVIDIA hardware docs and product page; official product image used.</div>
   </div>
@@ -809,7 +809,7 @@ English summary: The first Desky path should favor a 6.0-6.7 inch landscape touc
       <span><b>Camera / 摄像头</b> n/a</span>
       <span><b>Light / 灯光</b> Status indicator light on front</span>
       <span><b>Voice / 语音</b> Siri and Dictation supported through macOS; external microphone required</span>
-      <span><b>Storage / 收纳</b> Small 5×5 inch footprint; external rack/vertical accessories exist, but direct...</span>
+      <span><b>Storage / 收纳</b> Small 5×5 inch footprint; external racks exist, direct stacking not official.</span>
     </div>
     <div class="source">Source note: Apple specs and support pages; official technical specification image used.</div>
   </div>

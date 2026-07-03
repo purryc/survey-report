@@ -198,6 +198,11 @@ function checkSlides(slidesText, products) {
       }
     });
 
+    const factlineMatch = productSlide.match(/<div class="factline">[\s\S]*?<\/div>/);
+    if (factlineMatch && /\.\.\./.test(factlineMatch[0])) {
+      addError(`Product teardown slide for ${product.name} has literal ellipsis in factline`);
+    }
+
     const imageCandidates = Array.isArray(product.images) ? product.images.flatMap(imageReferenceCandidates) : [];
     if (!imageCandidates.some((candidate) => productSlide.includes(candidate))) {
       addError(`Product teardown slide for ${product.name} does not reference any listed product image`);
