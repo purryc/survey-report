@@ -4,21 +4,21 @@
 
 | File | Copy status | Research status |
 | --- | --- | --- |
-| acemagic-s1.png | copied | needs-live-verification |
-| am01s-pair.png | copied | needs-live-verification |
-| bmg800-diagram.png | copied | needs-live-verification |
-| flip-desk-monitor.png | copied | needs-live-verification |
-| flip-table-scene.png | copied | needs-live-verification |
-| gem12-promax.png | copied | needs-live-verification |
-| gflip-render.png | copied | needs-live-verification |
-| higole-scene.png | copied | legacy filename; not final Higole evidence; verify current CNX Higole image in Task 4/5 |
-| n150-8inch-views.png | copied | needs-live-verification |
-| pipo-x8.png | copied | needs-live-verification |
-| reterminal-banner.png | copied | needs-live-verification |
-| tablet-8inch-pink.png | copied | needs-live-verification |
-| uh185-stand.png | copied | needs-live-verification |
-| viewdock-dock-scene.png | copied | needs-live-verification |
-| viewdock-wireless-top.png | copied | needs-live-verification |
+| acemagic-s1.png | copied | media/HTML asset retained |
+| am01s-pair.png | copied | media/HTML asset retained |
+| bmg800-diagram.png | copied | media/HTML asset retained |
+| flip-desk-monitor.png | copied | media/HTML asset retained |
+| flip-table-scene.png | copied | media/HTML asset retained |
+| gem12-promax.png | copied | media/HTML asset retained |
+| gflip-render.png | copied | media/HTML asset retained |
+| higole-scene.png | copied | legacy/non-final; do not use as Higole evidence |
+| n150-8inch-views.png | copied | media/HTML asset retained |
+| pipo-x8.png | copied | media/HTML asset retained |
+| reterminal-banner.png | copied | media/HTML asset retained |
+| tablet-8inch-pink.png | copied | media/HTML asset retained |
+| uh185-stand.png | copied | media/HTML asset retained |
+| viewdock-dock-scene.png | copied | media/HTML asset retained |
+| viewdock-wireless-top.png | copied | media/HTML asset retained |
 
 ## HTML Local Asset References
 
@@ -59,4 +59,8 @@
 
 ## Higole Warning
 
-The current source HTML uses the CNX remote image for the Higole / Gole1 Pro card. It still needs online verification or replacement confirmation in Task 4/5 before being accepted as final evidence. `higole-scene.png` is intentionally preserved because the HTML still references it as a collected Violoop night-scene asset; it must not be reused as final Higole evidence.
+The current source HTML uses the CNX remote image for the Higole / Gole1 Pro card. Task 4 verified that image against CNX Software and the Gole retail page, so the final Higole evidence image is:
+
+- https://www.cnx-software.com/wp-content/uploads/2022/07/mini-pc-with-touchscreen-display.jpg
+
+`higole-scene.png` is intentionally preserved because the HTML still references it as a collected Violoop night-scene asset; it must not be reused as final Higole evidence.
