@@ -316,6 +316,21 @@ function checkSourceRegistry(sourceRegistryText) {
   }
 }
 
+function checkPackageScripts(packageJson) {
+  const buildScript = packageJson?.scripts?.build ?? "";
+  const devScript = packageJson?.scripts?.dev ?? "";
+
+  if (!buildScript.includes("--base /survey-report/")) {
+    addError("package.json build script must set --base /survey-report/ for GitHub Pages");
+  }
+  if (!buildScript.includes("--router-mode hash")) {
+    addError("package.json build script must use --router-mode hash for GitHub Pages slide routes");
+  }
+  if (!devScript.includes("--router-mode hash")) {
+    addError("package.json dev script must use --router-mode hash to match published navigation");
+  }
+}
+
 function checkHigoleCorrectedImage(ledgerText, sourceRegistryText, imageInventoryText, products) {
   const productsText = JSON.stringify(products ?? []);
   const combined = `${ledgerText}\n${sourceRegistryText}\n${imageInventoryText}\n${productsText}`;
@@ -433,12 +448,14 @@ async function writeCheckLog() {
 }
 
 async function main() {
+  const packageJson = await readRequiredJson("package.json");
   const products = await readRequiredJson("research/products.json");
   const ledgerText = await readRequiredText("research/html-report-content-ledger.md");
   const imageInventoryText = await readRequiredText("research/image-inventory.md");
   const sourceRegistryText = await readRequiredText("research/source-registry.md");
   const htmlText = await readRequiredText("research/source-html/claude-report.html");
 
+  if (packageJson) checkPackageScripts(packageJson);
   if (products) checkProducts(products);
   if (ledgerText) checkLedger(ledgerText);
   if (ledgerText || sourceRegistryText || imageInventoryText || products) {

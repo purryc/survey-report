@@ -15,6 +15,7 @@ Desky mini PC screen industrial-design survey:
 ## Public URLs
 
 - Current Slidev report: `https://purryc.github.io/survey-report/`
+- Slide navigation: use the right arrow, spacebar, or on-screen controls. Direct slide links use hash routing, for example `https://purryc.github.io/survey-report/#/2`.
 - Legacy static report path: `/survey-report/reports/screen-integrated-mini-pc-display-design/` now redirects to the current Slidev report so old links do not 404.
 
 ## Commands
