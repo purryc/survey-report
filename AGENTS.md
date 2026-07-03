@@ -2,11 +2,24 @@
 
 ## Purpose
 
-This repository hosts reusable Slidev-based survey reports. Each report should be a source-backed, visual decision artifact, not a loose collection of notes.
+This repository hosts the public Desky survey report library. The GitHub Pages
+root is a durable report index, and every individual survey or design review
+lives under its own stable subdirectory.
 
-## Current Report
+## Site Structure
 
-The first report is the Desky mini PC screen industrial-design survey. It uses Claude's existing HTML report as the base material, then adds live web verification, bilingual copy, Desky-specific recommendations, and GitHub Pages publishing.
+- `site/index.html`: public root catalog for `https://purryc.github.io/survey-report/`.
+- `site/404.html`: friendly Pages fallback that routes readers back to the catalog.
+- `slides.md`: source for the bilingual Slidev decision deck.
+- `public/reports/<report-slug>/`: static HTML reports and their `report_assets/`.
+- `dist/`: generated deploy output; do not edit it by hand.
+
+## Current Reports
+
+- `reports/screen-integrated-mini-pc-display-design/`: restored static HTML source report from the original Claude material.
+- `reports/mini-pc-screen-survey/`: synthesized bilingual Slidev decision deck.
+- `reports/agent-pc-8-design-review/`: Agent PC eight-scheme design review.
+- `reports/agent-pc-sketch-gallery/`: engineering sketch atlas.
 
 ## Content Rules
 
@@ -25,7 +38,8 @@ The first report is the Desky mini PC screen industrial-design survey. It uses C
 - Publish: push `main` when publication is explicitly requested; GitHub Actions `Deploy Pages` builds and deploys GitHub Pages.
 - Re-run current remote `main` publication: `npm run deploy`.
 - A pushed branch, triggered workflow, or successful local build is not enough; live public availability is the completion gate.
+- `npm run build` must keep the root as the catalog and output the Slidev deck into `dist/reports/mini-pc-screen-survey/`.
 
 ## Future Reports
 
-Future surveys may add folders or additional Slidev entry points, but must not break the current public report URL without an explicit migration note.
+Future surveys should add a new `public/reports/<report-slug>/` folder, then add one card to `site/index.html` and one coverage check in `scripts/check-report.mjs`. Do not replace the root catalog with a single report.

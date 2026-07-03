@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>Survey Report Index · Desky Research Library</title>
+    <style>
+      :root {
+        --paper: #ffffff;
+        --ink: #111827;
+        --muted: #5b6472;
+        --line: #d9e0e8;
+        --soft: #f6f8fb;
+        --accent: #d92d20;
+        --blue: #2563eb;
+        --green: #237a57;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Inter, "SF Pro Text", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+        line-height: 1.6;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .wrap {
+        width: min(1180px, calc(100vw - 48px));
+        margin: 0 auto;
+      }
+      header {
+        padding: 56px 0 28px;
+        border-bottom: 1px solid var(--line);
+      }
+      .eyebrow {
+        color: var(--accent);
+        font-family: "SF Mono", Consolas, monospace;
+        font-size: 12px;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+      h1 {
+        margin: 10px 0 10px;
+        font-size: clamp(32px, 5vw, 56px);
+        line-height: 1.08;
+        letter-spacing: 0;
+      }
+      .lead {
+        max-width: 900px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 17px;
+      }
+      .en {
+        display: block;
+        color: #667085;
+        font-size: 0.9em;
+      }
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin: 28px 0 0;
+      }
+      .metric {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 14px 16px;
+        background: var(--soft);
+      }
+      .metric b {
+        display: block;
+        font-size: 24px;
+        line-height: 1.1;
+      }
+      .metric span {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      section {
+        padding: 34px 0 8px;
+      }
+      .section-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 18px;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 10px;
+      }
+      .section-head h2 {
+        margin: 0;
+        font-size: 24px;
+        letter-spacing: 0;
+      }
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .reports {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .card {
+        display: grid;
+        grid-template-columns: 180px minmax(0, 1fr);
+        min-height: 220px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        background: #fff;
+      }
+      .thumb {
+        background: var(--soft);
+        border-right: 1px solid var(--line);
+        min-height: 220px;
+      }
+      .thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .body {
+        padding: 18px 18px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .tagline {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .tag {
+        border: 1px solid var(--line);
+        color: var(--muted);
+        border-radius: 999px;
+        padding: 2px 8px;
+        font-size: 11px;
+        font-family: "SF Mono", Consolas, monospace;
+      }
+      .tag.hot {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .tag.ready {
+        border-color: var(--green);
+        color: var(--green);
+      }
+      .body h3 {
+        margin: 0;
+        font-size: 19px;
+        line-height: 1.25;
+      }
+      .body p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13.5px;
+      }
+      .actions {
+        margin-top: auto;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 36px;
+        border-radius: 6px;
+        border: 1px solid var(--ink);
+        padding: 8px 12px;
+        font-weight: 700;
+        font-size: 13px;
+      }
+      .button.primary {
+        background: var(--ink);
+        color: #fff;
+      }
+      .map {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .step {
+        border-top: 3px solid var(--accent);
+        background: var(--soft);
+        padding: 14px;
+        border-radius: 8px;
+      }
+      .step b {
+        display: block;
+        margin-bottom: 5px;
+      }
+      .step span {
+        color: var(--muted);
+        font-size: 12.5px;
+      }
+      footer {
+        margin-top: 34px;
+        padding: 22px 0 46px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 12px;
+      }
+      @media (max-width: 920px) {
+        .metrics,
+        .map {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .reports {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 640px) {
+        .wrap {
+          width: min(100vw - 28px, 1180px);
+        }
+        header {
+          padding-top: 34px;
+        }
+        .metrics,
+        .map {
+          grid-template-columns: 1fr;
+        }
+        .card {
+          grid-template-columns: 1fr;
+        }
+        .thumb {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+          aspect-ratio: 16 / 9;
+          min-height: 0;
+        }
+        .section-head {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <div class="eyebrow">Desky Survey Report Library</div>
+        <h1>调研报告总目录<span class="en">Survey report index</span></h1>
+        <p class="lead">
+          汇总 Desky Agent PC 工业设计相关的竞品调研、屏幕结构洞察、图集与方案评审。根目录只做导航和综合判断，所有具体报告都放在稳定子目录中。
+          <span class="en">A durable library for competitor research, display mechanisms, sketch studies, and design reviews. The root stays as an index; every report lives in its own stable subdirectory.</span>
+        </p>
+        <div class="metrics">
+          <div class="metric"><b>4</b><span>已收录报告 / Published reports</span></div>
+          <div class="metric"><b>20</b><span>竞品条目 / Competitor cases</span></div>
+          <div class="metric"><b>5-7″</b><span>目标屏幕带 / Target display band</span></div>
+          <div class="metric"><b>7″ 16:10</b><span>Desky 基线 / Desky baseline</span></div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="wrap">
+          <div class="section-head">
+            <h2>报告入口 <span class="en">Reports</span></h2>
+            <p>按“资料源 → 决策版 → 方案评审 → 白描细化”组织。</p>
+          </div>
+          <div class="reports">
+            <article class="card">
+              <a class="thumb" href="/survey-report/reports/screen-integrated-mini-pc-display-design/">
+                <img src="/survey-report/reports/screen-integrated-mini-pc-display-design/report_assets/gflip-render.png" alt="带屏迷你主机屏幕设计调研缩略图" />
+              </a>
+              <div class="body">
+                <div class="tagline"><span class="tag ready">RESTORED</span><span class="tag">HTML ARCHIVE</span></div>
+                <h3>带屏迷你主机 · 屏幕设计调研报告<span class="en">Screen-integrated mini PC display design report</span></h3>
+                <p>恢复你原先发布过的静态 HTML 版本，保留 Claude 报告中的产品、图片、规律、风险和来源附录，作为资料底稿。</p>
+                <p class="en">The restored static source report, kept as the complete archive and evidence base.</p>
+                <div class="actions">
+                  <a class="button primary" href="/survey-report/reports/screen-integrated-mini-pc-display-design/">打开报告 / Open</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="card">
+              <a class="thumb" href="/survey-report/reports/mini-pc-screen-survey/">
+                <img src="/survey-report/images/generated/market-archetypes-synthesis.png" alt="Slidev 双语决策报告缩略图" />
+              </a>
+              <div class="body">
+                <div class="tagline"><span class="tag hot">SLIDEV</span><span class="tag ready">BILINGUAL</span></div>
+                <h3>Mini PC Screen Survey · 双语决策版<span class="en">Bilingual decision deck</span></h3>
+                <p>在静态报告基础上补充联网校验、Higole 修正、5-7 寸屏幕约束、摄像头/灯光/语音/堆叠收纳建议。</p>
+                <p class="en">The synthesized decision deck with verified references and Desky-specific ID recommendations.</p>
+                <div class="actions">
+                  <a class="button primary" href="/survey-report/reports/mini-pc-screen-survey/">打开 Slidev / Open</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="card">
+              <a class="thumb" href="/survey-report/reports/agent-pc-8-design-review/">
+                <img src="/survey-report/reports/agent-pc-8-design-review/report_assets/agent-pc-scheme-01-imagegen.png" alt="Agent PC 8 方案设计评审缩略图" />
+              </a>
+              <div class="body">
+                <div class="tagline"><span class="tag ready">DESIGN REVIEW</span><span class="tag">IMAGEGEN</span></div>
+                <h3>Agent PC · 8 方案设计评审<span class="en">Eight scheme design review</span></h3>
+                <p>用白描图评估固定屏、微云台、折叠屏、堆叠算力盒等结构路线，并标注推荐、可改和风险方案。</p>
+                <p class="en">A structured critique of eight industrial-design directions and missing possibilities.</p>
+                <div class="actions">
+                  <a class="button primary" href="/survey-report/reports/agent-pc-8-design-review/">打开评审 / Open</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="card">
+              <a class="thumb" href="/survey-report/reports/agent-pc-sketch-gallery/">
+                <img src="/survey-report/reports/agent-pc-sketch-gallery/report_assets/sketch-thumb.png" alt="Agent PC 方案白描图集缩略图" />
+              </a>
+              <div class="body">
+                <div class="tagline"><span class="tag">SKETCH ATLAS</span><span class="tag ready">DETAILS</span></div>
+                <h3>Agent PC · 方案白描图集<span class="en">Engineering sketch atlas</span></h3>
+                <p>8 个手绘方案的结构化白描、机构放大和补充方向，用于继续推敲屏幕、摄像头、灯光与机身组合。</p>
+                <p class="en">A detailed sketch atlas for mechanism-level iteration.</p>
+                <div class="actions">
+                  <a class="button primary" href="/survey-report/reports/agent-pc-sketch-gallery/">打开图集 / Open</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <div class="section-head">
+            <h2>综合判断 <span class="en">Integrated takeaways</span></h2>
+            <p>供后续新增调研保持同一判断框架。</p>
+          </div>
+          <div class="map">
+            <div class="step"><b>屏幕不是副屏装饰</b><span>Screen is not decoration: it anchors face-to-face interaction, touch confirmation, and agent status.</span></div>
+            <div class="step"><b>5-7 寸是当前收敛带</b><span>5-7 inches keeps the device compact while leaving room for readable touch UI and camera/light modules.</span></div>
+            <div class="step"><b>固定屏 + 小型云台优先</b><span>Prefer a fixed display plus micro PTZ or privacy-aware wide-angle camera before heavy hinge systems.</span></div>
+            <div class="step"><b>算力盒要为堆叠预留语言</b><span>Compute boxes need an intentional stacking, docking, and cable-management grammar from day one.</span></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        Source workspace: /Users/hmi/Documents/survey-report · Public base: https://purryc.github.io/survey-report/
+      </div>
+    </footer>
+  </body>
+</html>

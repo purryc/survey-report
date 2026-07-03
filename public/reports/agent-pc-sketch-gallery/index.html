@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent PC · 方案白描图集(工程细节版)</title>
+<style>
+  :root{--paper:#f7f4ee;--card:#fffdf8;--ink:#23211c;--ink2:#57534a;--line:#d8d2c4;--line2:#b9b2a1;--accent:#b5442a;--accent2:#2a5d8a;--ok:#3d7a4a;
+  --serif:"Songti SC","Noto Serif SC",STSong,serif;--sans:-apple-system,"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif;--mono:"SF Mono",Consolas,monospace}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  header{padding:56px 0 30px;border-bottom:3px double var(--line2)}
+  header .k{font-family:var(--mono);font-size:12px;letter-spacing:.3em;color:var(--accent)}
+  header h1{font-family:var(--serif);font-size:36px;margin:10px 0 4px}
+  header p{color:var(--ink2);font-size:14px}
+  .plate{background:var(--card);border:1px solid var(--line);margin:30px 0;padding:10px 14px 4px}
+  .plate svg{width:100%;height:auto;display:block}
+  .plate .cap{display:flex;gap:14px;align-items:baseline;border-top:1px dashed var(--line);margin-top:6px;padding:10px 6px}
+  .plate .cap .no{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--accent);white-space:nowrap}
+  .plate .cap p{font-size:12.5px;color:var(--ink2)}
+  .tag{font-family:var(--mono);font-size:10.5px;padding:2px 10px;border-radius:2px;white-space:nowrap}
+  .t-rec{background:#e5efe7;color:var(--ok);border:1px solid var(--ok)}
+  .t-mod{background:#eef2f5;color:var(--accent2);border:1px solid var(--accent2)}
+  .t-risk{background:#f7ece7;color:var(--accent);border:1px solid var(--accent)}
+  h2.sec{font-family:var(--serif);font-size:24px;margin:48px 0 6px;padding-left:12px;border-left:4px solid var(--accent)}
+  footer{border-top:3px double var(--line2);margin-top:50px;padding:22px 0 54px;font-family:var(--mono);font-size:11.5px;color:var(--ink2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="k">AGENT PC · DESIGN PLATES</div>
+  <h1>方案白描图集 · 工程细节版</h1>
+  <p>8 个手绘方案的结构化白描(使用态侧视 + 正视 + 机构放大)+ 6 个补充方向 + 14 案总览。统一图例:实线=可见轮廓,虚线=隐藏/另一状态,红=运动与标注,蓝=视线,剖面线=切开处。比例参考 footprint 150×150mm、屏幕 7″ 16:10。</p>
+</header>
+
+<h2 class="sec">你的 8 案 · 结构白描</h2>
+
+<!-- ═══════════ 案1 ═══════════ -->
+<div class="plate">
+<svg viewBox="0 0 960 430" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-linecap="round" stroke-linejoin="round" font-family="'PingFang SC','Noto Sans CJK SC',sans-serif">
+  <text x="20" y="30" font-size="15" font-weight="700" fill="#23211c">案 1 · 一体机:固定倾角屏 + 三档翻转广角摄像头 + 底部灯环</text>
+  <text x="20" y="48" font-size="10.5" fill="#57534a">SIDE SECTION · FRONT VIEW · CAMERA POD DETAIL</text>
+  <!-- ground -->
+  <line x1="40" y1="340" x2="440" y2="340" stroke="#57534a" stroke-width="1"/>
+  <g stroke="#57534a" stroke-width=".7"><line x1="52" y1="340" x2="44" y2="348"/><line x1="82" y1="340" x2="74" y2="348"/><line x1="112" y1="340" x2="104" y2="348"/><line x1="142" y1="340" x2="134" y2="348"/><line x1="352" y1="340" x2="344" y2="348"/><line x1="382" y1="340" x2="374" y2="348"/><line x1="412" y1="340" x2="404" y2="348"/></g>
+  <!-- wedge body side -->
+  <g stroke="#23211c" stroke-width="2.2">
+    <path d="M178 332 L344 332 L344 170 L240 158 Z"/>
+    <path d="M186 322 L234 170" stroke-width="1.2"/>
+    <path d="M196 325 L244 173" stroke-width="1.2"/>
+  </g>
+  <!-- screen glass -->
+  <path d="M191 323 L239 171" stroke="#2a5d8a" stroke-width="2.4"/>
+  <!-- internals hint -->
+  <g stroke="#57534a" stroke-width="1" stroke-dasharray="3 3">
+    <rect x="255" y="230" width="72" height="56" rx="4"/>
+    <line x1="255" y1="258" x2="327" y2="258"/>
+  </g>
+  <text x="291" y="304" font-size="9" fill="#57534a" text-anchor="middle">主板+散热(侧进后出)</text>
+  <!-- light strip -->
+  <path d="M178 333 L344 333" stroke="#b5442a" stroke-width="4" opacity=".85"/>
+  <g stroke="#b5442a" stroke-width="1" opacity=".6"><path d="M186 342 L182 348"/><path d="M216 342 L212 348"/><path d="M246 342 L242 348"/><path d="M276 342 L272 348"/><path d="M306 342 L302 348"/><path d="M336 342 L332 348"/></g>
+  <!-- tilt arc -->
+  <path d="M212 332 A44 44 0 0 0 200 300" stroke="#b5442a" stroke-width="1.2"/>
+  <text x="216" y="308" font-size="10" fill="#b5442a">70°</text>
+  <!-- camera pod -->
+  <circle cx="243" cy="152" r="12" stroke="#23211c" stroke-width="2.2"/>
+  <circle cx="239" cy="150" r="4" stroke="#23211c" stroke-width="1.4"/>
+  <path d="M258 136 A22 22 0 0 0 226 136" stroke="#b5442a" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <path d="M229 133 L224 137 L230 141" fill="#b5442a" stroke="none"/>
+  <!-- sight rays -->
+  <g stroke="#2a5d8a" stroke-width="1.1" stroke-dasharray="6 4">
+    <line x1="232" y1="150" x2="92" y2="140"/>
+    <line x1="234" y1="144" x2="112" y2="62"/>
+    <line x1="234" y1="160" x2="120" y2="316"/>
+  </g>
+  <!-- face icon -->
+  <circle cx="76" cy="132" r="13" stroke="#57534a" stroke-width="1.4"/>
+  <path d="M62 168 A17 17 0 0 1 90 168" stroke="#57534a" stroke-width="1.4"/>
+  <text x="76" y="188" font-size="9.5" fill="#2a5d8a" text-anchor="middle">人脸 0°</text>
+  <!-- whiteboard icon -->
+  <rect x="76" y="40" width="52" height="34" rx="2" stroke="#57534a" stroke-width="1.4"/>
+  <path d="M84 52 L112 52 M84 60 L104 60" stroke="#57534a" stroke-width="1"/>
+  <text x="102" y="90" font-size="9.5" fill="#2a5d8a" text-anchor="middle">白板 +15°</text>
+  <!-- desk target -->
+  <path d="M96 322 L146 322" stroke="#57534a" stroke-width="1.6"/>
+  <text x="121" y="316" font-size="9.5" fill="#2a5d8a" text-anchor="middle">桌面 −55°</text>
+  <!-- leaders -->
+  <g stroke="#57534a" stroke-width=".9">
+    <path d="M256 148 L300 118 L352 118"/>
+    <path d="M262 334 L368 360 L412 360"/>
+  </g>
+  <text x="356" y="114" font-size="10" fill="#23211c">广角摄像头·滚筒式翻转</text>
+  <text x="356" y="127" font-size="9" fill="#57534a">3 档定位:+15°/0°/−55°,翻到底=物理遮挡</text>
+  <text x="416" y="356" font-size="10" fill="#23211c">360° 语义灯环</text>
+  <text x="416" y="369" font-size="9" fill="#57534a">聆听/思考/执行/待授权</text>
+
+  <!-- FRONT VIEW -->
+  <text x="588" y="120" font-size="10" fill="#57534a" letter-spacing="2">正视</text>
+  <g stroke="#23211c" stroke-width="2.2">
+    <rect x="500" y="132" width="212" height="196" rx="10"/>
+  </g>
+  <rect x="514" y="158" width="184" height="150" rx="3" stroke="#2a5d8a" stroke-width="1.6"/>
+  <path d="M524 168 L600 168 M524 182 L578 182" stroke="#b9b2a1" stroke-width="1"/>
+  <!-- camera notch -->
+  <rect x="588" y="138" width="36" height="12" rx="6" stroke="#23211c" stroke-width="1.6"/>
+  <circle cx="606" cy="144" r="3.4" fill="#23211c" stroke="none"/>
+  <!-- mics -->
+  <g fill="#57534a" stroke="none"><circle cx="530" cy="145" r="1.6"/><circle cx="544" cy="145" r="1.6"/><circle cx="668" cy="145" r="1.6"/><circle cx="682" cy="145" r="1.6"/></g>
+  <!-- light bar -->
+  <path d="M506 326 L706 326" stroke="#b5442a" stroke-width="4"/>
+  <path d="M500 318 Q502 330 512 334 M712 318 Q710 330 700 334" stroke="#b5442a" stroke-width="1.4"/>
+  <!-- dims -->
+  <g stroke="#57534a" stroke-width=".9"><line x1="500" y1="368" x2="712" y2="368"/><line x1="500" y1="362" x2="500" y2="374"/><line x1="712" y1="362" x2="712" y2="374"/></g>
+  <text x="606" y="384" font-size="9.5" fill="#57534a" text-anchor="middle">≈176mm(7″ 16:10 + 边框)</text>
+  <!-- DETAIL -->
+  <circle cx="838" cy="238" r="96" stroke="#23211c" stroke-width="1.4"/>
+  <line x1="256" y1="146" x2="748" y2="196" stroke="#57534a" stroke-width=".8" stroke-dasharray="2 4"/>
+  <text x="838" y="130" font-size="10" fill="#57534a" text-anchor="middle" letter-spacing="2">摄像头舱剖切 5:1</text>
+  <!-- cradle -->
+  <path d="M776 258 A62 62 0 0 1 900 258" stroke="#23211c" stroke-width="2.2"/>
+  <g stroke="#57534a" stroke-width="1"><path d="M780 252 L772 260"/><path d="M792 244 L784 252"/><path d="M890 246 L884 254"/><path d="M898 256 L890 264"/></g>
+  <circle cx="838" cy="232" r="34" stroke="#23211c" stroke-width="2.2"/>
+  <circle cx="838" cy="232" r="4" stroke="#23211c" stroke-width="1.4"/>
+  <line x1="834" y1="228" x2="842" y2="236" stroke="#23211c" stroke-width="1"/>
+  <circle cx="822" cy="222" r="9" stroke="#23211c" stroke-width="1.6"/>
+  <circle cx="822" cy="222" r="4.5" stroke="#23211c" stroke-width="1.1"/>
+  <!-- detents -->
+  <g stroke="#b5442a" stroke-width="1.3">
+    <line x1="806" y1="212" x2="798" y2="206"/>
+    <line x1="804" y1="232" x2="794" y2="232"/>
+    <line x1="812" y1="252" x2="803" y2="258"/>
+  </g>
+  <text x="788" y="200" font-size="8.5" fill="#b5442a" text-anchor="end">+15° 白板</text>
+  <text x="790" y="236" font-size="8.5" fill="#b5442a" text-anchor="end">0° 人脸</text>
+  <text x="799" y="268" font-size="8.5" fill="#b5442a" text-anchor="end">−55° 桌面</text>
+  <path d="M852 258 A30 30 0 0 0 866 232" stroke="#57534a" stroke-width="1.1" stroke-dasharray="3 3"/>
+  <text x="880" y="262" font-size="8.5" fill="#57534a">180°=镜头朝内</text>
+  <text x="880" y="273" font-size="8.5" fill="#57534a">(物理遮挡位)</text>
+  <text x="838" y="352" font-size="9" fill="#57534a" text-anchor="middle">滚筒凸轮定位·扭簧手感·无电机</text>
+</svg>
+<div class="cap"><span class="no">案 1</span><p>无屏幕机构,机身即楔形支架(70° 屏面)。摄像头做成<b>滚筒舱</b>:一根滚轴四个档位,把「三视野 + 隐私遮挡」全部收进一个零件;灯环绕底座一周,任何方向可读。</p><span class="tag t-rec">推荐 · 基线</span></div>
+</div>
+
+<!-- ═══════════ 案2 ═══════════ -->
+<div class="plate">
+<svg viewBox="0 0 960 430" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-linecap="round" stroke-linejoin="round" font-family="'PingFang SC','Noto Sans CJK SC',sans-serif">
+  <text x="20" y="30" font-size="15" font-weight="700" fill="#23211c">案 2 · 一体机:升降式双轴云台摄像头(缩回 = 物理隐私)</text>
+  <text x="20" y="48" font-size="10.5" fill="#57534a">SIDE SECTION · RAISED / RETRACTED · GIMBAL DETAIL</text>
+  <line x1="40" y1="340" x2="440" y2="340" stroke="#57534a" stroke-width="1"/>
+  <!-- body -->
+  <g stroke="#23211c" stroke-width="2.2">
+    <path d="M178 332 L344 332 L344 170 L240 158 Z"/>
+  </g>
+  <path d="M191 323 L239 171" stroke="#2a5d8a" stroke-width="2.4"/>
+  <path d="M178 333 L344 333" stroke="#b5442a" stroke-width="4" opacity=".85"/>
+  <!-- mast raised -->
+  <g stroke="#23211c" stroke-width="2">
+    <rect x="284" y="96" width="14" height="76" rx="3"/>
+    <path d="M279 96 L303 96"/>
+    <circle cx="291" cy="78" r="15"/>
+    <circle cx="286" cy="75" r="5" stroke-width="1.4"/>
+  </g>
+  <!-- yoke -->
+  <path d="M276 86 A19 19 0 0 1 276 68" stroke="#23211c" stroke-width="1.6"/>
+  <!-- mast slot in body (section) -->
+  <g stroke="#57534a" stroke-width="1" stroke-dasharray="3 3">
+    <rect x="284" y="176" width="14" height="120"/>
+    <circle cx="291" cy="292" r="15"/>
+  </g>
+  <text x="291" y="322" font-size="9" fill="#57534a" text-anchor="middle">缩回=舱内(物理消失)</text>
+  <!-- motion arrows -->
+  <path d="M316 160 L316 108 M310 116 L316 106 L322 116" stroke="#b5442a" stroke-width="1.4"/>
+  <text x="324" y="132" font-size="9.5" fill="#b5442a">升降 40mm</text>
+  <path d="M270 60 A26 12 0 1 0 314 62" stroke="#b5442a" stroke-width="1.2" stroke-dasharray="5 4"/>
+  <path d="M310 56 L316 63 L306 66" fill="#b5442a" stroke="none"/>
+  <text x="332" y="60" font-size="9.5" fill="#b5442a">PAN ±170°</text>
+  <path d="M270 78 A21 21 0 0 1 291 57" stroke="#b5442a" stroke-width="1.2" stroke-dasharray="5 4"/>
+  <text x="238 " y="56" font-size="9.5" fill="#b5442a">TILT ±90°</text>
+  <!-- sight rays -->
+  <g stroke="#2a5d8a" stroke-width="1.1" stroke-dasharray="6 4">
+    <line x1="277" y1="76" x2="100" y2="70"/>
+    <line x1="280" y1="86" x2="120" y2="316"/>
+  </g>
+  <text x="96" y="60" font-size="9.5" fill="#2a5d8a">白板/人脸</text>
+  <text x="128" y="330" font-size="9.5" fill="#2a5d8a">桌面(越过屏幕)</text>
+  <!-- FRONT two states -->
+  <text x="560" y="120" font-size="10" fill="#57534a" letter-spacing="2">升起</text>
+  <g stroke="#23211c" stroke-width="1.8">
+    <rect x="500" y="168" width="130" height="122" rx="7"/>
+    <rect x="554" y="118" width="12" height="50" rx="3"/>
+    <circle cx="560" cy="104" r="12"/>
+    <circle cx="560" cy="104" r="4" stroke-width="1.2"/>
+  </g>
+  <path d="M506 288 L624 288" stroke="#b5442a" stroke-width="3"/>
+  <text x="712" y="120" font-size="10" fill="#57534a" letter-spacing="2">缩回</text>
+  <g stroke="#23211c" stroke-width="1.8">
+    <rect x="660" y="168" width="130" height="122" rx="7"/>
+  </g>
+  <rect x="714" y="172" width="16" height="8" rx="3" stroke="#57534a" stroke-width="1.2"/>
+  <text x="725" y="164" font-size="8.5" fill="#57534a" text-anchor="middle">舱盖齐平</text>
+  <path d="M666 288 L784 288" stroke="#b5442a" stroke-width="3"/>
+  <g stroke="#57534a" stroke-width=".9"><line x1="500" y1="316" x2="790" y2="316" stroke-dasharray="3 3"/></g>
+  <text x="645" y="334" font-size="9.5" fill="#57534a" text-anchor="middle">升起=在场可感知 · 缩回=不可能在看你(信任的机构化表达)</text>
+  <!-- DETAIL gimbal -->
+  <circle cx="870" cy="216" r="76" stroke="#23211c" stroke-width="1.4"/>
+  <text x="870" y="122" font-size="10" fill="#57534a" text-anchor="middle" letter-spacing="2">云台节点 4:1</text>
+  <g stroke="#23211c" stroke-width="1.8">
+    <rect x="862" y="258" width="16" height="26" rx="3"/>
+    <path d="M846 240 A28 28 0 0 1 894 240"/>
+    <circle cx="870" cy="218" r="20"/>
+    <circle cx="864" cy="214" r="7" stroke-width="1.3"/>
+  </g>
+  <circle cx="870" cy="252" r="3" stroke="#b5442a" stroke-width="1.2"/>
+  <text x="890" y="256" font-size="8.5" fill="#b5442a">PAN 轴</text>
+  <circle cx="893" cy="222" r="3" stroke="#b5442a" stroke-width="1.2"/>
+  <text x="899" y="212" font-size="8.5" fill="#b5442a">TILT 轴</text>
+  <text x="870" y="312" font-size="9" fill="#57534a" text-anchor="middle">两颗 6mm 步进 + 蜗轮自锁</text>
+</svg>
+<div class="cap"><span class="no">案 2</span><p>案 1 的高配变体:摄像头长在<b>升降桅杆</b>上,双轴云台覆盖任意视野;缩回舱内即「物理消失」,比滑盖更强的隐私语言。代价:两电机+升降机构,BOM +$15–25,细杆抗振与防尘是工程主战场。</p><span class="tag t-mod">高配变体</span></div>
+</div>
+
+<!--§NEXT§-->
+
+</div>
+</body>
+</html>

@@ -51,6 +51,31 @@ const requiredLedgerSections = [
   "Source Appendix Groups",
 ];
 
+const requiredReportRoutes = [
+  {
+    path: "public/reports/screen-integrated-mini-pc-display-design/index.html",
+    label: "screen-integrated mini PC static report",
+    markers: ["带屏迷你主机", "Screen-Integrated Mini PC", "report_assets/gflip-render.png"],
+  },
+  {
+    path: "public/reports/agent-pc-8-design-review/index.html",
+    label: "Agent PC 8 design review",
+    markers: ["8 方案设计评审", "report_assets/agent-pc-scheme-01-imagegen.png"],
+  },
+  {
+    path: "public/reports/agent-pc-sketch-gallery/index.html",
+    label: "Agent PC sketch gallery",
+    markers: ["方案白描图集", "AGENT PC · DESIGN PLATES"],
+  },
+];
+
+const requiredCatalogLinks = [
+  "/survey-report/reports/screen-integrated-mini-pc-display-design/",
+  "/survey-report/reports/mini-pc-screen-survey/",
+  "/survey-report/reports/agent-pc-8-design-review/",
+  "/survey-report/reports/agent-pc-sketch-gallery/",
+];
+
 function addError(message) {
   errors.push(message);
 }
@@ -211,7 +236,7 @@ function checkSlides(slidesText, products) {
   });
 
   requiredGeneratedImages.forEach((imageName) => {
-    if (!slidesText.includes(`/images/generated/${imageName}`)) {
+    if (!slidesText.includes(`/survey-report/images/generated/${imageName}`)) {
       addError(`slides.md does not reference generated image: ${imageName}`);
     }
   });
@@ -318,16 +343,74 @@ function checkSourceRegistry(sourceRegistryText) {
 
 function checkPackageScripts(packageJson) {
   const buildScript = packageJson?.scripts?.build ?? "";
+  const buildSlidevScript = packageJson?.scripts?.["build:slidev"] ?? "";
   const devScript = packageJson?.scripts?.dev ?? "";
 
-  if (!buildScript.includes("--base /survey-report/")) {
-    addError("package.json build script must set --base /survey-report/ for GitHub Pages");
+  if (buildScript !== "node scripts/build-site.mjs") {
+    addError("package.json build script must use scripts/build-site.mjs for the multi-report index");
   }
-  if (!buildScript.includes("--router-mode hash")) {
-    addError("package.json build script must use --router-mode hash for GitHub Pages slide routes");
+  if (!buildSlidevScript.includes("--base /survey-report/")) {
+    addError("package.json build:slidev script must set the GitHub Pages base");
+  }
+  if (!buildSlidevScript.includes("--out /tmp/survey-report-slidev-dist")) {
+    addError("package.json build:slidev script must output Slidev into a temporary build directory");
+  }
+  if (!buildSlidevScript.includes("--router-mode hash")) {
+    addError("package.json build:slidev script must use --router-mode hash for GitHub Pages slide routes");
+  }
+  if (!devScript.includes("--base /survey-report/")) {
+    addError("package.json dev script must use the GitHub Pages base");
   }
   if (!devScript.includes("--router-mode hash")) {
     addError("package.json dev script must use --router-mode hash to match published navigation");
+  }
+}
+
+function checkSiteIndex(siteIndexText) {
+  requiredCatalogLinks.forEach((link) => {
+    if (!siteIndexText.includes(link)) {
+      addError(`site/index.html is missing report link: ${link}`);
+    }
+  });
+
+  if (!siteIndexText.includes("调研报告总目录") || !siteIndexText.includes("Survey report index")) {
+    addError("site/index.html must be a bilingual report index");
+  }
+}
+
+async function checkStaticReports() {
+  for (const report of requiredReportRoutes) {
+    const reportText = await readRequiredText(report.path);
+    if (!reportText) continue;
+    if (/http-equiv=["']refresh["']/i.test(reportText)) {
+      addError(`${report.label} must be a real report page, not a redirect`);
+    }
+    report.markers.forEach((marker) => {
+      if (!reportText.includes(marker)) {
+        addError(`${report.label} is missing marker: ${marker}`);
+      }
+    });
+  }
+
+  const requiredAssets = [
+    "public/reports/screen-integrated-mini-pc-display-design/report_assets/gflip-render.png",
+    "public/reports/screen-integrated-mini-pc-display-design/report_assets/higole-gole1-pro-official.jpg",
+    "public/reports/agent-pc-8-design-review/report_assets/agent-pc-scheme-01-imagegen.png",
+    "public/reports/agent-pc-8-design-review/report_assets/agent-pc-scheme-01-hand-sketch.png",
+    "public/reports/agent-pc-8-design-review/report_assets/agent-pc-scheme-02-hand-sketch.png",
+    "public/reports/agent-pc-8-design-review/report_assets/agent-pc-scheme-03-hand-sketch.png",
+    "public/reports/agent-pc-8-design-review/report_assets/agent-pc-scheme-04-hand-sketch.png",
+    "public/reports/agent-pc-8-design-review/report_assets/agent-pc-scheme-05-hand-sketch.png",
+    "public/reports/agent-pc-8-design-review/report_assets/agent-pc-scheme-06-hand-sketch.png",
+    "public/reports/agent-pc-8-design-review/report_assets/agent-pc-scheme-07-hand-sketch.png",
+    "public/reports/agent-pc-8-design-review/report_assets/agent-pc-scheme-08-hand-sketch.png",
+    "public/reports/agent-pc-sketch-gallery/report_assets/sketch-thumb.png",
+  ];
+
+  for (const assetPath of requiredAssets) {
+    if (!(await pathExists(path.join(repoRoot, assetPath)))) {
+      addError(`Published report asset is missing: ${assetPath}`);
+    }
   }
 }
 
@@ -449,6 +532,7 @@ async function writeCheckLog() {
 
 async function main() {
   const packageJson = await readRequiredJson("package.json");
+  const siteIndexText = await readRequiredText("site/index.html");
   const products = await readRequiredJson("research/products.json");
   const ledgerText = await readRequiredText("research/html-report-content-ledger.md");
   const imageInventoryText = await readRequiredText("research/image-inventory.md");
@@ -456,6 +540,8 @@ async function main() {
   const htmlText = await readRequiredText("research/source-html/claude-report.html");
 
   if (packageJson) checkPackageScripts(packageJson);
+  if (siteIndexText) checkSiteIndex(siteIndexText);
+  await checkStaticReports();
   if (products) checkProducts(products);
   if (ledgerText) checkLedger(ledgerText);
   if (ledgerText || sourceRegistryText || imageInventoryText || products) {
