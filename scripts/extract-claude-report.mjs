@@ -203,6 +203,11 @@ function compact(value) {
   return stripHtml(value).replace(/\s+/g, " ").trim();
 }
 
+function valueOrUnknown(value) {
+  const compacted = compact(value ?? "");
+  return compacted && compacted !== "—" ? compacted : "unknown-after-claude-html-extract";
+}
+
 function normalizeMatchText(value) {
   return compact(value)
     .toLowerCase()
@@ -328,24 +333,68 @@ function summaryForProduct(product, summaryRows) {
   });
 }
 
-function productJson(productsBase) {
-  return productsBase.map((product) => {
+function splitPanelTouch(panelTouch) {
+  const value = valueOrUnknown(panelTouch);
+  if (value === "unknown-after-claude-html-extract") {
+    return { panel: value, touch: value };
+  }
+
+  const hasTouch = /触控|touch/i.test(value);
+  const panel = value
+    .replace(/[·,，]?\s*(10 点)?触控(\+笔)?/g, "")
+    .replace(/电容多点/g, "电容多点触控")
+    .trim();
+
+  return {
+    panel: panel || value,
+    touch: hasTouch ? value : "unknown-after-claude-html-extract",
+  };
+}
+
+function storageStackingForProduct(product, summary, card) {
+  const cardSpecs = Object.fromEntries((card?.specs ?? []).map((spec) => [spec.key, spec.value]));
+  const combined = [summary?.mechanism, cardSpecs["结构"], cardSpecs["定位"], cardSpecs["算力"], cardSpecs["交互"], card?.caption]
+    .filter(Boolean)
+    .join(" · ");
+
+  const specific = {
+    "lg-stanbyme-go": "军规手提箱收纳; 完全平躺模式; 内置电池约 3h",
+    "aoostar-g-flip-370": "翻转屏合拢可保护屏幕; Claude 未给堆叠方案",
+    "miniproca-aio-ryzen-7-inch-4k-flip-screen-mini-pc": "顶盖整体翻起; 合盖即收纳",
+    "viewdock-gen2": "顶部弹起铰链; 收纳态顶面复用为 15W Qi 无线充电板",
+    "ayaneo-am01s": "0-90° 翻转; 合拢时与顶面齐平",
+    "nvidia-dgx-spark": "官方支持双机 ConnectX-7 200Gb/s 背对背成簇",
+    "apple-mac-mini-m4": "社区竖插/叠放收纳配件; 底面进风顶面排风限制直接堆叠",
+  };
+
+  if (specific[product.id]) return specific[product.id];
+  if (/收纳|堆叠|成簇|竖插|手提箱|合拢|合盖|无线充|电池|支架|导轨|壁挂/i.test(combined)) {
+    return valueOrUnknown(combined);
+  }
+  return "unknown-after-claude-html-extract";
+}
+
+function productJson(productRows) {
+  return productRows.map((row) => {
+    const { product, summary, card, source } = row;
     const status = product.imageStatus ?? "needs-live-verification";
+    const cardSpecs = Object.fromEntries((card?.specs ?? []).map((spec) => [spec.key, spec.value]));
+    const panelTouch = splitPanelTouch(summary?.panelTouch);
     return {
       id: product.id,
       name: product.name,
       group: product.group,
       aliases: product.aliases,
-      screen: "needs-live-verification",
-      resolution: "needs-live-verification",
-      panel: "needs-live-verification",
-      touch: "needs-live-verification",
-      mechanism: "needs-live-verification",
-      camera: "needs-live-verification",
-      light: "needs-live-verification",
-      voice: "needs-live-verification",
-      storageStacking: "needs-live-verification",
-      sourceStatus: "needs-live-verification",
+      screen: valueOrUnknown(summary?.size ?? cardSpecs["屏幕"]),
+      resolution: valueOrUnknown(summary?.resolution),
+      panel: panelTouch.panel,
+      touch: panelTouch.touch,
+      mechanism: valueOrUnknown(summary?.mechanism ?? cardSpecs["结构"]),
+      camera: valueOrUnknown(summary?.camera),
+      light: valueOrUnknown(summary?.light),
+      voice: valueOrUnknown(summary?.voice),
+      storageStacking: storageStackingForProduct(product, summary, card),
+      sourceStatus: source ? "seeded-from-claude-appendix; needs-live-verification" : "needs-live-verification",
       imageStatus: status,
     };
   });
@@ -358,6 +407,91 @@ function markdownTable(headers, rows) {
     `| ${headers.map(() => "---").join(" | ")} |`,
     ...rows.map((row) => `| ${row.map(escapeCell).join(" | ")} |`),
   ].join("\n");
+}
+
+function buildDistributionAndStructureVisuals() {
+  const visuals = [
+    {
+      name: "Distribution A: screen size by resolution",
+      source: "HTML §01b, 分布图 A · 屏幕尺寸 × 分辨率(长边像素)",
+      ledger: "Tracks the 1.9-27 inch screen band, secondary-screen band 1.9-5 inch, integrated-interaction band 5.5-8 inch, 10 inch+ terminal band, and the 1280x800 / 1280x720 mainstream line with 6 products on that line.",
+    },
+    {
+      name: "Mechanical structure type statistics",
+      source: "HTML §01b distribution/statistics visual",
+      ledger: "Tracks the report's mechanical clustering across fixed, flip hinge, motorized, support-arm/case, tablet/HMI, and stackable compute references.",
+    },
+    {
+      name: "Five mechanical structure archetypes",
+      source: "HTML §02 structure archetype visual",
+      ledger: "Tracks fixed embedded screen, flip-hinge secondary screen, motorized rotation, arm/case large-screen terminal, and tablet/HMI panel archetypes.",
+    },
+    {
+      name: "Flip-hinge side view",
+      source: "HTML 图 D · 翻转铰链侧视白描",
+      ledger: "Tracks 0° storage, 65° common-use, and 90° upright hinge positions, top-front hinge placement, friction torque hinge, screen face-down protection when closed, FPC through-axis routing, and 20k+ open-close life target.",
+    },
+  ];
+
+  return `## Distribution And Structure Visuals
+
+${markdownTable(["Required content group", "HTML source", "Ledger note"], visuals.map((visual) => [visual.name, visual.source, visual.ledger]))}
+`;
+}
+
+function buildMorphologyAndRecommendations() {
+  const rows = [
+    [
+      "Morphology matrix",
+      "1,296 theoretical combinations",
+      "3 screen sizes x 3 resolutions x 4 mechanisms x 2 camera options x 3 light options x 2 voice options x 3 stacking/interconnect options.",
+    ],
+    [
+      "Feasibility reduction",
+      "about 24 engineering-feasible architectures",
+      "Removes mutually poor pairings including motorized tracking vs stackable top cover, 4K on small secondary screens, and 800x480 on interaction-grade screens.",
+    ],
+    [
+      "Recommendation A",
+      "灯塔 one-piece interaction tower",
+      "8 inch touch module plus stackable compute base; sensor top cap remains on top; compute boxes grow downward.",
+    ],
+    [
+      "Recommendation B",
+      "潜望 flip secondary-screen workstation",
+      "5 inch FHD flip touch display for Agent status and authorization; production view stays on external display.",
+    ],
+    [
+      "Recommendation C",
+      "分体 magnetic detachable screen",
+      "8 inch battery screen module can detach as a roaming control panel; marked as Gen2 exploration due to BOM and firmware complexity.",
+    ],
+    [
+      "Tower magnetic stacking",
+      "Stacking sketch option I",
+      "Preferred 1-4 unit tower; perception top cap fixed above compute layers; Pogo power/wake bus; side-in/rear-out airflow.",
+    ],
+    [
+      "Vertical rack",
+      "Stacking sketch option II",
+      "托架竖插 rack; best cooling and hot-swap feel; wider desk footprint.",
+    ],
+    [
+      "Side-by-side high-bandwidth pair",
+      "Stacking sketch option III",
+      "Horizontal side-by-side plus rear bridge; shortest interconnect path; best for two units and not for 3+ units.",
+    ],
+    [
+      "Reconciliation note",
+      "Original 8 inch baseline vs final 5-7.x direction",
+      "Claude's base recommendation starts at 8 inch / 1280x800 for full Agent interaction and supply-chain maturity. Preserve this as source material while later design work may reconcile it with a smaller 5-7.x Desky direction after Task 4/5 verification.",
+    ],
+  ];
+
+  return `## Morphology And Recommendations
+
+${markdownTable(["Required content group", "Claude report content", "Ledger note"], rows)}
+`;
 }
 
 function buildLedger({ copiedHtmlPath, productRows, laws, risks, sourceItems, htmlAssetRefs, remoteImageUrls }) {
@@ -381,6 +515,30 @@ Generated by: \`npm run extract\`
 ## Important Carry-Forward Constraint
 
 \`higole-scene.png\` is copied only to preserve Claude's report base. The Higole / Gole1 Pro image is marked \`suspect/wrong-image-needs-web-replacement\` and must be verified online and replaced in Task 4/5 before being treated as final evidence.
+
+## Local Assets
+
+${markdownTable(
+  ["#", "Asset", "Ledger status"],
+  localAssetFiles.map((file, index) => [
+    index + 1,
+    `public/images/competitors/local/${file}`,
+    file === "higole-scene.png"
+      ? "copied; suspect/wrong-image-needs-web-replacement"
+      : "copied from Claude report_assets; needs-live-verification",
+  ]),
+)}
+
+## Remote Images Embedded In HTML
+
+${markdownTable(
+  ["#", "Remote image URL"],
+  remoteImageUrls.map((url, index) => [index + 1, url]),
+)}
+
+${buildDistributionAndStructureVisuals()}
+
+${buildMorphologyAndRecommendations()}
 
 ## Product Coverage
 
@@ -531,7 +689,7 @@ async function main() {
   assertCount("risk notes", risks.length, 5);
   assertCount("source appendix items", sourceItems.length, 20);
 
-  const productRecords = productJson(products);
+  const productRecords = productJson(productRows);
   await writeFile(path.join(researchDir, "products.json"), `${JSON.stringify(productRecords, null, 2)}\n`);
   await writeFile(
     path.join(researchDir, "html-report-content-ledger.md"),
