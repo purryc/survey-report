@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:,">
+<title>带屏迷你主机 · Screen-Integrated Mini PC Display Design Research Report — Agent PC 工业设计前期研究</title>
+<style>
+  :root{
+    --paper:#ffffff; --card:#ffffff; --ink:#111827; --ink2:#5b6472;
+    --line:#d9e0e8; --line2:#b8c2cf; --accent:#e23b3b; --accent2:#2563eb;
+    --mono:"SF Mono","JetBrains Mono",Consolas,monospace;
+    --serif:"Inter","SF Pro Display",-apple-system,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
+    --sans:"Inter","SF Pro Text",-apple-system,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.75}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 30px}
+  .enline{display:block;color:#697386;font-family:var(--sans);font-size:.88em;font-weight:400;line-height:1.45;margin-top:2px;letter-spacing:0}
+  .cover h1 .enline{font-size:23px;font-weight:500;color:var(--ink2);margin-top:10px}
+  .cover h2 .enline{font-size:15px;color:#697386;margin-top:8px}
+  .meta .enline,.kpi .enline{font-size:11px}
+  .sechead h2 .enline{font-size:13px;font-weight:500;color:var(--ink2);margin-top:2px}
+  h3.sub .enline,.band h4 .enline{font-size:12.5px;font-weight:500;color:var(--ink2);margin-top:2px}
+  .band .cnt .enline{font-size:10px}
+  .pcard .cap .enline{font-family:var(--sans);font-size:10.8px;line-height:1.38}
+  .pcard .nm .enline{font-family:var(--sans);font-size:11.5px;color:var(--ink2);font-weight:500;margin-top:1px}
+  .pcard td .enline,.rec td .enline,table.big td .enline,table.big th .enline{font-size:10.8px;line-height:1.32;margin-top:1px}
+  .law h5 .enline{font-size:12px;font-weight:500;color:var(--ink2)}
+  .law p .enline,.note .enline,.risk .enline{font-size:12px;color:#64748b}
+  figure.draw figcaption .enline{font-family:var(--sans);font-size:11px;line-height:1.35}
+  .srcs .enline,footer .enline{font-size:10.8px}
+  /* ---------- cover ---------- */
+  .cover{border-bottom:1px solid var(--line2);padding:70px 0 44px}
+  .cover .kicker{font-family:var(--mono);font-size:12px;letter-spacing:0;color:var(--accent);text-transform:uppercase}
+  .cover h1{font-family:var(--serif);font-size:44px;line-height:1.2;font-weight:800;margin:14px 0 8px}
+  .cover h2{font-family:var(--sans);font-size:19px;font-weight:400;color:var(--ink2);margin-bottom:26px;max-width:940px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px 26px;font-family:var(--mono);font-size:12px;color:var(--ink2)}
+  .meta b{color:var(--ink)}
+  /* ---------- KPI ---------- */
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:34px 0 8px}
+  .kpi{background:#f8fafc;border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:8px;padding:16px 18px}
+  .kpi .n{font-family:var(--serif);font-size:30px;font-weight:750;line-height:1.1}
+  .kpi .n small{font-size:15px;font-weight:400}
+  .kpi .t{font-size:12.5px;color:var(--ink2);margin-top:4px}
+  /* ---------- section ---------- */
+  section{padding:52px 0 12px}
+  .sechead{display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--line2);padding-bottom:12px;margin-bottom:28px}
+  .sechead .no{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:0}
+  .sechead h2{font-family:var(--serif);font-size:29px;font-weight:750}
+  .sechead .en{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--line2);letter-spacing:0;text-transform:uppercase}
+  h3.sub{font-family:var(--serif);font-size:20px;margin:38px 0 14px;padding-left:12px;border-left:4px solid var(--accent)}
+  p.lead{color:var(--ink2);max-width:860px;margin-bottom:18px}
+  /* ---------- category band ---------- */
+  .band{display:flex;align-items:center;gap:12px;margin:34px 0 16px}
+  .band .tag{font-family:var(--mono);font-size:11px;background:var(--ink);color:#fff;padding:3px 10px;border-radius:999px;letter-spacing:0}
+  .band h4{font-family:var(--serif);font-size:18px;font-weight:750}
+  .band .cnt{font-family:var(--mono);font-size:11px;color:var(--ink2)}
+  .band .rule{flex:1;border-top:1px dashed var(--line2)}
+  /* ---------- product card ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px;align-items:start}
+  .pcard{background:var(--card);border:1px solid var(--line);border-radius:8px;display:flex;flex-direction:column;overflow:hidden}
+  .pcard .imgs{display:grid;grid-template-columns:1fr;gap:10px;background:#f6f8fb;border-bottom:1px solid var(--line);padding:12px;overflow:visible}
+  .pcard .imgs.duo{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pcard .imgs.trio{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .pcard .imgs img{width:100%;height:220px;object-fit:contain;display:block;background:#fff;border:1px solid var(--line);border-radius:6px;padding:4px}
+  .pcard .imgs.single img{height:260px}
+  .pcard .cap{font-size:10.5px;font-family:var(--mono);color:var(--ink2);padding:7px 14px;border-bottom:1px solid var(--line);background:#f8fafc}
+  .pcard .body{padding:14px 16px 16px;flex:1}
+  .pcard .nm{font-family:var(--serif);font-size:16.5px;font-weight:750;line-height:1.45}
+  .pcard .nm .yr{font-family:var(--mono);font-size:10.5px;color:var(--ink2);font-weight:400;margin-left:6px}
+  .pcard table{width:100%;border-collapse:collapse;margin-top:9px;font-size:12.5px}
+  .pcard td{padding:3.5px 0;vertical-align:top;border-bottom:1px dotted var(--line)}
+  .pcard td:first-child{width:64px;color:var(--ink2);font-size:11.5px}
+  .pcard .hl{color:var(--accent);font-weight:600}
+  .chips{margin-top:9px}
+  .chip{display:inline-block;font-size:10.5px;font-family:var(--mono);border:1px solid var(--line2);color:var(--ink2);padding:1px 7px;margin:2px 3px 0 0;border-radius:999px;background:#fff}
+  .chip.on{border-color:var(--accent);color:var(--accent)}
+  @media(min-width:900px){
+    .pcard:has(.imgs.duo),.pcard:has(.imgs.trio){grid-column:span 2}
+    .pcard:has(.imgs.duo) .imgs img,.pcard:has(.imgs.trio) .imgs img{height:230px}
+  }
+  /* ---------- figure ---------- */
+  figure.draw{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:22px 18px 10px;margin:22px 0}
+  figure.draw svg{width:100%;height:auto;display:block}
+  figure.draw figcaption{font-family:var(--mono);font-size:11.5px;color:var(--ink2);text-align:center;padding:10px 0 8px;border-top:1px dashed var(--line);margin-top:14px}
+  figure.draw figcaption b{color:var(--accent)}
+  /* ---------- big table ---------- */
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--card);margin:20px 0}
+  table.big{border-collapse:collapse;width:100%;min-width:980px;font-size:12.5px}
+  table.big th{background:var(--ink);color:#fff;font-weight:600;text-align:left;padding:9px 10px;font-size:12px;white-space:nowrap;position:sticky;top:0}
+  table.big td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.big tr:nth-child(even) td{background:#f8fafc}
+  table.big .cat{font-family:var(--mono);font-size:10.5px;color:var(--accent);white-space:nowrap}
+  table.big b{font-weight:600}
+  /* ---------- patterns ---------- */
+  .laws{counter-reset:law;display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+  .law{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px 20px;position:relative}
+  .law::before{counter-increment:law;content:"规律 " counter(law,decimal-leading-zero);font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:0}
+  .law h5{font-family:var(--serif);font-size:16.5px;font-weight:750;margin:6px 0 6px}
+  .law p{font-size:13px;color:var(--ink2)}
+  .law p b{color:var(--ink)}
+  /* ---------- morphology ---------- */
+  .morph td,.morph th{font-size:12.5px}
+  .morph .opt{display:inline-block;border:1px solid var(--line2);padding:2px 9px;margin:2px 4px 2px 0;border-radius:999px;font-size:12px;background:#f8fafc}
+  .morph .opt.pick{border-color:var(--accent);background:#fff1f1;color:var(--accent);font-weight:600}
+  .formula{font-family:var(--mono);font-size:13.5px;background:var(--ink);color:#f8fafc;padding:16px 20px;margin:18px 0;border-radius:8px;letter-spacing:0}
+  .formula b{color:#fca5a5}
+  /* ---------- recommendation ---------- */
+  .rec{border:1px solid var(--line);border-radius:8px;background:var(--card);margin:18px 0;display:grid;grid-template-columns:300px 1fr;overflow:hidden}
+  .rec .vis{border-right:1px dashed var(--line);padding:14px;display:flex;align-items:center;justify-content:center;background:#f8fafc}
+  .rec .vis svg{width:100%;height:auto}
+  .rec .txt{padding:18px 22px}
+  .rec .txt .rk{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:0}
+  .rec .txt h5{font-family:var(--serif);font-size:19px;font-weight:750;margin:4px 0 8px}
+  .rec .txt p{font-size:13px;color:var(--ink2);margin-bottom:8px}
+  .rec .txt table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:6px}
+  .rec .txt td{border-bottom:1px dotted var(--line);padding:4px 0;vertical-align:top}
+  .rec .txt td:first-child{width:88px;color:var(--ink2);font-size:11.5px}
+  @media(max-width:760px){.rec{grid-template-columns:1fr}.rec .vis{border-right:none;border-bottom:1px dashed var(--line)}.laws{grid-template-columns:1fr}}
+  /* ---------- risk / note ---------- */
+  .note{border-left:4px solid var(--accent2);background:#eff6ff;padding:14px 18px;font-size:13.5px;margin:18px 0}
+  .risk{border-left:4px solid var(--accent);background:#fff1f2;padding:14px 18px;font-size:13.5px;margin:18px 0}
+  /* ---------- sources ---------- */
+  .srcs{columns:2;gap:36px;font-size:12px;color:var(--ink2)}
+  .srcs li{margin-bottom:7px;break-inside:avoid}
+  .srcs a{color:var(--accent2);text-decoration:none;word-break:break-all}
+  footer{border-top:1px solid var(--line2);margin-top:60px;padding:26px 0 60px;font-family:var(--mono);font-size:11.5px;color:var(--ink2)}
+  @media(max-width:760px){
+    .wrap{padding:0 18px}
+    .cover h1{font-size:34px}
+    .sechead{display:block}
+    .sechead .en{display:block;margin-left:0;margin-top:4px}
+    .band{align-items:flex-start;flex-wrap:wrap}
+    .band h4{flex:1 1 calc(100% - 58px)}
+    .band .cnt{flex:1 1 100%;margin-left:56px}
+    .band .rule{display:none}
+    .grid{grid-template-columns:1fr}
+    .pcard .imgs.duo,.pcard .imgs.trio{grid-template-columns:1fr}
+    .pcard .imgs img,.pcard .imgs.single img{height:240px}
+    .srcs{columns:1}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ================= COVER ================= -->
+<header class="cover">
+  <div class="kicker">Agent PC · Industrial Design Research</div>
+  <h1>带屏迷你主机 屏幕设计调研报告</h1>
+  <h2>市面自带屏幕迷你主机/交互终端的屏幕规格、旋转机械结构与形态规律 —— 面向 Agent PC 的工业设计推荐</h2>
+  <div class="meta">
+    <span>日期 <b>2026-07-03</b></span>
+    <span>委托 <b>Shino · Agent PC 前期洞察</b></span>
+    <span>样本 <b>17 款收集产品 + 3 款市场补充</b></span>
+    <span>范围 <b>屏幕尺寸 / 分辨率 / 材质触控 / 机械结构 / 摄像头 / 灯光 / 语音 / 堆叠收纳</b></span>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><div class="n">20<small> 款</small></div><div class="t">18 款带屏产品 + 2 款算力盒参考</div></div>
+    <div class="kpi"><div class="n">5<small> 类</small></div><div class="t">屏幕机械结构原型(翻转铰链占主导)</div></div>
+    <div class="kpi"><div class="n">1.9″–27″</div><div class="t">屏幕尺寸带,双峰集中于 4–5″ 与 7–8″</div></div>
+    <div class="kpi"><div class="n">1296<small> → 3</small></div><div class="t">形态学组合收敛为 3 个推荐方向</div></div>
+  </div>
+</header>
+
+<!-- ================= 01 洞察 ================= -->
+<section id="s1">
+  <div class="sechead"><span class="no">§ 01</span><h2>产品洞察 · 全景扫描</h2><span class="en">Product Landscape</span></div>
+  <p class="lead">按<b>屏幕与主机的机械关系</b>将 20 款产品分为六组(A–F)。核心观察对象是:屏幕在机身上的位置与姿态、可动结构(铰链/电机/支臂)、尺寸-分辨率档位,以及摄像头·灯光·语音三件套的配置率。每张卡片配实拍/官方图,翻转类产品尽量呈现「展开-收纳-桌面实景」多状态。</p>
+
+  <!-- A 大屏交互终端 -->
+  <div class="band"><span class="tag">A 类</span><h4>大屏交互终端(屏幕即产品)</h4><span class="cnt">3 款 · 10.1″–27″ · 电机/支臂驱动</span><div class="rule"></div></div>
+  <div class="grid">
+    <div class="pcard">
+      <div class="imgs single"><img src="https://i0.wp.com/gadgetbond.com/wp-content/uploads/2026/01/Lenovo-ThinkBook-Plus-Gen-7-Auto-Twist_snapshot_00.40_2026-01-09_02.44.13.png?fit=1024%2C576&ssl=1" alt="Lenovo Auto Twist" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="cap">电机双轴铰链:屏幕自动扭转/俯仰,人脸追踪对准使用者(CES 2026)</div>
+      <div class="body">
+        <div class="nm">Lenovo ThinkBook Plus Gen 7 Auto Twist<span class="yr">2026.6 上市 · $1,649 起</span></div>
+        <table>
+          <tr><td>屏幕</td><td>14″ OLED 触控 2880×1800 · 120Hz · 500nit</td></tr>
+          <tr><td>结构</td><td class="hl">电机化双轴旋转铰链:自动扭转+俯仰,敲击唤醒自动开盖,扬声器随屏转向</td></tr>
+          <tr><td>交互</td><td>传感器+人脸追踪自动跟随;AI 翻译时屏幕自动转向对话者;10MP 前摄</td></tr>
+        </table>
+        <div class="chips"><span class="chip on">Touch</span><span class="chip on">摄像头</span><span class="chip on">语音/AI</span><span class="chip on">电机旋转</span></div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="imgs single"><img src="https://cdn.mos.cms.futurecdn.net/85GLxHmBcDs8QMR7rxsZ5Q-2000-80.jpg" alt="Echo Show 10" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="cap">屏幕随人转:无刷电机底座静音旋转,摄像头+远场麦克风联合定位</div>
+      <div class="body">
+        <div class="nm">Amazon Echo Show 10(3rd Gen)<span class="yr">2021 · ~$249</span></div>
+        <table>
+          <tr><td>屏幕</td><td>10.1″ LCD 触控 1280×800</td></tr>
+          <tr><td>结构</td><td class="hl">圆柱底座内置无刷电机,±175°(350°)水平旋转 + 手动俯仰;需预留 38×25cm 旋转空间</td></tr>
+          <tr><td>交互</td><td>13MP 摄像头人物追踪 · 远场麦克风阵列 Alexa · 3″ 低音+双 1″ 高音</td></tr>
+        </table>
+        <div class="chips"><span class="chip on">Touch</span><span class="chip on">摄像头</span><span class="chip on">语音</span><span class="chip on">电机旋转</span></div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="imgs trio">
+        <img src="https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/48e24b8f-e617-4ec1-ac8f-68344e41bcaa/27LX5QKNA_gallery_01_open_3000x3000?io=transform:fill,width:800" alt="StanbyME Go 展开" loading="lazy" onerror="this.style.display='none'">
+        <img src="https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/ccef46c6-d6a5-49be-a494-9a1c06535a7b/27LX5QKNA_gallery_02_closed_3000x3000?io=transform:fill,width:800" alt="StanbyME Go 收纳" loading="lazy" onerror="this.style.display='none'">
+        <img src="https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/2efb9479-eac2-449e-88ee-1149c2b3930e/27LX5QKNA_gallery_03_record_3000x3000?io=transform:fill,width:800" alt="StanbyME Go 平躺模式" loading="lazy" onerror="this.style.display='none'">
+      </div>
+      <div class="cap">左→右:展开使用 / 手提箱收纳 / 平躺桌面模式 —— 一机三态</div>
+      <div class="body">
+        <div class="nm">LG StanbyME Go 27LX5QKNA<span class="yr">2023 · ~$999</span></div>
+        <table>
+          <tr><td>屏幕</td><td>27″ LCD 触控 1920×1080 · 手势滑动调节</td></tr>
+          <tr><td>结构</td><td class="hl">军规手提箱+内置支臂:90° 竖屏旋转 / 90° 俯仰 / 180mm 升降 / 完全平躺</td></tr>
+          <tr><td>交互</td><td>内置电池约 3h · 20W 四声道 Dolby Atmos · webOS</td></tr>
+        </table>
+        <div class="chips"><span class="chip on">Touch</span><span class="chip on">电池</span><span class="chip on">支臂可变</span><span class="chip on">收纳=保护</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- B 翻转副屏 -->
+  <div class="band"><span class="tag">B 类</span><h4>翻转副屏迷你主机(GBA-SP 式铰链,2024–26 主流增量形态)</h4><span class="cnt">4 款 · 4″–7″ · 0–90° 翻转</span><div class="rule"></div></div>
+  <div class="grid">
+    <div class="pcard">
+      <div class="imgs trio">
+        <img src="report_assets/gflip-folded-dark.jpg" alt="G-Flip 系列半合暗屏收起态" loading="lazy">
+        <img src="report_assets/gflip-render.png" alt="G-Flip 370 展开" loading="lazy">
+        <img src="report_assets/flip-desk-monitor.png" alt="外接显示器桌面场景" loading="lazy">
+      </div>
+      <div class="cap">左→右:G-Flip 系列半合暗屏收起态 / G-Flip 370 翻起亮屏态 / 接大屏当仪表副屏的工作实景</div>
+      <div class="body">
+        <div class="nm">AOOSTAR G-Flip 370<span class="yr">2025.3 · ~$700</span></div>
+        <table>
+          <tr><td>屏幕</td><td>5″ 触控 1920×1080(小屏高 PPI)</td></tr>
+          <tr><td>结构</td><td class="hl">顶部前缘铝合金铰链,0–65° 翻转;屏旁指纹识别</td></tr>
+          <tr><td>算力</td><td>Ryzen AI 9 HX 370(50 TOPS NPU)· HDMI 2.1 + OCuLink · 均热板+底部风扇</td></tr>
+        </table>
+        <div class="chips"><span class="chip on">Touch</span><span class="chip on">翻转铰链</span><span class="chip on">指纹</span><span class="chip">无摄像头</span></div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="imgs single"><img src="https://cdn.mos.cms.futurecdn.net/fvs3bMLHv5nqECXeXWgC8a.jpg" alt="Miniproca" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="cap">7″ 4K 翻转屏立起状态 —— 目前样本中副屏规格天花板</div>
+      <div class="body">
+        <div class="nm">Miniproca All-in-1 Mini PC<span class="yr">2025 Kickstarter</span></div>
+        <table>
+          <tr><td>屏幕</td><td class="hl">7″ 触控 3840×2160 · 120Hz(副屏中最高规格)</td></tr>
+          <tr><td>结构</td><td>顶盖整体翻起、倾角可调;合盖即收纳</td></tr>
+          <tr><td>算力</td><td>Ryzen 9 6900HX · 铝合金 175×137×55mm · 855g</td></tr>
+        </table>
+        <div class="chips"><span class="chip on">Touch</span><span class="chip on">翻转铰链</span><span class="chip on">4K 120Hz</span></div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="imgs trio">
+        <img src="https://liliputing.com/wp-content/uploads/2026/03/viewdock-g2_04.jpg" alt="ViewDock Gen2 弹起" loading="lazy" onerror="this.style.display='none'">
+        <img src="report_assets/viewdock-wireless-top.png" alt="顶面无线充电板" loading="lazy">
+        <img src="report_assets/viewdock-dock-scene.png" alt="竖屏弹起桌面场景" loading="lazy">
+      </div>
+      <div class="cap">左→右:屏幕弹起 / 收纳态顶面=15W Qi 无线充 / 竖屏弹起桌面实景</div>
+      <div class="body">
+        <div class="nm">ViewDock Gen2<span class="yr">2026.3 Kickstarter · $639 起</span></div>
+        <table>
+          <tr><td>屏幕</td><td>4.5″ 480×854(竖向长条比例)</td></tr>
+          <tr><td>结构</td><td class="hl">顶部弹起铰链;顶面另一半是 15W Qi 无线充电板 —— 顶面复用思路</td></tr>
+          <tr><td>算力</td><td>Ryzen 6900HX/7840HS 级 · 铝合金 175×138×51mm</td></tr>
+        </table>
+        <div class="chips"><span class="chip on">翻转铰链</span><span class="chip on">顶面无线充</span><span class="chip">众筹风险</span></div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="imgs trio">
+        <img src="report_assets/am01s-pair.png" alt="AM01S 开合双状态" loading="lazy">
+        <img src="https://liliputing.com/wp-content/uploads/2025/03/am01s_01.jpg" alt="AM01S 桌面场景" loading="lazy" onerror="this.style.display='none'">
+        <img src="https://liliputing.com/wp-content/uploads/2025/03/am01s_06.jpg" alt="AM01S 副屏细节" loading="lazy" onerror="this.style.display='none'">
+      </div>
+      <div class="cap">左→右:合拢/翻起双状态官方图 / 复古桌面场景 / 副屏 UI 细节</div>
+      <div class="body">
+        <div class="nm">AYANEO Retro Mini PC AM01S<span class="yr">2025 · $499 起</span></div>
+        <table>
+          <tr><td>屏幕</td><td>4″ 触控 960×400(原生横屏,可作 Windows 扩展屏)</td></tr>
+          <tr><td>结构</td><td class="hl">CNC 铝框翻转铰链 0–90°,合拢时与顶面齐平;经典 Mac 复古壳</td></tr>
+          <tr><td>算力</td><td>Ryzen AI 9 HX 370 · 1L 机身 · 65W 双风扇散热</td></tr>
+        </table>
+        <div class="chips"><span class="chip on">Touch</span><span class="chip on">翻转铰链</span><span class="chip on">扩展屏</span><span class="chip on">复古 CMF</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C 固定副屏 -->
+  <div class="band"><span class="tag">C 类</span><h4>固定副屏迷你主机(信息显示为主,轻触控)</h4><span class="cnt">4 款 · 1.9″–4″ · 无可动件</span><div class="rule"></div></div>
+  <div class="grid">
+    <div class="pcard">
+      <div class="imgs duo">
+        <img src="https://liliputing.com/wp-content/uploads/2024/01/uh185_01.jpg" alt="UH185 官方图" loading="lazy" onerror="this.style.display='none'">
+        <img src="report_assets/uh185-stand.png" alt="UH185 立式支架" loading="lazy">
+      </div>
+      <div class="cap">顶面/立式双姿态:配立架后小屏+摄像头朝前,酷似「桌面终端」</div>
+      <div class="body">
+        <div class="nm">Minisforum UH185 Ultra<span class="yr">CES 2024</span></div>
+        <table>
+          <tr><td>屏幕</td><td>4″ 触控副屏(自绘 UI:时钟/温度/负载,<b>不显示 Windows 桌面</b>)</td></tr>
+          <tr><td>结构</td><td>屏幕固定于顶盖;附立式支架可竖置,屏幕转为朝前</td></tr>
+          <tr><td>交互</td><td class="hl">1080p 摄像头+物理遮罩+内置麦克风 —— 样本中唯一「屏+摄+麦」齐备的迷你主机</td></tr>
+        </table>
+        <div class="chips"><span class="chip on">Touch</span><span class="chip on">摄像头</span><span class="chip on">麦克风</span><span class="chip">副屏独立系统</span></div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="imgs single"><img src="report_assets/gem12-promax.png" alt="GEM12 Pro Max" loading="lazy"></div>
+      <div class="cap">屏幕嵌在前脸左下角,与端口并列 —— 「仪表」而非「界面」</div>
+      <div class="body">
+        <div class="nm">AOOSTAR GEM12 Pro Max<span class="yr">2024</span></div>
+        <table>
+          <tr><td>屏幕</td><td>3.5″ IPS 信息屏(开机动画/温度/频率/自定义主题)</td></tr>
+          <tr><td>结构</td><td>前面板固定嵌入,无可动件</td></tr>
+          <tr><td>算力</td><td>Ryzen 7 8845HS · OCuLink + 双 USB4 · 四路 8K 输出</td></tr>
+        </table>
+        <div class="chips"><span class="chip">仅显示</span><span class="chip on">固定嵌入</span><span class="chip on">OCuLink</span></div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="imgs single"><img src="report_assets/acemagic-s1.png" alt="ACEMAGIC S1" loading="lazy"></div>
+      <div class="cap">立式塔+竖置 LCD+RGB 灯带:入门价位的「状态可视化」组合</div>
+      <div class="body">
+        <div class="nm">ACEMAGIC S1<span class="yr">2023 · ~$200</span></div>
+        <table>
+          <tr><td>屏幕</td><td>1.9″ TFT 170×320(竖向;主题/壁纸可自定义,横竖可切)</td></tr>
+          <tr><td>结构</td><td>前面板固定;整机立式</td></tr>
+          <tr><td>交互</td><td class="hl">RGB 氛围灯带 + 屏幕主题联动 —— 样本中「灯光语义化」的低成本先例</td></tr>
+        </table>
+        <div class="chips"><span class="chip">仅显示</span><span class="chip on">RGB 灯效</span><span class="chip on">N95/N97</span></div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="imgs trio">
+        <img src="https://liliputing.com/wp-content/uploads/2024/05/01.png" alt="AM02 全景" loading="lazy" onerror="this.style.display='none'">
+        <img src="https://liliputing.com/wp-content/uploads/2024/05/02.png" alt="AM02 顶部屏幕" loading="lazy" onerror="this.style.display='none'">
+        <img src="https://liliputing.com/wp-content/uploads/2024/05/19.png" alt="AM02 副屏 UI" loading="lazy" onerror="this.style.display='none'">
+      </div>
+      <div class="cap">左→右:游戏机式整机 / 顶面 4″ 屏+红色弹仓键 / 副屏 TDP 触控调节 UI</div>
+      <div class="body">
+        <div class="nm">AYANEO Retro Mini PC AM02<span class="yr">2024 · $481 起</span></div>
+        <table>
+          <tr><td>屏幕</td><td>4″ 多功能触控屏(状态/时钟/滑动切换/触控调 TDP)</td></tr>
+          <tr><td>结构</td><td>顶面固定斜嵌;前盖弹起藏 USB4 端口(FC 卡仓致敬)</td></tr>
+          <tr><td>算力</td><td>Ryzen 7 7840HS · 146×134×53mm · 四热管</td></tr>
+        </table>
+        <div class="chips"><span class="chip on">Touch</span><span class="chip on">固定嵌入</span><span class="chip on">副屏调参</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- D 平板一体式 -->
+  <div class="band"><span class="tag">D 类</span><h4>平板一体式 / 工业 HMI(屏幕=主界面)</h4><span class="cnt">5 款 · 5″–8″ · 720p/800p 触控</span><div class="rule"></div></div>
+  <div class="grid">
+    <div class="pcard">
+      <div class="imgs duo">
+        <img src="report_assets/higole-gole1-2016.jpg" alt="2016 GOLE1 实机与接口" loading="lazy">
+        <img src="report_assets/higole-gole1-pro-official.jpg" alt="2022 Gole 1 Pro 官方产品图" loading="lazy">
+      </div>
+      <div class="cap">左:2016 GOLE1 实机/接口(未亮屏) · 右:2022 Gole 1 Pro 亮屏官方图 —— 删除重复接口角度,保留新旧状态对照</div>
+      <div class="body">
+        <div class="nm">Higole Gole1 / Gole1 Pro 系列<span class="yr">2016–22 · $199 起</span></div>
+        <table>
+          <tr><td>屏幕</td><td>GOLE1 为 5″ 触控;GOLE1 Pro 为 5.5″ IPS 触控 1280×720</td></tr>
+          <tr><td>结构</td><td>口袋平板式机身;Pro 约 142×91×18/19mm;电池标注存在 2500–5000mAh 渠道差异,采购前需复核批次</td></tr>
+          <tr><td>交互</td><td class="hl">内置扬声器+麦克风 · Windows 完整系统直接触控 · N4000/J4125</td></tr>
+        </table>
+        <div class="chips"><span class="chip on">Touch</span><span class="chip on">电池</span><span class="chip on">TPM 2.0</span><span class="chip on">口袋级</span></div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="imgs single"><img src="report_assets/pipo-x8.png" alt="PiPO X8" loading="lazy"></div>
+      <div class="cap">楔形机身自带固定倾角,屏幕即整机 A 面 —— 2015 年的形态雏形</div>
+      <div class="body">
+        <div class="nm">PiPO X8<span class="yr">2015 · ~$100</span></div>
+        <table>
+          <tr><td>屏幕</td><td>7″ IPS 触控 1280×800</td></tr>
+          <tr><td>结构</td><td>楔形盒体固定斜面(约 20–30°),不可调;外置天线</td></tr>
+          <tr><td>定位</td><td>机顶盒+触控小终端双系统;POS/展示常客</td></tr>
+        </table>
+        <div class="chips"><span class="chip on">Touch</span><span class="chip on">固定斜面</span><span class="chip">Atom 级</span></div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="imgs duo">
+        <img src="report_assets/n150-8inch-views.png" alt="8 英寸 N150 触屏迷你主机" loading="lazy">
+        <img src="report_assets/tablet-8inch-pink.png" alt="8 英寸支架式一体机" loading="lazy">
+      </div>
+      <div class="cap">白牌 8″ 档:横竖双置+背部支架;右图为撑杆支架变体</div>
+      <div class="body">
+        <div class="nm">白牌 8″ N150 触屏主机(KOOFORWAY 等)<span class="yr">2024–25 · $200–300</span></div>
+        <table>
+          <tr><td>屏幕</td><td class="hl">8″ 1280×800 十点触控 —— 白牌供应链最充足的档位(平板/车机同源屏)</td></tr>
+          <tr><td>结构</td><td>背部撑杆/支架,横竖可摆;部分带 2MP 前摄与 G-sensor 自动转向</td></tr>
+          <tr><td>算力</td><td>Intel N150 · 12GB · Wi-Fi 6</td></tr>
+        </table>
+        <div class="chips"><span class="chip on">Touch</span><span class="chip on">摄像头(部分)</span><span class="chip on">供应链成熟</span></div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="imgs single"><img src="report_assets/reterminal-banner.png" alt="reTerminal" loading="lazy"></div>
+      <div class="cap">工业 HMI 思路:屏幕+按键+传感器+加密芯片的「面板电脑」</div>
+      <div class="body">
+        <div class="nm">Seeed Studio reTerminal<span class="yr">2021 · $195</span></div>
+        <table>
+          <tr><td>屏幕</td><td>5″ IPS 电容多点触控 1280×720</td></tr>
+          <tr><td>结构</td><td>平板固定;高扩展(PCIe/USB/26 GPIO/PoE 模块)</td></tr>
+          <tr><td>交互</td><td class="hl">光传感器+加速度计+RTC+加密芯片 —— 传感器冗余设计参考</td></tr>
+        </table>
+        <div class="chips"><span class="chip on">Touch</span><span class="chip on">传感器组</span><span class="chip on">CM4 模块化</span></div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="imgs single"><img src="report_assets/bmg800-diagram.png" alt="BMG800 接口图" loading="lazy"></div>
+      <div class="cap">工业网关的屏幕逻辑:屏幕是「本地运维口」,不是体验面</div>
+      <div class="body">
+        <div class="nm">佰马 BMG800 边缘计算网关<span class="yr">工业品</span></div>
+        <table>
+          <tr><td>屏幕</td><td>选配 7″ HMI 触控 800×480</td></tr>
+          <tr><td>结构</td><td>面板固定;DIN 导轨/壁挂安装</td></tr>
+          <tr><td>定位</td><td>本地配置/看数/导出,离线可运维 —— Agent PC 的「无网兜底」参照</td></tr>
+        </table>
+        <div class="chips"><span class="chip on">Touch(选配)</span><span class="chip on">状态 LED</span><span class="chip on">工业级</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E Agent 硬件 -->
+  <div class="band"><span class="tag">E 类</span><h4>Agent 专用硬件(直接竞品/近邻)</h4><span class="cnt">2 款 · 屏幕角色两极</span><div class="rule"></div></div>
+  <div class="grid">
+    <div class="pcard">
+      <div class="imgs duo">
+        <img src="https://violoop.ai/media/cube.webp" alt="Violoop 官方渲染" loading="lazy" onerror="this.style.display='none'">
+        <img src="report_assets/higole-scene.png" alt="Violoop 实机夜景" loading="lazy">
+      </div>
+      <div class="cap">左:官方渲染 / 右:实机夜景(收集素材)—— 小方屏显示时钟与任务状态,底部氛围光</div>
+      <div class="body">
+        <div class="nm">Violoop<span class="yr">2026 · ~$300</span></div>
+        <table>
+          <tr><td>屏幕</td><td>掌上级小触控屏(显示当前任务流,非通用桌面)</td></tr>
+          <tr><td>结构</td><td>桌面固定小方块,HDMI 物理串接主机,零部署</td></tr>
+          <tr><td>交互</td><td class="hl">双芯片(AI SoC+独立安全芯片)· 端侧 NPU 视觉/OCR · 主动感知工作流</td></tr>
+        </table>
+        <div class="chips"><span class="chip on">Touch</span><span class="chip on">Agent 原生</span><span class="chip on">安全芯片</span></div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="imgs single"><img src="https://img.leikeji.com/resource/img/2bbc1dd2cd70443da1d63b44094c09fd.jpg" alt="摩尔线程 AICUBE" loading="lazy" onerror="this.parentElement.style.display='none'" referrerpolicy="no-referrer"></div>
+      <div class="cap">无自带屏路线:一根 Type-C 上电视,语音麦阵承担主交互</div>
+      <div class="body">
+        <div class="nm">摩尔线程 MTT AICUBE<span class="yr">2026.6 预售</span></div>
+        <table>
+          <tr><td>屏幕</td><td class="hl">无自带屏 —— 借显(电视/显示器),PD3.1 一线连接</td></tr>
+          <tr><td>交互</td><td>4 麦克风阵列 + 立体声扬声器 + 全域智能体「小麦」(60+ 技能/36 款 APP 跨应用)</td></tr>
+          <tr><td>算力</td><td>自研「长江」SoC · 50 TOPS · 32GB 统一内存(120GB/s)· 1TB SSD</td></tr>
+        </table>
+        <div class="chips"><span class="chip on">语音 4 麦</span><span class="chip on">Agent OS</span><span class="chip">无屏方案</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- F 算力堆叠参考 -->
+  <div class="band"><span class="tag">F 类</span><h4>算力盒堆叠参考(无屏,决定你的 footprint)</h4><span class="cnt">2 款 · 方形可叠</span><div class="rule"></div></div>
+  <div class="tbl-wrap"><table class="big">
+    <tr><th>产品</th><th>尺寸 footprint</th><th>互联方式</th><th>对 Agent PC 的启示</th></tr>
+    <tr><td><b>NVIDIA DGX Spark</b></td><td>150×150×50.5mm 方盒</td><td class="cat">ConnectX-7 200Gb/s 背对背直连</td><td>官方支持两台成簇:128GB→256GB 统一内存,可跑 405B 模型 —— 「屏幕模组在最上、算力盒往下叠」的规格锚点</td></tr>
+    <tr><td><b>Apple Mac mini (M4)</b></td><td>127×127×50mm 方盒</td><td class="cat">Thunderbolt 4/5 组 exo 集群</td><td>社区大量竖插/叠放收纳配件已验证需求;底面进风顶面排风决定了「不能直接盖死顶面」</td></tr>
+  </table></div>
+</section>
+
+<!-- ================= 01b 汇总与分布 ================= -->
+<section id="s1b">
+  <h3 class="sub">规格汇总总表(n=18 带屏 + 2 参考)</h3>
+  <div class="tbl-wrap"><table class="big">
+    <tr><th>产品</th><th>类</th><th>尺寸</th><th>分辨率</th><th>面板/触控</th><th>机械结构</th><th>摄像头</th><th>灯光</th><th>语音</th></tr>
+    <tr><td><b>Lenovo Auto Twist G7</b></td><td class="cat">A 终端</td><td>14″</td><td>2880×1800 · 120Hz</td><td>OLED · 触控+笔</td><td>电机双轴铰链,自动扭转/俯仰/开盖</td><td>10MP 人脸追踪</td><td>—</td><td>AI 助手/翻译</td></tr>
+    <tr><td><b>Echo Show 10 G3</b></td><td class="cat">A 终端</td><td>10.1″</td><td>1280×800</td><td>LCD · 触控</td><td>无刷电机底座 ±175° + 手动俯仰</td><td>13MP 追踪</td><td>—</td><td>远场麦阵 Alexa</td></tr>
+    <tr><td><b>LG StanbyME Go</b></td><td class="cat">A 终端</td><td>27″</td><td>1920×1080</td><td>LCD · 触控</td><td>箱内支臂:旋转 90°/俯仰 90°/升降 180mm</td><td>—</td><td>—</td><td>遥控语音</td></tr>
+    <tr><td><b>AOOSTAR G-Flip 370</b></td><td class="cat">B 翻转</td><td>5″</td><td>1920×1080</td><td>LCD · 触控</td><td>铝合金铰链翻转 0–65°</td><td>—(指纹)</td><td>—</td><td>—</td></tr>
+    <tr><td><b>Miniproca AiO</b></td><td class="cat">B 翻转</td><td>7″</td><td>3840×2160 · 120Hz</td><td>LCD · 触控</td><td>顶盖翻起,倾角可调</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td><b>ViewDock Gen2</b></td><td class="cat">B 翻转</td><td>4.5″</td><td>480×854</td><td>LCD</td><td>顶部弹起铰链 + 顶面 Qi 15W</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td><b>AYANEO AM01S</b></td><td class="cat">B 翻转</td><td>4″</td><td>960×400</td><td>LCD · 触控</td><td>CNC 铝框铰链 0–90°,可平收</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td><b>Minisforum UH185</b></td><td class="cat">C 固定</td><td>4″</td><td>未公布</td><td>触控(独立 UI)</td><td>顶盖固定 + 立式支架变竖置</td><td><b>1080p+物理遮罩</b></td><td>—</td><td>内置麦</td></tr>
+    <tr><td><b>AOOSTAR GEM12 Pro Max</b></td><td class="cat">C 固定</td><td>3.5″</td><td>未公布</td><td>IPS(仅显示)</td><td>前脸固定嵌入</td><td>—</td><td>开机动画</td><td>—</td></tr>
+    <tr><td><b>ACEMAGIC S1</b></td><td class="cat">C 固定</td><td>1.9″</td><td>170×320</td><td>TFT(仅显示)</td><td>前脸固定 · 立式</td><td>—</td><td><b>RGB 灯带</b></td><td>—</td></tr>
+    <tr><td><b>AYANEO AM02</b></td><td class="cat">C 固定</td><td>4″</td><td>未公布</td><td>触控</td><td>顶面固定斜嵌 + 弹盖藏端口</td><td>—</td><td>电源灯</td><td>—</td></tr>
+    <tr><td><b>Higole Gole1 Pro</b></td><td class="cat">D 一体</td><td>5.5″</td><td>1280×720</td><td>IPS · 触控</td><td>平板机身 + 电池</td><td>—</td><td>—</td><td>内置麦克风</td></tr>
+    <tr><td><b>PiPO X8</b></td><td class="cat">D 一体</td><td>7″</td><td>1280×800</td><td>IPS · 触控</td><td>楔形固定斜面</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td><b>白牌 8″ N150</b></td><td class="cat">D 一体</td><td>8″</td><td>1280×800</td><td>IPS · 10 点触控</td><td>背撑/360° 支架,横竖可摆</td><td>2MP(部分)</td><td>—</td><td>—</td></tr>
+    <tr><td><b>Seeed reTerminal</b></td><td class="cat">D 一体</td><td>5″</td><td>1280×720</td><td>IPS · 电容多点</td><td>面板固定 + 模块扩展</td><td>可扩展</td><td>光传感器</td><td>可扩展</td></tr>
+    <tr><td><b>佰马 BMG800</b></td><td class="cat">D 工业</td><td>7″(选配)</td><td>800×480</td><td>HMI 触控</td><td>面板固定 · 导轨/壁挂</td><td>—</td><td>状态 LED</td><td>—</td></tr>
+    <tr><td><b>Violoop</b></td><td class="cat">E Agent</td><td>掌上小屏</td><td>未公布</td><td>触控</td><td>桌面固定方块 · HDMI 串接</td><td>—</td><td>底部氛围光</td><td>主动感知</td></tr>
+    <tr><td><b>MTT AICUBE</b></td><td class="cat">E Agent</td><td>无屏</td><td>借显</td><td>—</td><td>Type-C PD3.1 一线连电视</td><td>—</td><td>—</td><td><b>4 麦阵列+扬声器</b></td></tr>
+    <tr><td>NVIDIA DGX Spark <i>(参考)</i></td><td class="cat">F 算力</td><td>—</td><td>—</td><td>—</td><td>150×150×50.5mm,双机 ConnectX-7 200Gb/s 成簇</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td>Mac mini M4 <i>(参考)</i></td><td class="cat">F 算力</td><td>—</td><td>—</td><td>—</td><td>127×127×50mm,TB 集群/竖插收纳生态</td><td>—</td><td>—</td><td>—</td></tr>
+  </table></div>
+
+  <h3 class="sub">分布图 A · 屏幕尺寸 × 分辨率(长边像素)</h3>
+  <figure class="draw">
+    <svg viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg" font-family="'PingFang SC',sans-serif">
+      <!-- bands -->
+      <rect x="124" y="40" width="108" height="320" fill="#e23b3b" opacity="0.06"/>
+      <rect x="232" y="40" width="97" height="320" fill="#2563eb" opacity="0.07"/>
+      <rect x="358" y="40" width="542" height="320" fill="#64748b" opacity="0.05"/>
+      <text x="178" y="58" font-size="11" fill="#e23b3b" text-anchor="middle">副屏带 1.9–5″</text>
+      <text x="280" y="58" font-size="11" fill="#2563eb" text-anchor="middle">一体交互带 5.5–8″</text>
+      <text x="620" y="58" font-size="11" fill="#64748b" text-anchor="middle">终端带 10″+</text>
+      <!-- axes -->
+      <line x1="80" y1="360" x2="910" y2="360" stroke="#111827" stroke-width="1.5"/>
+      <line x1="80" y1="360" x2="80" y2="40" stroke="#111827" stroke-width="1.5"/>
+      <!-- y grid -->
+      <g stroke="#d9e0e8" stroke-width="1"><line x1="80" y1="283.8" x2="900" y2="283.8"/><line x1="80" y1="207.6" x2="900" y2="207.6"/><line x1="80" y1="131.4" x2="900" y2="131.4"/><line x1="80" y1="55.2" x2="900" y2="55.2"/></g>
+      <g font-size="10.5" fill="#5b6472" text-anchor="end"><text x="72" y="364">0</text><text x="72" y="288">1000</text><text x="72" y="212">2000</text><text x="72" y="136">3000</text><text x="72" y="59">4000 px</text></g>
+      <!-- x ticks -->
+      <g font-size="10.5" fill="#5b6472" text-anchor="middle">
+        <text x="139" y="378">2″</text><text x="197" y="378">4″</text><text x="256" y="378">6″</text><text x="314" y="378">8″</text><text x="373" y="378">10″</text><text x="490" y="378">14″</text><text x="666" y="378">20″</text><text x="871" y="378">27″</text>
+      </g>
+      <!-- 1280 mainstream line -->
+      <line x1="80" y1="262" x2="900" y2="262" stroke="#e23b3b" stroke-width="1.2" stroke-dasharray="7 5"/>
+      <text x="898" y="254" font-size="11" fill="#e23b3b" text-anchor="end">1280×800 / 720 主流线(6 款落线)</text>
+      <!-- points -->
+      <g>
+        <circle cx="136" cy="336" r="6" fill="none" stroke="#111827" stroke-width="1.8"/><text x="136" y="322" font-size="10" text-anchor="middle" fill="#5b6472">S1 1.9″</text>
+        <circle cx="197" cy="287" r="6" fill="none" stroke="#111827" stroke-width="1.8"/><text x="197" y="273" font-size="10" text-anchor="middle" fill="#5b6472">AM01S 4″</text>
+        <circle cx="212" cy="301" r="6" fill="none" stroke="#111827" stroke-width="1.8"/><text x="221" y="316" font-size="10" text-anchor="middle" fill="#5b6472">ViewDock 4.5″</text>
+        <circle cx="226" cy="214" r="6" fill="#e23b3b"/><text x="226" y="200" font-size="10" text-anchor="middle" fill="#e23b3b">G-Flip 5″ FHD</text>
+        <circle cx="231" cy="262" r="6" fill="none" stroke="#111827" stroke-width="1.8"/><text x="218" y="252" font-size="10" text-anchor="end" fill="#5b6472">reTerminal 5″</text>
+        <circle cx="241" cy="262" r="6" fill="none" stroke="#2563eb" stroke-width="1.8"/><text x="255" y="279" font-size="10" text-anchor="middle" fill="#2563eb">Gole1 5.5″</text>
+        <circle cx="285" cy="262" r="6" fill="none" stroke="#2563eb" stroke-width="1.8"/><text x="285" y="248" font-size="10" text-anchor="middle" fill="#2563eb">PiPO X8 7″</text>
+        <circle cx="285" cy="299" r="6" fill="none" stroke="#111827" stroke-width="1.8"/><text x="300" y="316" font-size="10" text-anchor="middle" fill="#5b6472">BMG800 7″</text>
+        <circle cx="285" cy="67" r="6" fill="#e23b3b"/><text x="298" y="72" font-size="10" text-anchor="start" fill="#e23b3b">Miniproca 7″ 4K</text>
+        <circle cx="314" cy="262" r="7" fill="#2563eb"/><text x="322" y="281" font-size="10" text-anchor="middle" fill="#2563eb">8″ N150</text>
+        <circle cx="373" cy="262" r="6" fill="none" stroke="#111827" stroke-width="1.8"/><text x="384" y="250" font-size="10" text-anchor="start" fill="#5b6472">Echo Show 10.1″</text>
+        <circle cx="490" cy="141" r="6" fill="none" stroke="#111827" stroke-width="1.8"/><text x="490" y="127" font-size="10" text-anchor="middle" fill="#5b6472">Auto Twist 14″ 2.8K</text>
+        <circle cx="871" cy="214" r="6" fill="none" stroke="#111827" stroke-width="1.8"/><text x="856" y="200" font-size="10" text-anchor="middle" fill="#5b6472">StanbyME Go 27″</text>
+      </g>
+      <text x="495" y="410" font-size="11.5" fill="#5b6472" text-anchor="middle">横轴:屏幕对角线尺寸 → 纵轴:分辨率长边像素(UH185 / GEM12 / AM02 / Violoop 官方未公布分辨率,未绘入)</text>
+    </svg>
+    <figcaption>图 A · 尺寸-分辨率散点 —— <b>1280×800/720 是绝对主流水位线</b>;实心红点为「小屏高分」异类,实心蓝点为推荐锚点 8″ 档</figcaption>
+  </figure>
+
+  <h3 class="sub">分布图 B · 屏幕机械结构类型统计(n=18)</h3>
+  <figure class="draw">
+    <svg viewBox="0 0 960 300" xmlns="http://www.w3.org/2000/svg" font-family="'PingFang SC',sans-serif">
+      <g font-size="12.5" fill="#111827">
+        <!-- bars: max 5 -> 560px -->
+        <g><text x="205" y="52" text-anchor="end">平板一体固定(屏=主界面)</text><rect x="220" y="38" width="560" height="20" fill="#2563eb" opacity="0.85"/><text x="790" y="53" font-weight="700">5</text></g>
+        <g><text x="205" y="92" text-anchor="end">前/顶面固定嵌入副屏</text><rect x="220" y="78" width="560" height="20" fill="#64748b" opacity="0.8"/><text x="790" y="93" font-weight="700">5</text></g>
+        <g><text x="205" y="132" text-anchor="end">顶部翻转铰链副屏</text><rect x="220" y="118" width="448" height="20" fill="#e23b3b" opacity="0.9"/><text x="678" y="133" font-weight="700">4</text></g>
+        <g><text x="205" y="172" text-anchor="end">电机驱动旋转</text><rect x="220" y="158" width="224" height="20" fill="#111827" opacity="0.75"/><text x="454" y="173" font-weight="700">2</text></g>
+        <g><text x="205" y="212" text-anchor="end">支臂/箱体可变</text><rect x="220" y="198" width="112" height="20" fill="#111827" opacity="0.45"/><text x="342" y="213" font-weight="700">1</text></g>
+        <g><text x="205" y="252" text-anchor="end">无自带屏(借显+语音)</text><rect x="220" y="238" width="112" height="20" fill="#111827" opacity="0.25"/><text x="342" y="253" font-weight="700">1</text></g>
+      </g>
+      <text x="480" y="288" font-size="11.5" fill="#5b6472" text-anchor="middle">2015–2023 年新品几乎全是「固定」;2024–2026 年新品(G-Flip / Miniproca / ViewDock / AM01S / Auto Twist)集中转向「翻转铰链与电机可动」</text>
+    </svg>
+    <figcaption>图 B · 结构类型分布 —— <b>固定结构存量最大,但增量创新集中在翻转铰链</b>;电机方案仅出现在 Amazon / Lenovo 两家大厂</figcaption>
+  </figure>
+</section>
+
+<!-- ================= 02 规律 ================= -->
+<section id="s2">
+  <div class="sechead"><span class="no">§ 02</span><h2>规律总结 · 结构原型白描</h2><span class="en">Patterns &amp; Archetypes</span></div>
+
+  <h3 class="sub">五种屏幕机械结构原型(工业设计白描)</h3>
+  <figure class="draw">
+    <svg viewBox="0 0 960 250" xmlns="http://www.w3.org/2000/svg" font-family="'PingFang SC',sans-serif" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <!-- ① 平板一体式 -->
+      <g stroke="#111827" stroke-width="2">
+        <path d="M28 168 L150 168 L150 82 Z"/>
+        <path d="M40 159 L138 159 L138 92" stroke-width="1.1"/>
+      </g>
+      <path d="M150 168 L166 160 L166 86 L150 82" stroke="#111827" stroke-width="1.1"/>
+      <path d="M58 168 A34 34 0 0 0 54 150" stroke="#e23b3b" stroke-width="1.2"/>
+      <text x="72" y="158" font-size="10" fill="#e23b3b" stroke="none">15–30°</text>
+      <g stroke="#5b6472" stroke-width="1" stroke-dasharray="3 3"><line x1="28" y1="180" x2="150" y2="180"/></g>
+      <text x="89" y="196" font-size="10" fill="#5b6472" stroke="none" text-anchor="middle">整机=屏幕,固定倾角</text>
+      <text x="96" y="222" font-size="13" fill="#111827" stroke="none" text-anchor="middle" font-weight="700">① 平板一体式</text>
+      <text x="96" y="238" font-size="9.5" fill="#5b6472" stroke="none" text-anchor="middle">PiPO X8 · Gole1 · reTerminal · 8″ 白牌</text>
+
+      <!-- ② 固定嵌入副屏 -->
+      <g transform="translate(192,0)">
+        <rect x="34" y="74" width="132" height="94" rx="7" stroke="#111827" stroke-width="2"/>
+        <rect x="46" y="118" width="52" height="40" rx="3" stroke="#111827" stroke-width="1.6"/>
+        <line x1="52" y1="126" x2="92" y2="126" stroke="#5b6472" stroke-width="1"/>
+        <line x1="52" y1="134" x2="84" y2="134" stroke="#5b6472" stroke-width="1"/>
+        <g stroke="#5b6472" stroke-width="1.1"><line x1="112" y1="122" x2="156" y2="122"/><line x1="112" y1="130" x2="156" y2="130"/><line x1="112" y1="138" x2="156" y2="138"/><line x1="112" y1="146" x2="156" y2="146"/></g>
+        <circle cx="150" cy="88" r="4" stroke="#111827" stroke-width="1.4"/>
+        <line x1="46" y1="112" x2="98" y2="112" stroke="#e23b3b" stroke-width="1" stroke-dasharray="4 3"/>
+        <text x="47" y="106" font-size="10" fill="#e23b3b" stroke="none">1.9–4″ 仪表屏</text>
+        <text x="100" y="222" font-size="13" fill="#111827" stroke="none" text-anchor="middle" font-weight="700">② 固定嵌入副屏</text>
+        <text x="100" y="238" font-size="9.5" fill="#5b6472" stroke="none" text-anchor="middle">S1 · GEM12 · UH185 · AM02 · Violoop</text>
+      </g>
+
+      <!-- ③ 翻转铰链副屏 -->
+      <g transform="translate(384,0)">
+        <rect x="30" y="112" width="140" height="52" rx="7" stroke="#111827" stroke-width="2"/>
+        <g stroke="#5b6472" stroke-width="1.1"><line x1="44" y1="150" x2="72" y2="150"/><line x1="44" y1="156" x2="72" y2="156"/></g>
+        <circle cx="120" cy="140" r="4.5" stroke="#111827" stroke-width="1.4"/>
+        <!-- closed lid (dashed) -->
+        <rect x="46" y="102" width="124" height="9" rx="3" stroke="#5b6472" stroke-width="1.2" stroke-dasharray="4 3"/>
+        <!-- open lid -->
+        <g stroke="#111827" stroke-width="2">
+          <path d="M52 108 L94 20 L104 24 L61 112 Z"/>
+          <line x1="60" y1="100" x2="95" y2="28" stroke-width="1.1"/>
+        </g>
+        <circle cx="56" cy="109" r="5.5" stroke="#e23b3b" stroke-width="1.6"/>
+        <path d="M150 100 A96 96 0 0 0 92 26" stroke="#e23b3b" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <path d="M96 32 L91 25 L100 24" fill="#e23b3b" stroke="none"/>
+        <text x="140" y="66" font-size="10" fill="#e23b3b" stroke="none">0–90°</text>
+        <text x="100" y="222" font-size="13" fill="#111827" stroke="none" text-anchor="middle" font-weight="700">③ 翻转铰链副屏</text>
+        <text x="100" y="238" font-size="9.5" fill="#5b6472" stroke="none" text-anchor="middle">G-Flip · Miniproca · ViewDock · AM01S</text>
+      </g>
+
+      <!-- ④ 电机旋转 -->
+      <g transform="translate(576,0)">
+        <g stroke="#111827" stroke-width="2">
+          <path d="M70 118 L130 118 L126 168 L74 168 Z"/>
+          <ellipse cx="100" cy="118" rx="30" ry="7"/>
+          <path d="M64 108 L118 34 L136 44 L84 116 Z"/>
+          <line x1="74" y1="104" x2="122" y2="42" stroke-width="1.1"/>
+        </g>
+        <g stroke="#5b6472" stroke-width="1"><line x1="80" y1="132" x2="120" y2="132" stroke-dasharray="2 3"/><line x1="80" y1="140" x2="120" y2="140" stroke-dasharray="2 3"/></g>
+        <circle cx="123" cy="40" r="3.5" stroke="#111827" stroke-width="1.4"/>
+        <path d="M52 178 A52 14 0 1 0 148 176" stroke="#e23b3b" stroke-width="1.3"/>
+        <path d="M146 170 L150 178 L140 180" fill="#e23b3b" stroke="none"/>
+        <text x="100" y="203" font-size="10" fill="#e23b3b" stroke="none" text-anchor="middle">±175° 无刷电机 · 人脸/声源追踪</text>
+        <text x="100" y="222" font-size="13" fill="#111827" stroke="none" text-anchor="middle" font-weight="700">④ 电机驱动旋转</text>
+        <text x="100" y="238" font-size="9.5" fill="#5b6472" stroke="none" text-anchor="middle">Echo Show 10 · Lenovo Auto Twist</text>
+      </g>
+
+      <!-- ⑤ 支臂可变大屏 -->
+      <g transform="translate(768,0)">
+        <g stroke="#111827" stroke-width="2">
+          <rect x="30" y="52" width="104" height="116" rx="8"/>
+          <rect x="40" y="64" width="84" height="92" rx="3" stroke-width="1.4"/>
+          <path d="M70 52 Q82 34 94 52"/>
+        </g>
+        <g stroke="#5b6472" stroke-width="1.2" stroke-dasharray="4 3">
+          <rect x="140" y="96" width="34" height="72" rx="4"/>
+          <line x1="134" y1="168" x2="140" y2="168"/>
+        </g>
+        <path d="M148 60 A38 38 0 0 1 172 88" stroke="#e23b3b" stroke-width="1.2"/>
+        <path d="M170 80 L173 89 L164 88" fill="#e23b3b" stroke="none"/>
+        <text x="176" y="66" font-size="10" fill="#e23b3b" stroke="none" text-anchor="end">旋转90°</text>
+        <text x="100" y="203" font-size="10" fill="#5b6472" stroke="none" text-anchor="middle">箱体=保护壳,支臂升降俯仰</text>
+        <text x="100" y="222" font-size="13" fill="#111827" stroke="none" text-anchor="middle" font-weight="700">⑤ 箱体支臂可变</text>
+        <text x="100" y="238" font-size="9.5" fill="#5b6472" stroke="none" text-anchor="middle">LG StanbyME Go</text>
+      </g>
+    </svg>
+    <figcaption>图 C · 五种结构原型侧视/正视白描 —— 复杂度与成本从左到右递增:<b>① 无可动件 → ③ 单轴铰链 → ④ 电机双轴</b></figcaption>
+  </figure>
+
+  <h3 class="sub">翻转铰链细节(主流增量方案的工程收敛)</h3>
+  <figure class="draw">
+    <svg viewBox="0 0 960 330" xmlns="http://www.w3.org/2000/svg" font-family="'PingFang SC',sans-serif" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <!-- base body -->
+      <g stroke="#111827" stroke-width="2.2">
+        <rect x="150" y="190" width="420" height="96" rx="10"/>
+      </g>
+      <g stroke="#5b6472" stroke-width="1.1"><line x1="176" y1="252" x2="240" y2="252"/><line x1="176" y1="260" x2="240" y2="260"/><line x1="176" y1="268" x2="240" y2="268"/></g>
+      <text x="208" y="243" font-size="10" fill="#5b6472" stroke="none">进风</text>
+      <!-- hinge center -->
+      <circle cx="196" cy="184" r="9" stroke="#e23b3b" stroke-width="2"/>
+      <circle cx="196" cy="184" r="2.5" fill="#e23b3b" stroke="none"/>
+      <!-- lid 0° closed -->
+      <rect x="196" y="172" width="360" height="12" rx="4" stroke="#5b6472" stroke-width="1.3" stroke-dasharray="5 4"/>
+      <text x="380" y="214" font-size="10.5" fill="#5b6472" stroke="none" text-anchor="middle">0° 合拢:屏幕面朝下,顶面即保护盖(收纳态)</text>
+      <!-- lid 65° -->
+      <g stroke="#111827" stroke-width="2.2">
+        <path d="M203 175 L352 48 L366 62 L214 186 Z"/>
+        <line x1="216" y1="170" x2="352" y2="60" stroke-width="1.2"/>
+      </g>
+      <text x="380" y="52" font-size="11" fill="#111827" stroke="none">65° 常用位(桌面平视角)</text>
+      <!-- lid 90° -->
+      <g stroke="#5b6472" stroke-width="1.3" stroke-dasharray="5 4">
+        <path d="M190 176 L172 20 L188 18 L205 174 Z"/>
+      </g>
+      <text x="166" y="12" font-size="10.5" fill="#5b6472" stroke="none">90° 直立位</text>
+      <!-- arc -->
+      <path d="M400 178 A205 205 0 0 0 250 22" stroke="#e23b3b" stroke-width="1.3" stroke-dasharray="6 5"/>
+      <path d="M256 30 L249 21 L260 19" fill="#e23b3b" stroke="none"/>
+      <text x="356" y="112" font-size="11" fill="#e23b3b" stroke="none">开合角 0–90°,65° 为黄金位</text>
+      <!-- annotations right -->
+      <g font-size="11.5" fill="#111827" stroke="none">
+        <text x="620" y="88" font-weight="700">工程收敛点(样本共识):</text>
+        <text x="620" y="112">· 铰链置于<tspan fill="#e23b3b">顶面前缘</tspan>,屏幕向后翻起、面朝前</text>
+        <text x="620" y="136">· 铝合金铰链座 + 摩擦扭矩轴(任意角悬停)</text>
+        <text x="620" y="160">· 合拢时屏幕面朝下 → 顶面即保护盖</text>
+        <text x="620" y="184">· FPC 排线过轴,预留 ≥2 万次开合寿命</text>
+        <text x="620" y="208">· 屏幕模组厚度 8–12mm,含触控贴合</text>
+        <text x="620" y="232">· 翻起后<tspan fill="#e23b3b">不遮挡后部出风与端口</tspan></text>
+        <text x="620" y="256">· 变体:ViewDock 顶面另一半复用为 Qi 充电板</text>
+      </g>
+      <!-- dims -->
+      <g stroke="#5b6472" stroke-width="1" stroke-dasharray="3 3"><line x1="150" y1="300" x2="570" y2="300"/><line x1="150" y1="292" x2="150" y2="308"/><line x1="570" y1="292" x2="570" y2="308"/></g>
+      <text x="360" y="320" font-size="10.5" fill="#5b6472" stroke="none" text-anchor="middle">机身长边 138–175mm(样本实测带)</text>
+    </svg>
+    <figcaption>图 D · 翻转铰链侧视白描 —— 三个关键角位:<b>0° 收纳 / 65° 常用 / 90° 直立</b>,行业用摩擦扭矩铰链实现无级悬停</figcaption>
+  </figure>
+
+  <h3 class="sub">八条统一规律</h3>
+  <div class="laws">
+    <div class="law"><h5>屏幕尺寸呈「双峰」分布,6″ 附近真空</h5><p>副屏档集中在 <b>1.9–5″</b>(信息显示/轻触控),一体交互档集中在 <b>5.5–8″</b>(完整 UI),10″+ 属于「屏幕即产品」的终端类。6″ 档几乎无人做——小于完整交互、大于仪表显示,定位尴尬。</p></div>
+    <div class="law"><h5>1280×800 / 1280×720 是绝对主流水位</h5><p>18 款中 <b>6 款直接落在 1280 长边</b>(5″–10.1″ 全覆盖),源自平板/车机屏供应链;副屏用低分异形比例(960×400、480×854、170×320),4K 副屏(Miniproca)是营销炫技而非趋势。</p></div>
+    <div class="law"><h5>材质:IPS LCD 一统,触控=电容多点标配</h5><p>除 Lenovo 旗舰用 OLED 外,<b>全部为 IPS LCD</b>;凡定位「交互」的屏幕均为电容触控(10 点),仅 1.9–3.5″ 仪表屏保留纯显示。玻璃盖板 + 全贴合是 4″ 以上的默认工艺。</p></div>
+    <div class="law"><h5>结构演化:固定 → 翻转 → 电机</h5><p>2015–23 年产品几乎全为固定结构;<b>2024–26 年新品(G-Flip、Miniproca、ViewDock、AM01S、Auto Twist)集中转向可动结构</b>。翻转铰链借 GBA-SP 的心智成为增量共识;电机方案仅 Amazon/Lenovo 两家大厂敢碰(成本、噪音、可靠性、桌面空间)。</p></div>
+    <div class="law"><h5>翻转铰链参数已收敛</h5><p>铰链一律在<b>顶面前缘</b>;开角 0–65°/80°/90°;铝合金铰链座 + 摩擦扭矩轴无级悬停;合拢时屏幕面朝下、顶面即保护盖。这套参数可直接作为 Agent PC 的工程基线。</p></div>
+    <div class="law"><h5>副屏的「系统归属」分裂,须尽早定义</h5><p>UH185/GEM12/S1 的副屏由<b>独立 MCU/固件</b>驱动,不显示主系统画面(UH185 明确无法显示 Windows);AM01S 反其道把「原生横屏、可作系统扩展屏」当核心卖点。Agent PC 必须在架构期决定:副屏归 Agent 运行时,还是归主 OS。</p></div>
+    <div class="law"><h5>摄像头·灯光·语音三件套几乎空白</h5><p>18 款中摄像头仅 <b>3 款</b>、远场语音仅 <b>3–4 款</b>、语义化灯光仅 <b>2 款</b>(S1 的 RGB、Violoop 的底部氛围光,均无语义);<b>三者齐备的迷你主机为 0</b>。智能音箱有语音无算力,迷你主机有算力无感知——这正是 Agent PC 的差异化窗口。</p></div>
+    <div class="law"><h5>Footprint 收敛,堆叠已有先例但顶面被抢占</h5><p>带屏主机收敛于 <b>138–175mm 方形 footprint</b>,与 Mac mini(127)/DGX Spark(150)同带;DGX Spark 官方支持双机成簇。矛盾点:翻转屏、无线充都在抢顶面,而 Mac mini 类靠顶/底面呼吸——<b>可堆叠设计必须把风道转移到侧后向</b>。</p></div>
+  </div>
+</section>
+
+<!-- ================= 03 推荐 ================= -->
+<section id="s3">
+  <div class="sechead"><span class="no">§ 03</span><h2>Agent PC 推荐 · 形态学收敛</h2><span class="en">Recommendation</span></div>
+  <p class="lead">你的需求约束:<b>触控屏 + 摄像头 + 灯光 + 语音交互</b>,且算力盒可能像 Mac mini 一样多台并行、需要考虑堆叠收纳。先穷举规格空间回答「有多少种可能」,再按约束收敛。</p>
+
+  <h3 class="sub">形态学矩阵:到底有多少种可能的规格?</h3>
+  <div class="tbl-wrap"><table class="big morph">
+    <tr><th style="width:130px">设计维度</th><th>可选项(红 = 推荐基线)</th><th style="width:70px">选项数</th></tr>
+    <tr><td><b>屏幕尺寸</b></td><td><span class="opt">4–5″ 副屏级</span><span class="opt pick">7–8″ 交互级</span><span class="opt">10.1″ 终端级</span></td><td>3</td></tr>
+    <tr><td><b>分辨率</b></td><td><span class="opt">800×480 级</span><span class="opt pick">1280×800(16:10)</span><span class="opt">1920×1200+</span></td><td>3</td></tr>
+    <tr><td><b>机械结构</b></td><td><span class="opt">固定斜面 15–30°</span><span class="opt pick">摩擦铰链翻转 0–75°</span><span class="opt">电机双轴追踪</span><span class="opt">磁吸可拆分体</span></td><td>4</td></tr>
+    <tr><td><b>摄像头</b></td><td><span class="opt pick">顶边框固定 + 物理滑盖</span><span class="opt">独立磁吸/升降模组</span></td><td>2</td></tr>
+    <tr><td><b>灯光</b></td><td><span class="opt pick">底缘 360° 语义灯环</span><span class="opt">前缘状态灯带</span><span class="opt">屏侧像素灯阵</span></td><td>3</td></tr>
+    <tr><td><b>语音</b></td><td><span class="opt">双麦</span><span class="opt pick">4 麦远场阵列 + 立体声</span></td><td>2</td></tr>
+    <tr><td><b>堆叠互联</b></td><td><span class="opt">纯叠放防滑垫</span><span class="opt pick">磁吸定位 + Pogo(供电/唤醒)+ TB/USB4 数据</span><span class="opt">托架竖插机架式</span></td><td>3</td></tr>
+  </table></div>
+  <div class="formula">理论组合 = 3 × 3 × 4 × 2 × 3 × 2 × 3 = <b>1,296 种</b> &nbsp;→&nbsp; 剔除互斥项(电机 × 堆叠顶盖冲突、4K × 小屏无收益、800×480 × 交互级不够用等)≈ <b>24 种工程可行架构</b> &nbsp;→&nbsp; 按成本/供应链/差异化收敛为 <b>3 个推荐方向</b></div>
+  <div class="note"><b>为什么 8″ + 1280×800 是基线:</b>它是白牌平板/车机屏供应链最充足、最便宜的档位(样本中 6 款落线);16:10 足够承载完整 Agent 对话流 + 状态面板;而 4–5″ 只能当仪表,10.1″ 则把产品推向「智能音箱终端」的红海定位。</div>
+
+  <!-- 方案 A -->
+  <div class="rec">
+    <div class="vis">
+      <svg viewBox="0 0 300 262" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-linecap="round" stroke-linejoin="round" font-family="'PingFang SC',sans-serif">
+        <!-- screen module -->
+        <g stroke="#111827" stroke-width="2">
+          <path d="M64 34 L236 34 L228 128 L72 128 Z"/>
+          <path d="M76 44 L224 44 L217 118 L83 118 Z" stroke-width="1.2"/>
+        </g>
+        <circle cx="150" cy="39" r="2.8" fill="#111827" stroke="none"/>
+        <rect x="132" y="36.2" width="12" height="5.6" rx="2.8" stroke="#5b6472" stroke-width="1"/>
+        <g fill="#5b6472" stroke="none"><circle cx="108" cy="39" r="1.2"/><circle cx="116" cy="39" r="1.2"/><circle cx="184" cy="39" r="1.2"/><circle cx="192" cy="39" r="1.2"/></g>
+        <!-- light ring -->
+        <ellipse cx="150" cy="136" rx="88" ry="9" stroke="#e23b3b" stroke-width="1.6" stroke-dasharray="6 4"/>
+        <!-- compute boxes -->
+        <g stroke="#111827" stroke-width="2">
+          <rect x="70" y="150" width="160" height="40" rx="7"/>
+          <rect x="70" y="198" width="160" height="40" rx="7"/>
+        </g>
+        <g stroke="#5b6472" stroke-width="1"><line x1="84" y1="162" x2="84" y2="178"/><line x1="92" y1="162" x2="92" y2="178"/><line x1="100" y1="162" x2="100" y2="178"/><line x1="84" y1="210" x2="84" y2="226"/><line x1="92" y1="210" x2="92" y2="226"/><line x1="100" y1="210" x2="100" y2="226"/></g>
+        <g fill="#e23b3b" stroke="none"><circle cx="120" cy="194" r="2.2"/><circle cx="150" cy="194" r="2.2"/><circle cx="180" cy="194" r="2.2"/></g>
+        <text x="240" y="196" font-size="9.5" fill="#e23b3b" stroke="none">磁吸+Pogo</text>
+        <path d="M248 158 L272 158 M266 152 L274 158 L266 164" stroke="#5b6472" stroke-width="1.2"/>
+        <text x="250" y="148" font-size="9" fill="#5b6472" stroke="none">侧后出风</text>
+        <text x="150" y="256" font-size="10.5" fill="#5b6472" stroke="none" text-anchor="middle">屏幕模组=永久顶层 · 算力盒向下生长</text>
+      </svg>
+    </div>
+    <div class="txt">
+      <div class="rk">首选 · RECOMMENDED A</div>
+      <h5>「灯塔」一体交互塔 —— 8″ 触控模组 + 可堆叠算力座</h5>
+      <p>屏幕/摄像头/麦阵/灯环集成为一个「感知顶盖」模组,永远在塔顶;算力盒与其同 footprint(建议 150×150mm,对齐 DGX Spark),按需向下堆 1–4 层。感知与算力解耦——算力翻倍不必重买屏幕。</p>
+      <table>
+        <tr><td>屏幕</td><td>8″ IPS 1280×800 · 10 点触控 · 全贴合防眩 · ≥400nit</td></tr>
+        <tr><td>结构</td><td>摩擦铰链 0–75° 无级悬停(降本位:固定 20° 斜面);合拢即收纳保护</td></tr>
+        <tr><td>感知</td><td>8MP 顶置摄像头+<b>物理滑盖</b>(UH185 已验证的信任卖点)· 4 麦远场阵列</td></tr>
+        <tr><td>灯光</td><td>模组底缘 360° 扩散灯环:聆听/思考/执行/<b>等待授权</b>四种语义,任何角度可读</td></tr>
+        <tr><td>堆叠</td><td>四角磁吸凹凸定位 + Pogo(供电总线/统一开机),数据走背部 USB4/TB 短桥;风道全部侧进后出,顶底面保持平整可叠</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 方案 B -->
+  <div class="rec">
+    <div class="vis">
+      <svg viewBox="0 0 300 262" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-linecap="round" stroke-linejoin="round" font-family="'PingFang SC',sans-serif">
+        <rect x="150" y="30" width="130" height="86" rx="5" stroke="#5b6472" stroke-width="1.3" stroke-dasharray="5 4"/>
+        <text x="215" y="128" font-size="9.5" fill="#5b6472" stroke="none" text-anchor="middle">主显示器(外接)</text>
+        <g stroke="#111827" stroke-width="2">
+          <rect x="34" y="168" width="150" height="52" rx="7"/>
+          <path d="M52 164 L96 84 L107 90 L62 168 Z"/>
+          <line x1="62" y1="156" x2="98" y2="92" stroke-width="1.1"/>
+        </g>
+        <circle cx="57" cy="165" r="5" stroke="#e23b3b" stroke-width="1.6"/>
+        <path d="M130 150 A80 80 0 0 0 96 90" stroke="#e23b3b" stroke-width="1.1" stroke-dasharray="5 4"/>
+        <text x="140" y="118" font-size="9.5" fill="#e23b3b" stroke="none">0–90°</text>
+        <g stroke="#5b6472" stroke-width="1"><line x1="150" y1="182" x2="172" y2="182"/><line x1="150" y1="190" x2="172" y2="190"/><line x1="150" y1="198" x2="172" y2="198"/></g>
+        <path d="M118 132 Q140 120 158 116" stroke="#5b6472" stroke-width="1.1" stroke-dasharray="3 3"/>
+        <text x="150" y="245" font-size="10.5" fill="#5b6472" stroke="none" text-anchor="middle">5″ FHD 翻转副屏 = Agent 状态窗 · 主画面外接</text>
+      </svg>
+    </div>
+    <div class="txt">
+      <div class="rk">备选 · ALTERNATIVE B</div>
+      <h5>「潜望」翻转副屏工作站 —— 桌面专业用户路线</h5>
+      <p>沿用 G-Flip/AM01S 已验证的形态:主机上翻出 5″ 1920×1080 触控副屏,专显 Agent 任务流、授权确认与系统状态;生产力画面全部外接显示器。开发者/桌面重度用户心智最顺,结构风险最小,但「产品即屏幕」的存在感弱于方案 A。</p>
+      <table>
+        <tr><td>屏幕</td><td>5″ IPS 1920×1080 触控(高 PPI 显精致)</td></tr>
+        <tr><td>结构</td><td>顶前缘铝合金摩擦铰链 0–90°,合拢齐平</td></tr>
+        <tr><td>感知</td><td>摄像头置于副屏上边框(随屏起立自然朝人)+ 滑盖;4 麦阵列在机身前缘</td></tr>
+        <tr><td>适配</td><td>与方案 A 共用算力盒堆叠底座规格,可作同平台第二 SKU</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 方案 C -->
+  <div class="rec">
+    <div class="vis">
+      <svg viewBox="0 0 300 262" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-linecap="round" stroke-linejoin="round" font-family="'PingFang SC',sans-serif">
+        <g stroke="#111827" stroke-width="2">
+          <path d="M70 52 L226 44 L232 118 L78 128 Z"/>
+          <path d="M82 60 L216 53 L221 110 L89 118 Z" stroke-width="1.2"/>
+        </g>
+        <circle cx="148" cy="50" r="2.6" fill="#111827" stroke="none"/>
+        <g stroke="#e23b3b" stroke-width="1.4"><path d="M118 140 L118 158 M112 152 L118 159 L124 152"/><path d="M182 138 L182 156 M176 150 L182 157 L188 150"/></g>
+        <text x="216" y="152" font-size="9.5" fill="#e23b3b" stroke="none">磁吸分离</text>
+        <g stroke="#111827" stroke-width="2"><rect x="86" y="168" width="128" height="34" rx="6"/><rect x="86" y="208" width="128" height="34" rx="6"/></g>
+        <g stroke="#5b6472" stroke-width="1"><line x1="98" y1="178" x2="98" y2="192"/><line x1="106" y1="178" x2="106" y2="192"/><line x1="98" y1="218" x2="98" y2="232"/><line x1="106" y1="218" x2="106" y2="232"/></g>
+        <rect x="196" y="72" width="16" height="8" rx="2" stroke="#5b6472" stroke-width="1.1" transform="rotate(-3 204 76)"/>
+        <text x="150" y="256" font-size="10.5" fill="#5b6472" stroke="none" text-anchor="middle">屏幕带电池可拿走 · 算力柱原地 headless 干活</text>
+      </svg>
+    </div>
+    <div class="txt">
+      <div class="rk">探索 · EXPLORATORY C</div>
+      <h5>「分体」磁吸可拆屏 —— StanbyME 式移动性 × 无头算力柱</h5>
+      <p>8″ 屏幕模组内置电池,磁吸在算力塔顶时是台式 Agent 终端,取下即是全屋漫游的控制板(Wi-Fi 回连);算力柱保持 headless 继续执行长任务。体验想象力最大,但要解决双电源、双系统心跳、跌落与回插对位,BOM 与固件复杂度最高——建议作为 Gen2 路线预研,不做首发。</p>
+      <table>
+        <tr><td>参考先例</td><td>LG StanbyME(移动屏心智)· UH185(屏+摄一体模组)· Violoop(Agent 状态屏)</td></tr>
+        <tr><td>关键验证</td><td>磁吸对位手感 / 分离态延迟 / 电池寿命与重量(目标 ≤450g)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h3 class="sub">算力盒堆叠与收纳:三种方案白描</h3>
+  <figure class="draw">
+    <svg viewBox="0 0 960 300" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-linecap="round" stroke-linejoin="round" font-family="'PingFang SC',sans-serif">
+      <!-- P1 塔式 -->
+      <g transform="translate(20,0)">
+        <g stroke="#111827" stroke-width="2">
+          <path d="M70 40 L230 40 L222 96 L78 96 Z"/>
+          <rect x="78" y="108" width="144" height="36" rx="6"/>
+          <rect x="78" y="150" width="144" height="36" rx="6"/>
+          <rect x="78" y="192" width="144" height="36" rx="6"/>
+        </g>
+        <ellipse cx="150" cy="102" rx="78" ry="7" stroke="#e23b3b" stroke-width="1.4" stroke-dasharray="6 4"/>
+        <g fill="#e23b3b" stroke="none"><circle cx="104" cy="147" r="2"/><circle cx="150" cy="147" r="2"/><circle cx="196" cy="147" r="2"/><circle cx="104" cy="189" r="2"/><circle cx="150" cy="189" r="2"/><circle cx="196" cy="189" r="2"/></g>
+        <g stroke="#5b6472" stroke-width="1.2"><path d="M52 126 L34 126 M40 120 L32 126 L40 132"/><path d="M248 122 L266 122 M260 116 L268 122 L260 128"/><path d="M52 168 L34 168 M40 162 L32 168 L40 174"/><path d="M248 164 L266 164 M260 158 L268 164 L260 170"/></g>
+        <text x="150" y="252" font-size="13" fill="#111827" stroke="none" text-anchor="middle" font-weight="700">Ⅰ 塔式磁吸堆叠(首选)</text>
+        <text x="150" y="272" font-size="10" fill="#5b6472" stroke="none" text-anchor="middle">感知顶盖恒在顶层 · Pogo 供电总线</text>
+        <text x="150" y="288" font-size="10" fill="#5b6472" stroke="none" text-anchor="middle">侧进风→后出风,顶底面平整</text>
+      </g>
+      <!-- P2 竖插 -->
+      <g transform="translate(340,0)">
+        <g stroke="#111827" stroke-width="2">
+          <path d="M40 226 L260 226 L246 250 L54 250 Z"/>
+          <rect x="70" y="70" width="36" height="150" rx="5"/>
+          <rect x="122" y="70" width="36" height="150" rx="5"/>
+          <rect x="174" y="70" width="36" height="150" rx="5"/>
+          <rect x="226" y="120" width="12" height="100" rx="3" stroke-dasharray="5 4" stroke-width="1.3"/>
+        </g>
+        <g stroke="#5b6472" stroke-width="1"><line x1="78" y1="84" x2="98" y2="84"/><line x1="78" y1="92" x2="98" y2="92"/><line x1="130" y1="84" x2="150" y2="84"/><line x1="130" y1="92" x2="150" y2="92"/><line x1="182" y1="84" x2="202" y2="84"/><line x1="182" y1="92" x2="202" y2="92"/></g>
+        <path d="M244 96 L244 66 M238 74 L244 64 L250 74" stroke="#e23b3b" stroke-width="1.3"/>
+        <text x="252" y="96" font-size="9.5" fill="#e23b3b" stroke="none">热插拔</text>
+        <text x="150" y="272" font-size="13" fill="#111827" stroke="none" text-anchor="middle" font-weight="700">Ⅱ 托架竖插「吐司架」</text>
+        <text x="150" y="288" font-size="10" fill="#5b6472" stroke="none" text-anchor="middle">散热最优 · 扩容像插书 · 占桌面宽</text>
+      </g>
+      <!-- P3 背板导轨 -->
+      <g transform="translate(660,0)">
+        <g stroke="#111827" stroke-width="2">
+          <rect x="40" y="90" width="110" height="120" rx="7"/>
+          <rect x="162" y="90" width="110" height="120" rx="7"/>
+          <line x1="40" y1="70" x2="272" y2="70" stroke-width="3"/>
+        </g>
+        <g stroke="#5b6472" stroke-width="1.4"><line x1="80" y1="70" x2="80" y2="90"/><line x1="216" y1="70" x2="216" y2="90"/></g>
+        <rect x="138" y="130" width="36" height="14" rx="3" stroke="#e23b3b" stroke-width="1.5"/>
+        <text x="156" y="160" font-size="9.5" fill="#e23b3b" stroke="none" text-anchor="middle">背部短桥互联</text>
+        <g stroke="#5b6472" stroke-width="1"><line x1="54" y1="106" x2="54" y2="194"/><line x1="62" y1="106" x2="62" y2="194"/><line x1="176" y1="106" x2="176" y2="194"/><line x1="184" y1="106" x2="184" y2="194"/></g>
+        <text x="156" y="252" font-size="13" fill="#111827" stroke="none" text-anchor="middle" font-weight="700">Ⅲ 水平并排 + 背板导轨</text>
+        <text x="156" y="272" font-size="10" fill="#5b6472" stroke="none" text-anchor="middle">互联走线最短(参考 DGX Spark 双机)</text>
+        <text x="156" y="288" font-size="10" fill="#5b6472" stroke="none" text-anchor="middle">适合 2 台;3 台以上占位失控</text>
+      </g>
+    </svg>
+    <figcaption>图 E · 堆叠收纳三方案 —— <b>1–4 台选 Ⅰ 塔式;追求散热与热插拔选 Ⅱ;仅双机高带宽互联选 Ⅲ</b></figcaption>
+  </figure>
+
+  <h3 class="sub">推荐规格基线(方案 A 落地清单)</h3>
+  <div class="tbl-wrap"><table class="big">
+    <tr><th style="width:110px">模块</th><th>P0 基线</th><th>P1 升级位</th><th>依据</th></tr>
+    <tr><td><b>屏幕</b></td><td>8″ IPS 1280×800 · 10 点电容 · 全贴合 · 400nit 防眩</td><td>8.8″ 1920×1200(车机屏档)</td><td>供应链最充足档(规律 02);16:10 完整承载对话流</td></tr>
+    <tr><td><b>机械</b></td><td>摩擦扭矩铰链 0–75°,合拢齐平,FPC 过轴 ≥2 万次</td><td>+ 电动缓起(非追踪)</td><td>翻转参数已收敛(规律 05);电机追踪按下不表(风险 1)</td></tr>
+    <tr><td><b>摄像头</b></td><td>8MP 定焦 + 物理滑盖 + 在场检测</td><td>13MP + 人脸追踪裁切(数字代替电机)</td><td>UH185 滑盖已验证;Echo Show 的追踪可用数字裁切低成本复刻</td></tr>
+    <tr><td><b>灯光</b></td><td>底缘 360° 扩散灯环,四语义:聆听/思考/执行/待授权</td><td>+ 屏侧像素灯阵(表情化)</td><td>样本空白点(规律 07);「待授权」灯是 Agent 信任的关键界面</td></tr>
+    <tr><td><b>语音</b></td><td>4 麦远场阵列 + AEC + 双 3W 扬声器</td><td>+ 声源定位联动灯环指向</td><td>AICUBE 同配置;迷你主机阵营为空白</td></tr>
+    <tr><td><b>算力盒</b></td><td>150×150×50mm · 磁吸凹凸定位 + Pogo 供电/唤醒 · 背部 USB4 短桥菊链 · 侧进后出风</td><td>ConnectX 级高速互联</td><td>对齐 DGX Spark 双机成簇;顶底平整才可叠(规律 08)</td></tr>
+    <tr><td><b>收纳</b></td><td>同 footprint 竖插托架(选配件)</td><td>提手箱(StanbyME 思路)</td><td>Mac mini 配件生态已验证需求</td></tr>
+  </table></div>
+
+  <h3 class="sub">诚实的风险提示(反方视角)</h3>
+  <div class="risk"><b>① 别轻易上电机。</b>Echo Show 10 要求 38×25cm 旋转净空,中国/日本桌面场景吃紧;Lenovo 电机铰链把整机推到 $1,649 且噪音/耐久尚未被市场验证。人脸「追踪感」可以用 13MP 广角+数字裁切以 1/10 成本实现 80% 效果。</div>
+  <div class="risk"><b>② 副屏系统归属必须在架构期定死。</b>走独立 MCU(UH185 式)则响应快、休眠可显,但 Agent UI 迭代受固件拖累;走主系统扩展屏(AM01S 式)则生态灵活,但开机前/死机时屏幕是黑的——Agent 设备恰恰最需要「主机挂了屏幕还能说话」的兜底,建议 <b>MCU 常显层 + 主系统投射层</b> 双层架构。</div>
+  <div class="risk"><b>③ 堆叠与散热天然打架。</b>塔式堆叠盖死了每层顶面,而样本中所有 65W 级机型都依赖顶部或底部呼吸。若坚持可叠,风道必须全侧向,并对 3 层以上做热仿真;否则学 DGX Spark 只承诺双机成簇,把「多机」交给竖插托架。</div>
+  <div class="risk"><b>④ 供应链与品控。</b>4K 小屏(Miniproca)单价高、驱动功耗大,勿被参数带偏;众筹小厂(ViewDock 初代)已出现发货与连接投诉——铰链供应商选型和 2 万次寿命测试要放进 EVT 关键路径。</div>
+  <div class="risk"><b>⑤ 常开摄像头的信任问题。</b>Agent PC 的摄像头是「常开传感器」而非视频会议配件,物理滑盖(而非电子开关)+ 灯环状态联动是目前唯一被用户信服的方案,应作为不可删减项。</div>
+</section>
+
+<!-- ================= 04 附录 ================= -->
+<section id="s4">
+  <div class="sechead"><span class="no">§ 04</span><h2>附录 · 来源</h2><span class="en">Sources</span></div>
+  <ul class="srcs">
+    <li>Lenovo Auto Twist:<a href="https://gadgetbond.com/lenovo-thinkbook-plus-gen-7-auto-twist-laptop-specs-price-release-date-ces-2026/">GadgetBond</a> · <a href="https://www.ubergizmo.com/2026/01/lenovo-launches-thinkbook-plus-gen-7-auto-twist-with-a-motorized-ai-aware-display/">Ubergizmo</a> · <a href="https://www.techradar.com/pro/lenovo-debuts-usd1-499-convertible-laptop-that-comes-with-a-tongue-twisting-name-thinkbook-plus-gen-7-auto-twist-rotates-and-pivots-on-two-axes">TechRadar</a></li>
+    <li>Echo Show 10:<a href="https://www.tomsguide.com/reviews/amazon-echo-show-10-3rd-gen">Tom's Guide</a> · <a href="https://www.pcworld.com/article/579263/amazon-echo-show-10-review.html">PCWorld</a></li>
+    <li>LG StanbyME Go:<a href="https://www.lg.com/us/tvs/lg-27lx5qkna">LG 官网 27LX5QKNA</a></li>
+    <li>AOOSTAR G-Flip 370:<a href="https://www.techspot.com/news/107207-palm-sized-mini-pc-features-flip-up-display.html">TechSpot</a> · <a href="https://aoostar.com/products/aoostar-g-flip-h255">AOOSTAR 官方 G-Flip H255 页面(同系列收起态图)</a></li>
+    <li>Miniproca AiO:<a href="https://www.tomshardware.com/desktops/mini-pcs/nuc-like-ryzen-mini-pc-features-a-4k-flip-up-touchscreen">Tom's Hardware</a></li>
+    <li>ViewDock Gen2:<a href="https://liliputing.com/this-amd-ryzen-mini-pc-has-a-flip-up-display-and-wireless-charging-pad-on-top-crowdfunding/">Liliputing</a></li>
+    <li>AYANEO AM01S:<a href="https://liliputing.com/update-ayaneo-am01s-mini-pc-has-a-retro-design-a-4-inch-flip-up-display-and-amd-strix-point-inside/">Liliputing</a> · <a href="https://www.ayaneo.com/article/893">AYANEO 官方</a></li>
+    <li>AYANEO AM02:<a href="https://liliputing.com/ayaneo-retro-mini-pc-am02-review/">Liliputing 评测</a> · <a href="https://www.tomshardware.com/desktops/mini-pcs/ayaneo-lists-the-retro-mini-pc-am02-on-indiegogo-comes-with-ryzen-7-7840hs-and-4-inch-touchscreen">Tom's Hardware</a></li>
+    <li>Minisforum UH185 Ultra:<a href="https://liliputing.com/minisforum-uh185-ultra-mini-pc-has-an-intel-core-ultra-185h-chip-and-built-in-touchscreen-and-camera/">Liliputing</a> · <a href="https://www.techradar.com/pro/this-could-be-the-most-powerful-mini-pc-ever-and-it-comes-with-two-unexpected-features-a-webcam-and-a-cool-touchscreen-but-you-wont-be-able-to-display-windows-on-it">TechRadar</a></li>
+    <li>AOOSTAR GEM12 Pro Max:<a href="https://www.techspot.com/news/105941-aoostar-new-mini-pc-supports-up-four-8k.html">TechSpot</a> · <a href="https://www.notebookcheck.net/Aoostar-GEM12-Pro-Max-mini-PC-launches-with-built-in-screen-OCuLink-and-two-USB4-ports.925711.0.html">Notebookcheck</a></li>
+    <li>ACEMAGIC S1:<a href="https://www.techradar.com/pro/acemagic-s1-mini-pc-review">TechRadar 评测</a></li>
+    <li>Higole Gole1 / Gole1 Pro:<a href="https://www.cnx-software.com/2016/07/21/review-of-gole1-mini-pc-with-5-display-part-1-unboxing-and-teardown/">CNX Software 2016 GOLE1 评测</a> · <a href="https://www.cnx-software.com/2022/07/26/gole1-pro-mini-pc-comes-with-5-5-inch-touch-screen-display-gemini-lake-processor-crowdfunding/">CNX Software 2022 GOLE1 Pro</a> · <a href="https://goleminipc.com/products/higole-gole-1-pro-mini-pc-windows-11-pro-intel-celeron-j4125-8gb-ram-256gb-rom">HIGOLEPC 官方店铺页</a> · <a href="https://liliputing.com/gole1-pro-2022-is-a-pocket-sized-pc-with-a-5-5-inch-display-and-intel-gemini-lake-processor-crowdfunding/">Liliputing</a> · <a href="https://www.notebookcheck.net/GOLE1-Pro-2022-Mini-PC-with-a-built-in-touchscreen-launches-from-US-199.637242.0.html">Notebookcheck</a></li>
+    <li>PiPO X8:<a href="https://liliputing.com/pipo-x8-is-a-windows-mini-pc-with-its-own-touchscreen-display/">Liliputing</a></li>
+    <li>8″ N150 白牌:<a href="https://liliputing.com/this-8-inch-mini-laptop-has-an-intel-n150-processor-and-12gb-ram/">Liliputing</a> · Amazon 商品页(KOOFORWAY 等)</li>
+    <li>Seeed reTerminal:<a href="https://wiki.seeedstudio.com/reTerminal/">Seeed Wiki</a></li>
+    <li>佰马 BMG800:<a href="https://www.baimatech.com/bmg800-gateway-pm.html">佰马科技官网</a></li>
+    <li>Violoop:<a href="https://violoop.ai/">violoop.ai</a> · <a href="https://finance.sina.com.cn/cj/2026-03-12/doc-inhqtcut4897863.shtml">新浪财经</a> · <a href="https://pandaily.com/violoop-secures-millions-in-funding-to-build-the-world-s-first-physical-level-ai-operator">Pandaily</a></li>
+    <li>摩尔线程 AICUBE:<a href="https://www.leikeji.com/article/76841">雷科技</a> · <a href="https://www.sohu.com/a/1038253181_114760">搜狐</a></li>
+    <li>NVIDIA DGX Spark:<a href="https://www.nvidia.com/en-us/products/workstations/dgx-spark/">NVIDIA 官网</a>(双机 ConnectX 成簇)</li>
+    <li>本报告图 C/D/E 及方案概念图为原创工业设计白描示意;产品照片版权归各来源方,仅作内部研究引用。</li>
+  </ul>
+</section>
+
+<footer>
+  带屏迷你主机屏幕设计调研报告 · 为 Agent PC 工业设计前期研究编制 · 2026-07-03 · 数据截至检索日,众筹类规格以最终量产为准
+</footer>
+
+</div>
+<script>
+(() => {
+  const translationPairs = [
+    ["带屏迷你主机 屏幕设计调研报告","Screen-Integrated Mini PC Display Design Research Report"],
+    ["市面自带屏幕迷你主机/交互终端的屏幕规格、旋转机械结构与形态规律 —— 面向 Agent PC 的工业设计推荐","A study of built-in display mini PCs and interaction terminals: screen specs, rotating mechanisms, form-factor patterns, and recommendations for Agent PC industrial design."],
+    ["日期 2026-07-03","Date 2026-07-03"],
+    ["委托 Shino · Agent PC 前期洞察","Prepared for Shino · Agent PC early-stage research"],
+    ["样本 17 款收集产品 + 3 款市场补充","Sample 17 collected products + 3 market additions"],
+    ["范围 屏幕尺寸 / 分辨率 / 材质触控 / 机械结构 / 摄像头 / 灯光 / 语音 / 堆叠收纳","Scope Display size / resolution / touch material / mechanism / camera / lighting / voice / stacking and storage"],
+    ["18 款带屏产品 + 2 款算力盒参考","18 display-equipped products + 2 compute-box references"],
+    ["屏幕机械结构原型(翻转铰链占主导)","Five display mechanism archetypes, with flip hinges becoming the dominant new pattern."],
+    ["屏幕尺寸带,双峰集中于 4–5″ 与 7–8″","Display-size range, with two clusters around 4-5 inches and 7-8 inches."],
+    ["形态学组合收敛为 3 个推荐方向","Morphological combinations converge into three recommended directions."],
+
+    ["产品洞察 · 全景扫描","Product Insights · Landscape Scan"],
+    ["按屏幕与主机的机械关系将 20 款产品分为六组(A–F)。核心观察对象是:屏幕在机身上的位置与姿态、可动结构(铰链/电机/支臂)、尺寸-分辨率档位,以及摄像头·灯光·语音三件套的配置率。每张卡片配实拍/官方图,翻转类产品尽量呈现「展开-收纳-桌面实景」多状态。","The 20 products are grouped into six classes (A-F) by the mechanical relationship between display and host body. The scan focuses on display position and posture, moving mechanisms such as hinges, motors, and arms, size-resolution tiers, and the adoption of camera, lighting, and voice capabilities. Each card uses real or official imagery; flip-screen products show open, stored, and desk-use states where available."],
+    ["大屏交互终端(屏幕即产品)","Large-Screen Interaction Terminals (the display is the product)"],
+    ["3 款 · 10.1″–27″ · 电机/支臂驱动","3 products · 10.1-27 inches · motorized or arm-driven"],
+    ["翻转副屏迷你主机(GBA-SP 式铰链,2024–26 主流增量形态)","Flip-Display Mini PCs (GBA-SP-like hinge; the mainstream new form from 2024-2026)"],
+    ["4 款 · 4″–7″ · 0–90° 翻转","4 products · 4-7 inches · 0-90 degree flip range"],
+    ["固定副屏迷你主机(信息显示为主,轻触控)","Fixed Secondary-Display Mini PCs (status display first, light touch second)"],
+    ["4 款 · 1.9″–4″ · 无可动件","4 products · 1.9-4 inches · no moving mechanism"],
+    ["平板一体式 / 工业 HMI(屏幕=主界面)","Tablet-Integrated / Industrial HMI (the screen is the main interface)"],
+    ["5 款 · 5″–8″ · 720p/800p 触控","5 products · 5-8 inches · 720p/800p touch"],
+    ["Agent 专用硬件(直接竞品/近邻)","Agent-Native Hardware (direct competitors or close neighbors)"],
+    ["2 款 · 屏幕角色两极","2 products · two opposite screen strategies"],
+    ["算力盒堆叠参考(无屏,决定你的 footprint)","Compute-Box Stacking References (screenless devices that anchor footprint decisions)"],
+    ["2 款 · 方形可叠","2 products · square and stackable"],
+
+    ["电机双轴铰链:屏幕自动扭转/俯仰,人脸追踪对准使用者(CES 2026)","Motorized dual-axis hinge: the screen automatically twists and tilts, using face tracking to face the user (CES 2026)."],
+    ["屏幕随人转:无刷电机底座静音旋转,摄像头+远场麦克风联合定位","The display follows the user: a quiet brushless motor base rotates, coordinated by camera and far-field microphones."],
+    ["左→右:展开使用 / 手提箱收纳 / 平躺桌面模式 —— 一机三态","Left to right: open use / suitcase storage / flat tabletop mode. Three states in one device."],
+    ["左→右:G-Flip 系列半合暗屏收起态 / G-Flip 370 翻起亮屏态 / 接大屏当仪表副屏的工作实景","Left to right: G-Flip series half-closed dark-screen storage state / G-Flip 370 open bright-screen state / real desk use as an auxiliary dashboard beside a large monitor."],
+    ["7″ 4K 翻转屏立起状态 —— 目前样本中副屏规格天花板","7-inch 4K flip display standing upright: currently the highest secondary-display spec in the sample."],
+    ["左→右:屏幕弹起 / 收纳态顶面=15W Qi 无线充 / 竖屏弹起桌面实景","Left to right: display popped up / stored top surface doubles as 15W Qi wireless charger / portrait display popped up in a real desk scene."],
+    ["左→右:合拢/翻起双状态官方图 / 复古桌面场景 / 副屏 UI 细节","Left to right: official closed/open state image / retro desk scene / secondary-screen UI detail."],
+    ["顶面/立式双姿态:配立架后小屏+摄像头朝前,酷似「桌面终端」","Top / vertical dual posture: with a stand, the small screen and camera face forward, making it feel like a desktop terminal."],
+    ["屏幕嵌在前脸左下角,与端口并列 —— 「仪表」而非「界面」","The screen is embedded on the lower-left front face beside the ports: more instrument panel than interface."],
+    ["立式塔+竖置 LCD+RGB 灯带:入门价位的「状态可视化」组合","Vertical tower + portrait LCD + RGB light strip: an entry-price combination for status visibility."],
+    ["左→右:游戏机式整机 / 顶面 4″ 屏+红色弹仓键 / 副屏 TDP 触控调节 UI","Left to right: console-like whole unit / top 4-inch screen with red cartridge-style button / secondary-screen TDP touch-control UI."],
+    ["左:2016 GOLE1 实机/接口(未亮屏) · 右:2022 Gole 1 Pro 亮屏官方图 —— 删除重复接口角度,保留新旧状态对照","Left: 2016 GOLE1 real unit and ports with the screen off. Right: 2022 Gole 1 Pro official bright-screen image. Duplicate port angle removed; old and new states are kept for comparison."],
+    ["楔形机身自带固定倾角,屏幕即整机 A 面 —— 2015 年的形态雏形","Wedge body with a fixed viewing angle; the screen is the whole A-side of the device. A 2015 prototype of this form."],
+    ["白牌 8″ 档:横竖双置+背部支架;右图为撑杆支架变体","White-label 8-inch tier: landscape/portrait placement with rear support; the right image shows a kickstand variant."],
+    ["工业 HMI 思路:屏幕+按键+传感器+加密芯片的「面板电脑」","Industrial HMI logic: a panel computer combining display, buttons, sensors, and a security chip."],
+    ["工业网关的屏幕逻辑:屏幕是「本地运维口」,不是体验面","Industrial gateway display logic: the screen is a local maintenance port, not the primary experience surface."],
+    ["左:官方渲染 / 右:实机夜景(收集素材)—— 小方屏显示时钟与任务状态,底部氛围光","Left: official render. Right: collected real-device night scene. The small square display shows clock and task state, with ambient lighting at the bottom."],
+    ["无自带屏路线:一根 Type-C 上电视,语音麦阵承担主交互","Screenless route: one Type-C cable to a TV, with the microphone array carrying the primary interaction."],
+
+    ["屏幕","Display"],["结构","Structure"],["交互","Interaction"],["算力","Compute"],["定位","Positioning"],["感知","Sensing"],["灯光","Lighting"],["堆叠","Stacking"],["适配","Platform fit"],["参考先例","Reference precedents"],["关键验证","Key validation"],["机械","Mechanics"],
+    ["14″ OLED 触控 2880×1800 · 120Hz · 500nit","14-inch OLED touch · 2880x1800 · 120Hz · 500 nits."],
+    ["电机化双轴旋转铰链:自动扭转+俯仰,敲击唤醒自动开盖,扬声器随屏转向","Motorized dual-axis rotating hinge: automatic twist and tilt, tap-to-wake auto opening, and speakers that turn with the screen."],
+    ["传感器+人脸追踪自动跟随;AI 翻译时屏幕自动转向对话者;10MP 前摄","Sensors plus face tracking enable automatic following; during AI translation, the screen turns toward the speaker; 10MP front camera."],
+    ["10.1″ LCD 触控 1280×800","10.1-inch LCD touch · 1280x800."],
+    ["圆柱底座内置无刷电机,±175°(350°)水平旋转 + 手动俯仰;需预留 38×25cm 旋转空间","Cylindrical base with brushless motor, plus/minus 175 degrees (350 degrees) horizontal rotation plus manual tilt; requires a 38 x 25 cm rotation clearance."],
+    ["13MP 摄像头人物追踪 · 远场麦克风阵列 Alexa · 3″ 低音+双 1″ 高音","13MP camera with person tracking · far-field microphone array with Alexa · 3-inch woofer plus dual 1-inch tweeters."],
+    ["27″ LCD 触控 1920×1080 · 手势滑动调节","27-inch LCD touch · 1920x1080 · gesture swipe adjustment."],
+    ["军规手提箱+内置支臂:90° 竖屏旋转 / 90° 俯仰 / 180mm 升降 / 完全平躺","Military-style suitcase plus built-in arm: 90-degree portrait rotation, 90-degree tilt, 180mm height adjustment, and fully flat tabletop mode."],
+    ["内置电池约 3h · 20W 四声道 Dolby Atmos · webOS","Built-in battery around 3 hours · 20W four-channel Dolby Atmos · webOS."],
+    ["5″ 触控 1920×1080(小屏高 PPI)","5-inch touch · 1920x1080, high PPI for a small display."],
+    ["顶部前缘铝合金铰链,0–65° 翻转;屏旁指纹识别","Aluminum hinge on the top front edge, flipping 0-65 degrees; fingerprint reader beside the display."],
+    ["Ryzen AI 9 HX 370(50 TOPS NPU)· HDMI 2.1 + OCuLink · 均热板+底部风扇","Ryzen AI 9 HX 370 with 50 TOPS NPU · HDMI 2.1 + OCuLink · vapor chamber plus bottom fan."],
+    ["7″ 触控 3840×2160 · 120Hz(副屏中最高规格)","7-inch touch · 3840x2160 · 120Hz; the highest secondary-screen spec in the sample."],
+    ["顶盖整体翻起、倾角可调;合盖即收纳","Whole top cover flips up with adjustable angle; closing the lid becomes storage."],
+    ["Ryzen 9 6900HX · 铝合金 175×137×55mm · 855g","Ryzen 9 6900HX · aluminum body · 175 x 137 x 55mm · 855g."],
+    ["4.5″ 480×854(竖向长条比例)","4.5-inch 480x854 vertical narrow aspect ratio."],
+    ["顶部弹起铰链;顶面另一半是 15W Qi 无线充电板 —— 顶面复用思路","Top pop-up hinge; the other half of the top surface is a 15W Qi wireless charging pad, showing a top-surface reuse strategy."],
+    ["Ryzen 6900HX/7840HS 级 · 铝合金 175×138×51mm","Ryzen 6900HX / 7840HS class · aluminum body · 175 x 138 x 51mm."],
+    ["4″ 触控 960×400(原生横屏,可作 Windows 扩展屏)","4-inch touch · 960x400, native landscape; can act as a Windows extended display."],
+    ["CNC 铝框翻转铰链 0–90°,合拢时与顶面齐平;经典 Mac 复古壳","CNC aluminum-frame flip hinge from 0-90 degrees; flush with the top when closed; classic Mac-inspired retro shell."],
+    ["Ryzen AI 9 HX 370 · 1L 机身 · 65W 双风扇散热","Ryzen AI 9 HX 370 · 1L body · 65W dual-fan cooling."],
+    ["4″ 触控副屏(自绘 UI:时钟/温度/负载,不显示 Windows 桌面)","4-inch touch secondary display with custom UI for clock, temperature, and load; it does not show the Windows desktop."],
+    ["屏幕固定于顶盖;附立式支架可竖置,屏幕转为朝前","The screen is fixed on the top cover; an included vertical stand turns it into a forward-facing display."],
+    ["1080p 摄像头+物理遮罩+内置麦克风 —— 样本中唯一「屏+摄+麦」齐备的迷你主机","1080p camera + physical privacy cover + built-in microphone. The only mini PC in the sample with screen, camera, and microphone all present."],
+    ["3.5″ IPS 信息屏(开机动画/温度/频率/自定义主题)","3.5-inch IPS information display for boot animation, temperature, frequency, and custom themes."],
+    ["前面板固定嵌入,无可动件","Fixed into the front panel with no moving parts."],
+    ["Ryzen 7 8845HS · OCuLink + 双 USB4 · 四路 8K 输出","Ryzen 7 8845HS · OCuLink + dual USB4 · four 8K outputs."],
+    ["1.9″ TFT 170×320(竖向;主题/壁纸可自定义,横竖可切)","1.9-inch TFT · 170x320 portrait display; customizable themes and wallpapers; supports portrait/landscape switching."],
+    ["前面板固定;整机立式","Fixed on the front panel; the whole device stands vertically."],
+    ["RGB 氛围灯带 + 屏幕主题联动 —— 样本中「灯光语义化」的低成本先例","RGB ambient light strip plus screen-theme linkage: a low-cost precedent for semantic lighting in the sample."],
+    ["4″ 多功能触控屏(状态/时钟/滑动切换/触控调 TDP)","4-inch multifunction touch display for status, clock, swipe switching, and TDP adjustment."],
+    ["顶面固定斜嵌;前盖弹起藏 USB4 端口(FC 卡仓致敬)","Fixed angled top display; front cover pops open to reveal USB4 ports, referencing a Famicom cartridge bay."],
+    ["Ryzen 7 7840HS · 146×134×53mm · 四热管","Ryzen 7 7840HS · 146 x 134 x 53mm · four heat pipes."],
+    ["GOLE1 为 5″ 触控;GOLE1 Pro 为 5.5″ IPS 触控 1280×720","GOLE1 has a 5-inch touch display; GOLE1 Pro has a 5.5-inch IPS touch display at 1280x720."],
+    ["口袋平板式机身;Pro 约 142×91×18/19mm;电池标注存在 2500–5000mAh 渠道差异,采购前需复核批次","Pocket-tablet body; Pro is about 142 x 91 x 18/19mm. Battery capacity varies by channel from 2500-5000mAh and should be checked before purchase."],
+    ["内置扬声器+麦克风 · Windows 完整系统直接触控 · N4000/J4125","Built-in speaker and microphone · full Windows system with direct touch control · N4000 / J4125."],
+    ["7″ IPS 触控 1280×800","7-inch IPS touch · 1280x800."],
+    ["楔形盒体固定斜面(约 20–30°),不可调;外置天线","Wedge body with a fixed 20-30 degree angled surface; not adjustable; external antenna."],
+    ["机顶盒+触控小终端双系统;POS/展示常客","A hybrid set-top box and small touch terminal; often used for POS or display scenarios."],
+    ["8″ 1280×800 十点触控 —— 白牌供应链最充足的档位(平板/车机同源屏)","8-inch 1280x800 10-point touch: the most abundant white-label supply-chain tier, shared with tablet and car-display panels."],
+    ["背部撑杆/支架,横竖可摆;部分带 2MP 前摄与 G-sensor 自动转向","Rear kickstand or support; supports landscape/portrait placement; some variants include a 2MP front camera and G-sensor auto-rotation."],
+    ["Intel N150 · 12GB · Wi-Fi 6","Intel N150 · 12GB · Wi-Fi 6."],
+    ["5″ IPS 电容多点触控 1280×720","5-inch IPS capacitive multi-touch · 1280x720."],
+    ["平板固定;高扩展(PCIe/USB/26 GPIO/PoE 模块)","Fixed tablet-like panel; high expandability via PCIe, USB, 26 GPIO pins, and PoE module."],
+    ["光传感器+加速度计+RTC+加密芯片 —— 传感器冗余设计参考","Light sensor + accelerometer + RTC + security chip: a reference for sensor redundancy."],
+    ["选配 7″ HMI 触控 800×480","Optional 7-inch HMI touch display · 800x480."],
+    ["面板固定;DIN 导轨/壁挂安装","Fixed panel; DIN rail or wall-mounted installation."],
+    ["本地配置/看数/导出,离线可运维 —— Agent PC 的「无网兜底」参照","Local configuration, monitoring, and export; offline maintainability makes it a reference for Agent PC fallback behavior without network access."],
+    ["掌上级小触控屏(显示当前任务流,非通用桌面)","Palm-size touch display showing the current task flow, not a general desktop."],
+    ["桌面固定小方块,HDMI 物理串接主机,零部署","Small fixed desktop cube; physically inserted into the host via HDMI; zero-deployment setup."],
+    ["双芯片(AI SoC+独立安全芯片)· 端侧 NPU 视觉/OCR · 主动感知工作流","Dual-chip design with AI SoC plus independent security chip · on-device NPU vision/OCR · proactive sensing workflow."],
+    ["无自带屏 —— 借显(电视/显示器),PD3.1 一线连接","No built-in display. Uses an external TV or monitor through a single PD3.1 cable."],
+    ["4 麦克风阵列 + 立体声扬声器 + 全域智能体「小麦」(60+ 技能/36 款 APP 跨应用)","4-microphone array + stereo speakers + system-wide agent Xiaomai with 60+ skills and cross-app control across 36 apps."],
+    ["自研「长江」SoC · 50 TOPS · 32GB 统一内存(120GB/s)· 1TB SSD","In-house Changjiang SoC · 50 TOPS · 32GB unified memory at 120GB/s · 1TB SSD."],
+
+    ["产品","Product"],["尺寸 footprint","Footprint"],["互联方式","Interconnect"],["对 Agent PC 的启示","Implication for Agent PC"],
+    ["150×150×50.5mm 方盒","150 x 150 x 50.5mm square box."],
+    ["ConnectX-7 200Gb/s 背对背直连","ConnectX-7 200Gb/s back-to-back direct connection."],
+    ["官方支持两台成簇:128GB→256GB 统一内存,可跑 405B 模型 —— 「屏幕模组在最上、算力盒往下叠」的规格锚点","Officially supports two-unit clustering: 128GB to 256GB unified memory and 405B-model capability. This anchors the idea that the screen module stays on top while compute boxes stack downward."],
+    ["127×127×50mm 方盒","127 x 127 x 50mm square box."],
+    ["Thunderbolt 4/5 组 exo 集群","Thunderbolt 4/5 exo-style cluster."],
+    ["社区大量竖插/叠放收纳配件已验证需求;底面进风顶面排风决定了「不能直接盖死顶面」","A large accessory ecosystem for vertical and stacked storage proves demand; bottom intake and top exhaust mean the top surface cannot simply be covered."],
+
+    ["规格汇总总表(n=18 带屏 + 2 参考)","Specification Summary Table (n=18 display-equipped products + 2 references)"],
+    ["类","Class"],["尺寸","Size"],["分辨率","Resolution"],["面板/触控","Panel / Touch"],["机械结构","Mechanical Structure"],["摄像头","Camera"],["语音","Voice"],
+    ["A 终端","A · terminal"],["B 翻转","B · flip display"],["C 固定","C · fixed display"],["D 一体","D · integrated"],["D 工业","D · industrial"],["E Agent","E · Agent device"],["F 算力","F · compute"],
+    ["触控+笔","touch + pen"],["OLED · 触控+笔","OLED · touch + pen"],["LCD · 触控","LCD · touch"],["LCD","LCD"],["触控(独立 UI)","touch with independent UI"],["IPS(仅显示)","IPS, display-only"],["TFT(仅显示)","TFT, display-only"],["触控","touch"],["IPS · 触控","IPS · touch"],["IPS · 10 点触控","IPS · 10-point touch"],["IPS · 电容多点","IPS · capacitive multi-touch"],["HMI 触控","HMI touch"],
+    ["电机双轴铰链,自动扭转/俯仰/开盖","Motorized dual-axis hinge with automatic twist, tilt, and opening."],
+    ["无刷电机底座 ±175° + 手动俯仰","Brushless motor base, plus/minus 175 degrees, plus manual tilt."],
+    ["箱内支臂:旋转 90°/俯仰 90°/升降 180mm","In-case arm: 90-degree rotation, 90-degree tilt, and 180mm height adjustment."],
+    ["铝合金铰链翻转 0–65°","Aluminum hinge flips 0-65 degrees."],
+    ["顶盖翻起,倾角可调","Top cover flips up with adjustable angle."],
+    ["顶部弹起铰链 + 顶面 Qi 15W","Top pop-up hinge plus 15W Qi charging surface."],
+    ["CNC 铝框铰链 0–90°,可平收","CNC aluminum hinge, 0-90 degrees, flush when closed."],
+    ["顶盖固定 + 立式支架变竖置","Fixed top display plus stand for vertical orientation."],
+    ["前脸固定嵌入","Fixed front-face embedding."],
+    ["前脸固定 · 立式","Fixed front face · vertical body."],
+    ["顶面固定斜嵌 + 弹盖藏端口","Fixed angled top display plus pop-up port cover."],
+    ["平板机身 + 电池","Tablet-like body + battery."],
+    ["楔形固定斜面","Fixed wedge-angle face."],
+    ["背撑/360° 支架,横竖可摆","Rear kickstand / 360-degree stand with landscape/portrait placement."],
+    ["面板固定 + 模块扩展","Fixed panel + modular expansion."],
+    ["面板固定 · 导轨/壁挂","Fixed panel · rail or wall mount."],
+    ["桌面固定方块 · HDMI 串接","Fixed desktop cube · HDMI inline connection."],
+    ["Type-C PD3.1 一线连电视","Single Type-C PD3.1 cable to TV."],
+    ["10MP 人脸追踪","10MP face tracking."],["13MP 追踪","13MP tracking."],["—(指纹)","No camera; fingerprint sensor."],["1080p+物理遮罩","1080p + physical privacy cover."],["2MP(部分)","2MP on some variants."],
+    ["开机动画","Boot animation."],["RGB 灯带","RGB light strip."],["电源灯","Power light."],["光传感器","Light sensor."],["状态 LED","Status LED."],["底部氛围光","Bottom ambient light."],
+    ["AI 助手/翻译","AI assistant / translation."],["远场麦阵 Alexa","Far-field microphone array with Alexa."],["遥控语音","Remote voice control."],["内置麦","Built-in microphone."],["内置麦克风","Built-in microphone."],["主动感知","Proactive sensing."],["4 麦阵列+扬声器","4-mic array + speaker."],
+    ["未公布","Not disclosed."],["掌上小屏","Palm-size display."],["无屏","No built-in screen."],["借显","External display."],["可扩展","Expandable."],
+
+    ["分布图 A · 屏幕尺寸 × 分辨率(长边像素)","Chart A · Display Size x Resolution (long-edge pixels)"],
+    ["图 A · 尺寸-分辨率散点 —— 1280×800/720 是绝对主流水位线;实心红点为「小屏高分」异类,实心蓝点为推荐锚点 8″ 档","Figure A · Size-resolution scatter plot. 1280x800 / 720 is the mainstream baseline; solid red marks high-resolution small-screen outliers, and solid blue marks the recommended 8-inch anchor."],
+    ["分布图 B · 屏幕机械结构类型统计(n=18)","Chart B · Display Mechanism Type Distribution (n=18)"],
+    ["图 B · 结构类型分布 —— 固定结构存量最大,但增量创新集中在翻转铰链;电机方案仅出现在 Amazon / Lenovo 两家大厂","Figure B · Mechanism distribution. Fixed structures dominate the installed base, while new-form innovation concentrates around flip hinges; motorized solutions only appear from Amazon and Lenovo."],
+    ["规律总结 · 结构原型白描","Pattern Summary · Mechanism Archetype Sketches"],
+    ["五种屏幕机械结构原型(工业设计白描)","Five Display Mechanism Archetypes (industrial-design sketches)"],
+    ["图 C · 五种结构原型侧视/正视白描 —— 复杂度与成本从左到右递增:① 无可动件 → ③ 单轴铰链 → ④ 电机双轴","Figure C · Five side/front-view mechanism archetypes. Complexity and cost increase from left to right: no moving parts, single-axis hinge, then motorized dual-axis design."],
+    ["翻转铰链细节(主流增量方案的工程收敛)","Flip-Hinge Details (engineering convergence in the mainstream new form)"],
+    ["图 D · 翻转铰链侧视白描 —— 三个关键角位:0° 收纳 / 65° 常用 / 90° 直立,行业用摩擦扭矩铰链实现无级悬停","Figure D · Flip-hinge side sketch. Three key angles: 0 degrees stored, 65 degrees normal use, 90 degrees upright. The industry uses friction torque hinges for stepless holding."],
+    ["八条统一规律","Eight Common Patterns"],
+    ["屏幕尺寸呈「双峰」分布,6″ 附近真空","Display size is bimodal, with a gap around 6 inches."],
+    ["副屏档集中在 1.9–5″(信息显示/轻触控),一体交互档集中在 5.5–8″(完整 UI),10″+ 属于「屏幕即产品」的终端类。6″ 档几乎无人做——小于完整交互、大于仪表显示,定位尴尬。","Secondary-display products cluster at 1.9-5 inches for information display and light touch; integrated interaction products cluster at 5.5-8 inches for full UI; 10-inch-plus products are terminals where the display is the product. Almost nobody builds around 6 inches because it is too large for an instrument panel and too small for full interaction."],
+    ["1280×800 / 1280×720 是绝对主流水位","1280x800 / 1280x720 is the dominant baseline."],
+    ["18 款中 6 款直接落在 1280 长边(5″–10.1″ 全覆盖),源自平板/车机屏供应链;副屏用低分异形比例(960×400、480×854、170×320),4K 副屏(Miniproca)是营销炫技而非趋势。","Six of the 18 display-equipped products land directly on a 1280-pixel long edge across 5-10.1 inches, driven by tablet and automotive display supply chains. Secondary screens often use low-resolution nonstandard ratios, while the 4K Miniproca is more a marketing outlier than a trend."],
+    ["材质:IPS LCD 一统,触控=电容多点标配","Materials converge on IPS LCD; capacitive multi-touch is standard."],
+    ["除 Lenovo 旗舰用 OLED 外,全部为 IPS LCD;凡定位「交互」的屏幕均为电容触控(10 点),仅 1.9–3.5″ 仪表屏保留纯显示。玻璃盖板 + 全贴合是 4″ 以上的默认工艺。","Except for Lenovo's flagship OLED, all samples use IPS LCD. Any screen positioned for interaction uses capacitive touch, usually 10-point. Only 1.9-3.5 inch instrument displays remain display-only. Glass cover plus full lamination is the default process above 4 inches."],
+    ["结构演化:固定 → 翻转 → 电机","Mechanism evolution: fixed, then flip, then motorized."],
+    ["2015–23 年产品几乎全为固定结构;2024–26 年新品(G-Flip、Miniproca、ViewDock、AM01S、Auto Twist)集中转向可动结构。翻转铰链借 GBA-SP 的心智成为增量共识;电机方案仅 Amazon/Lenovo 两家大厂敢碰(成本、噪音、可靠性、桌面空间)。","Products from 2015-2023 are almost all fixed structures; new products from 2024-2026 concentrate around moving mechanisms such as G-Flip, Miniproca, ViewDock, AM01S, and Auto Twist. Flip hinges borrow the GBA-SP mental model and are becoming the new consensus; motorized designs remain limited to Amazon and Lenovo because of cost, noise, reliability, and desk-space constraints."],
+    ["翻转铰链参数已收敛","Flip-hinge parameters have converged."],
+    ["铰链一律在顶面前缘;开角 0–65°/80°/90°;铝合金铰链座 + 摩擦扭矩轴无级悬停;合拢时屏幕面朝下、顶面即保护盖。这套参数可直接作为 Agent PC 的工程基线。","The hinge sits on the top front edge; opening angles converge around 0-65, 80, or 90 degrees; aluminum hinge blocks and friction torque shafts enable stepless holding. When closed, the screen faces down and the top surface becomes a protective cover. This can directly serve as an Agent PC engineering baseline."],
+    ["副屏的「系统归属」分裂,须尽早定义","Secondary-screen system ownership is split and must be defined early."],
+    ["UH185/GEM12/S1 的副屏由独立 MCU/固件驱动,不显示主系统画面(UH185 明确无法显示 Windows);AM01S 反其道把「原生横屏、可作系统扩展屏」当核心卖点。Agent PC 必须在架构期决定:副屏归 Agent 运行时,还是归主 OS。","UH185, GEM12, and S1 drive the secondary screen through independent MCU/firmware and do not show the host OS; UH185 explicitly cannot display Windows. AM01S takes the opposite path and sells native landscape expansion-display capability as a key feature. Agent PC must decide at architecture time whether the secondary screen belongs to the Agent runtime or the main OS."],
+    ["摄像头·灯光·语音三件套几乎空白","Camera, lighting, and voice are almost absent as a combined set."],
+    ["18 款中摄像头仅 3 款、远场语音仅 3–4 款、语义化灯光仅 2 款(S1 的 RGB、Violoop 的底部氛围光,均无语义);三者齐备的迷你主机为 0。智能音箱有语音无算力,迷你主机有算力无感知——这正是 Agent PC 的差异化窗口。","Only 3 of 18 products have cameras, only 3-4 have far-field voice, and only 2 have lighting elements, neither with strong semantic behavior. No mini PC in the sample has all three. Smart speakers have voice but little compute; mini PCs have compute but little sensing. This is the differentiation window for Agent PC."],
+    ["Footprint 收敛,堆叠已有先例但顶面被抢占","Footprints are converging, and stacking has precedents, but top surfaces are already contested."],
+    ["带屏主机收敛于 138–175mm 方形 footprint,与 Mac mini(127)/DGX Spark(150)同带;DGX Spark 官方支持双机成簇。矛盾点:翻转屏、无线充都在抢顶面,而 Mac mini 类靠顶/底面呼吸——可堆叠设计必须把风道转移到侧后向。","Display-equipped hosts converge around a 138-175mm square footprint, close to Mac mini at 127mm and DGX Spark at 150mm; DGX Spark officially supports two-unit clustering. The conflict is that flip screens and wireless charging both occupy the top surface, while Mac-mini-like machines depend on top or bottom airflow. Stackable designs must move airflow to the sides and rear."],
+
+    ["Agent PC 推荐 · 形态学收敛","Agent PC Recommendation · Morphological Convergence"],
+    ["你的需求约束:触控屏 + 摄像头 + 灯光 + 语音交互,且算力盒可能像 Mac mini 一样多台并行、需要考虑堆叠收纳。先穷举规格空间回答「有多少种可能」,再按约束收敛。","Your constraints are touch display, camera, lighting, and voice interaction, with compute boxes potentially running in parallel like multiple Mac minis, so stacking and storage matter. First enumerate the possible specification space, then converge by constraints."],
+    ["形态学矩阵:到底有多少种可能的规格?","Morphological Matrix: How many specification combinations are possible?"],
+    ["设计维度","Design dimension"],["可选项(红 = 推荐基线)","Options (red = recommended baseline)"],["选项数","Number of options"],
+    ["屏幕尺寸","Display size"],["分辨率","Resolution"],["机械结构","Mechanical structure"],["摄像头","Camera"],["堆叠互联","Stacking interconnect"],
+    ["4–5″ 副屏级7–8″ 交互级10.1″ 终端级","4-5 inch secondary display / 7-8 inch interaction display / 10.1 inch terminal class."],
+    ["800×480 级1280×800(16:10)1920×1200+","800x480 class / 1280x800 (16:10) / 1920x1200+."],
+    ["固定斜面 15–30°摩擦铰链翻转 0–75°电机双轴追踪磁吸可拆分体","Fixed 15-30 degree slope / friction-hinge flip 0-75 degrees / motorized dual-axis tracking / magnetic detachable split design."],
+    ["顶边框固定 + 物理滑盖独立磁吸/升降模组","Top-bezel fixed camera with physical shutter / independent magnetic or lifting module."],
+    ["底缘 360° 语义灯环前缘状态灯带屏侧像素灯阵","Bottom-edge 360-degree semantic light ring / front status light strip / side pixel-light array."],
+    ["双麦4 麦远场阵列 + 立体声","Dual microphones / 4-mic far-field array + stereo."],
+    ["纯叠放防滑垫磁吸定位 + Pogo(供电/唤醒)+ TB/USB4 数据托架竖插机架式","Simple stacking with anti-slip pads / magnetic alignment + Pogo power and wake + TB/USB4 data / vertical rack-style stand."],
+    ["理论组合 = 3 × 3 × 4 × 2 × 3 × 2 × 3 = 1,296 种  →  剔除互斥项(电机 × 堆叠顶盖冲突、4K × 小屏无收益、800×480 × 交互级不够用等)≈ 24 种工程可行架构  →  按成本/供应链/差异化收敛为 3 个推荐方向","Theoretical combinations = 3 x 3 x 4 x 2 x 3 x 2 x 3 = 1,296. After removing conflicts such as motorized top vs. stacking, 4K on small screens with low value, and 800x480 being insufficient for interactive UI, about 24 engineering-feasible architectures remain. These converge into three recommended directions by cost, supply chain, and differentiation."],
+    ["为什么 8″ + 1280×800 是基线:它是白牌平板/车机屏供应链最充足、最便宜的档位(样本中 6 款落线);16:10 足够承载完整 Agent 对话流 + 状态面板;而 4–5″ 只能当仪表,10.1″ 则把产品推向「智能音箱终端」的红海定位。","Why 8 inches + 1280x800 is the baseline: it is the most abundant and lowest-cost white-label tablet / automotive display tier, with six samples landing on it. The 16:10 ratio can carry a full Agent conversation flow plus status panel; 4-5 inches is only an instrument display, while 10.1 inches pushes the product into the crowded smart-speaker-terminal category."],
+    ["首选 · RECOMMENDED A","Primary choice · Recommended A"],
+    ["「灯塔」一体交互塔 —— 8″ 触控模组 + 可堆叠算力座","Lighthouse Integrated Interaction Tower: 8-inch touch module + stackable compute base"],
+    ["屏幕/摄像头/麦阵/灯环集成为一个「感知顶盖」模组,永远在塔顶;算力盒与其同 footprint(建议 150×150mm,对齐 DGX Spark),按需向下堆 1–4 层。感知与算力解耦——算力翻倍不必重买屏幕。","Integrate display, camera, microphone array, and light ring into a sensing top-cover module that always stays at the top. Compute boxes share the same footprint, recommended at 150 x 150mm to align with DGX Spark, and stack downward from one to four layers as needed. Sensing and compute are decoupled, so compute can scale without replacing the screen."],
+    ["8″ IPS 1280×800 · 10 点触控 · 全贴合防眩 · ≥400nit","8-inch IPS · 1280x800 · 10-point touch · fully laminated anti-glare · at least 400 nits."],
+    ["摩擦铰链 0–75° 无级悬停(降本位:固定 20° 斜面);合拢即收纳保护","Friction hinge with 0-75 degree stepless hold; cost-down option is a fixed 20-degree slope. Closing the lid provides storage protection."],
+    ["8MP 顶置摄像头+物理滑盖(UH185 已验证的信任卖点)· 4 麦远场阵列","8MP top camera + physical privacy shutter, a trust feature validated by UH185 · 4-mic far-field array."],
+    ["模组底缘 360° 扩散灯环:聆听/思考/执行/等待授权四种语义,任何角度可读","360-degree diffused light ring on the module bottom edge: four readable states for listening, thinking, executing, and waiting for authorization."],
+    ["四角磁吸凹凸定位 + Pogo(供电总线/统一开机),数据走背部 USB4/TB 短桥;风道全部侧进后出,顶底面保持平整可叠","Four-corner magnetic concave-convex alignment + Pogo for power bus and unified boot; data uses rear USB4/TB short bridge. Airflow moves side-in and rear-out so top and bottom surfaces remain flat for stacking."],
+    ["备选 · ALTERNATIVE B","Alternative · Alternative B"],
+    ["「潜望」翻转副屏工作站 —— 桌面专业用户路线","Periscope Flip-Display Workstation: desktop-pro user route"],
+    ["沿用 G-Flip/AM01S 已验证的形态:主机上翻出 5″ 1920×1080 触控副屏,专显 Agent 任务流、授权确认与系统状态;生产力画面全部外接显示器。开发者/桌面重度用户心智最顺,结构风险最小,但「产品即屏幕」的存在感弱于方案 A。","Reuse the form validated by G-Flip and AM01S: a 5-inch 1920x1080 touch secondary display flips up from the host to show Agent task flow, authorization confirmations, and system status, while productivity work stays on external monitors. It fits developer and heavy desktop-user expectations with the lowest mechanism risk, but has weaker product presence than Direction A."],
+    ["5″ IPS 1920×1080 触控(高 PPI 显精致)","5-inch IPS 1920x1080 touch with high PPI for a refined look."],
+    ["顶前缘铝合金摩擦铰链 0–90°,合拢齐平","Top-front aluminum friction hinge, 0-90 degrees, flush when closed."],
+    ["摄像头置于副屏上边框(随屏起立自然朝人)+ 滑盖;4 麦阵列在机身前缘","Camera placed on the secondary display top bezel so it naturally faces the user when opened, plus privacy shutter; 4-mic array on the front edge of the body."],
+    ["与方案 A 共用算力盒堆叠底座规格,可作同平台第二 SKU","Shares compute-box stacking-base specification with Direction A and can become the second SKU on the same platform."],
+    ["探索 · EXPLORATORY C","Exploratory · Exploratory C"],
+    ["「分体」磁吸可拆屏 —— StanbyME 式移动性 × 无头算力柱","Split Magnetic Detachable Display: StanbyME-like mobility x headless compute tower"],
+    ["8″ 屏幕模组内置电池,磁吸在算力塔顶时是台式 Agent 终端,取下即是全屋漫游的控制板(Wi-Fi 回连);算力柱保持 headless 继续执行长任务。体验想象力最大,但要解决双电源、双系统心跳、跌落与回插对位,BOM 与固件复杂度最高——建议作为 Gen2 路线预研,不做首发。","An 8-inch display module has its own battery. When magnetically attached to the compute tower, it is a desktop Agent terminal; when removed, it becomes a roaming home control panel that reconnects over Wi-Fi. The compute tower stays headless and continues long-running tasks. This has the richest experience potential but must solve dual power, dual-system heartbeat, drop risk, and re-docking alignment, with the highest BOM and firmware complexity. Treat as a Gen2 research direction, not first launch."],
+    ["LG StanbyME(移动屏心智)· UH185(屏+摄一体模组)· Violoop(Agent 状态屏)","LG StanbyME for mobile-screen mental model · UH185 for integrated screen-camera module · Violoop for Agent status display."],
+    ["磁吸对位手感 / 分离态延迟 / 电池寿命与重量(目标 ≤450g)","Magnetic alignment feel / detached-state latency / battery life and weight, target no more than 450g."],
+    ["算力盒堆叠与收纳:三种方案白描","Compute-Box Stacking and Storage: Three Sketch Directions"],
+    ["图 E · 堆叠收纳三方案 —— 1–4 台选 Ⅰ 塔式;追求散热与热插拔选 Ⅱ;仅双机高带宽互联选 Ⅲ","Figure E · Three stacking and storage directions: choose Tower I for one to four units; choose Vertical Rack II for thermal performance and hot-swap; choose Side-by-Side III for two-unit high-bandwidth interconnect."],
+    ["推荐规格基线(方案 A 落地清单)","Recommended Specification Baseline (Direction A implementation checklist)"],
+    ["模块","Module"],["P0 基线","P0 baseline"],["P1 升级位","P1 upgrade path"],["依据","Rationale"],
+    ["8.8″ 1920×1200(车机屏档)","8.8-inch 1920x1200, automotive-display tier."],
+    ["供应链最充足档(规律 02);16:10 完整承载对话流","Most available supply-chain tier; 16:10 can carry the full conversation flow."],
+    ["摩擦扭矩铰链 0–75°,合拢齐平,FPC 过轴 ≥2 万次","+ friction-torque hinge 0-75 degrees, flush when closed, FPC through hinge rated for 20,000+ cycles."],
+    ["+ 电动缓起(非追踪)","Add motor-assisted soft opening, not tracking."],
+    ["翻转参数已收敛(规律 05);电机追踪按下不表(风险 1)","Flip parameters have converged; keep motorized tracking out of the baseline."],
+    ["8MP 定焦 + 物理滑盖 + 在场检测","8MP fixed-focus camera + physical shutter + presence detection."],
+    ["13MP + 人脸追踪裁切(数字代替电机)","13MP camera with face-tracking crop, using digital tracking instead of motors."],
+    ["UH185 滑盖已验证;Echo Show 的追踪可用数字裁切低成本复刻","UH185 validates the shutter trust cue; Echo Show-style tracking can be approximated at lower cost through digital crop."],
+    ["底缘 360° 扩散灯环,四语义:聆听/思考/执行/待授权","Bottom-edge 360-degree diffused light ring with four semantic states: listening, thinking, executing, and waiting for authorization."],
+    ["+ 屏侧像素灯阵(表情化)","Add side pixel-light array for expression."],
+    ["样本空白点(规律 07);「待授权」灯是 Agent 信任的关键界面","A gap in the sample set; the waiting-for-authorization light is a key trust interface for Agent devices."],
+    ["4 麦远场阵列 + AEC + 双 3W 扬声器","4-mic far-field array + AEC + dual 3W speakers."],
+    ["+ 声源定位联动灯环指向","Add sound-source localization linked to light-ring direction."],
+    ["AICUBE 同配置;迷你主机阵营为空白","Matches AICUBE capability; missing in mini PCs."],
+    ["150×150×50mm · 磁吸凹凸定位 + Pogo 供电/唤醒 · 背部 USB4 短桥菊链 · 侧进后出风","150 x 150 x 50mm · magnetic concave-convex alignment + Pogo power/wake · rear USB4 short-bridge daisy chain · side-in, rear-out airflow."],
+    ["ConnectX 级高速互联","ConnectX-class high-speed interconnect."],
+    ["对齐 DGX Spark 双机成簇;顶底平整才可叠(规律 08)","Aligns with DGX Spark two-unit clustering; flat top and bottom surfaces are required for stacking."],
+    ["同 footprint 竖插托架(选配件)","Optional vertical stand with the same footprint."],
+    ["提手箱(StanbyME 思路)","Carry-case concept inspired by StanbyME."],
+    ["Mac mini 配件生态已验证需求","Mac mini accessory ecosystem proves demand."],
+    ["诚实的风险提示(反方视角)","Honest Risk Notes (opposing view)"],
+    ["① 别轻易上电机。Echo Show 10 要求 38×25cm 旋转净空,中国/日本桌面场景吃紧;Lenovo 电机铰链把整机推到 $1,649 且噪音/耐久尚未被市场验证。人脸「追踪感」可以用 13MP 广角+数字裁切以 1/10 成本实现 80% 效果。","1. Do not jump to motors lightly. Echo Show 10 needs 38 x 25cm rotation clearance, which is tight on Chinese and Japanese desks. Lenovo's motorized hinge pushes the device to $1,649, and noise and durability are still unproven. Face-tracking feel can reach most of the effect with a 13MP wide-angle camera plus digital crop at a fraction of the cost."],
+    ["② 副屏系统归属必须在架构期定死。走独立 MCU(UH185 式)则响应快、休眠可显,但 Agent UI 迭代受固件拖累;走主系统扩展屏(AM01S 式)则生态灵活,但开机前/死机时屏幕是黑的——Agent 设备恰恰最需要「主机挂了屏幕还能说话」的兜底,建议 MCU 常显层 + 主系统投射层 双层架构。","2. Secondary-screen system ownership must be locked during architecture. An independent MCU route, like UH185, is responsive and can display during sleep, but Agent UI iteration is constrained by firmware. A host-OS extended display route, like AM01S, is flexible but the screen is black before boot or during a host failure. Agent devices need the screen to keep speaking even when the host fails, so use a dual-layer architecture: always-on MCU layer plus host-system projection layer."],
+    ["③ 堆叠与散热天然打架。塔式堆叠盖死了每层顶面,而样本中所有 65W 级机型都依赖顶部或底部呼吸。若坚持可叠,风道必须全侧向,并对 3 层以上做热仿真;否则学 DGX Spark 只承诺双机成簇,把「多机」交给竖插托架。","3. Stacking naturally conflicts with thermal design. Tower stacking blocks each layer's top surface, while all 65W-class samples depend on top or bottom airflow. If stacking remains a requirement, airflow must move laterally, and three-plus layers need thermal simulation. Otherwise, follow DGX Spark and only promise two-unit clustering, leaving larger multi-unit setups to a vertical rack."],
+    ["④ 供应链与品控。4K 小屏(Miniproca)单价高、驱动功耗大,勿被参数带偏;众筹小厂(ViewDock 初代)已出现发货与连接投诉——铰链供应商选型和 2 万次寿命测试要放进 EVT 关键路径。","4. Supply chain and quality control matter. A 4K small screen, like Miniproca, has high unit cost and driver power draw; do not be led by specs alone. Crowdfunded small vendors have already shown shipping and connectivity complaints, so hinge supplier selection and 20,000-cycle life testing must be on the EVT critical path."],
+    ["⑤ 常开摄像头的信任问题。Agent PC 的摄像头是「常开传感器」而非视频会议配件,物理滑盖(而非电子开关)+ 灯环状态联动是目前唯一被用户信服的方案,应作为不可删减项。","5. Always-on camera trust is non-negotiable. An Agent PC camera is an always-on sensor, not just a video-call accessory. A physical shutter, not merely an electronic switch, linked to light-ring state is currently the only user-trustworthy solution and should not be cut."],
+
+    ["附录 · 来源","Appendix · Sources"],
+    ["本报告图 C/D/E 及方案概念图为原创工业设计白描示意;产品照片版权归各来源方,仅作内部研究引用。","Figures C, D, E, and concept sketches are original industrial-design diagrams. Product photos belong to their respective source owners and are used here for internal research reference only."],
+    ["带屏迷你主机屏幕设计调研报告 · 为 Agent PC 工业设计前期研究编制 · 2026-07-03 · 数据截至检索日,众筹类规格以最终量产为准","Screen-Integrated Mini PC Display Design Research Report · Prepared for Agent PC industrial-design pre-research · 2026-07-03 · Data reflects the search date; crowdfunded specs are subject to final production."],
+
+    ["Lenovo ThinkBook Plus Gen 7 Auto Twist2026.6 上市 · $1,649 起","Lenovo ThinkBook Plus Gen 7 Auto Twist · available June 2026 · from $1,649."],
+    ["Amazon Echo Show 10(3rd Gen)2021 · ~$249","Amazon Echo Show 10 (3rd Gen) · 2021 · around $249."],
+    ["LG StanbyME Go 27LX5QKNA2023 · ~$999","LG StanbyME Go 27LX5QKNA · 2023 · around $999."],
+    ["AOOSTAR G-Flip 3702025.3 · ~$700","AOOSTAR G-Flip 370 · March 2025 · around $700."],
+    ["Miniproca All-in-1 Mini PC2025 Kickstarter","Miniproca All-in-1 Mini PC · 2025 Kickstarter."],
+    ["ViewDock Gen22026.3 Kickstarter · $639 起","ViewDock Gen2 · March 2026 Kickstarter · from $639."],
+    ["AYANEO Retro Mini PC AM01S2025 · $499 起","AYANEO Retro Mini PC AM01S · 2025 · from $499."],
+    ["Minisforum UH185 UltraCES 2024","Minisforum UH185 Ultra · CES 2024."],
+    ["AOOSTAR GEM12 Pro Max2024","AOOSTAR GEM12 Pro Max · 2024."],
+    ["ACEMAGIC S12023 · ~$200","ACEMAGIC S1 · 2023 · around $200."],
+    ["AYANEO Retro Mini PC AM022024 · $481 起","AYANEO Retro Mini PC AM02 · 2024 · from $481."],
+    ["Higole Gole1 / Gole1 Pro 系列2016–22 · $199 起","Higole Gole1 / Gole1 Pro series · 2016-2022 · from $199."],
+    ["PiPO X82015 · ~$100","PiPO X8 · 2015 · around $100."],
+    ["白牌 8″ N150 触屏主机(KOOFORWAY 等)2024–25 · $200–300","White-label 8-inch N150 touch mini PC, including KOOFORWAY and similar models · 2024-2025 · $200-300."],
+    ["Seeed Studio reTerminal2021 · $195","Seeed Studio reTerminal · 2021 · $195."],
+    ["佰马 BMG800 边缘计算网关工业品","Baimatech BMG800 edge-computing gateway · industrial product."],
+    ["Violoop2026 · ~$300","Violoop · 2026 · around $300."],
+    ["摩尔线程 MTT AICUBE2026.6 预售","Moore Threads MTT AICUBE · June 2026 presale."]
+  ];
+
+  const normalize = (text) => text.replace(/\s+/g, " ").trim();
+  const translations = new Map(translationPairs.map(([key, value]) => [normalize(key), value]));
+
+  const selector = [
+    ".cover h1",".cover h2",".meta span",".kpi .t",
+    ".sechead h2","p.lead",".band h4",".band .cnt",
+    "h3.sub",".pcard .cap",".pcard .nm",".pcard td",
+    ".tbl-wrap th",".tbl-wrap td","figure.draw figcaption",
+    ".law h5",".law p",".formula",".note",".risk",
+    ".rec .rk",".rec .txt h5",".rec .txt p",".rec .txt td",
+    ".srcs li","footer"
+  ].join(",");
+
+  document.querySelectorAll(selector).forEach((el) => {
+    if (el.querySelector(":scope > .enline")) return;
+    const key = normalize(el.textContent);
+    const english = translations.get(key);
+    if (!english) return;
+    const line = document.createElement("span");
+    line.className = "enline";
+    line.lang = "en";
+    line.textContent = english;
+    el.appendChild(line);
+  });
+})();
+</script>
+</body>
+</html>
