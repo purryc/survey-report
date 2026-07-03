@@ -22,7 +22,14 @@ const requiredProductFields = [
   "storageStacking",
   "sourceStatus",
   "imageStatus",
+  "images",
 ];
+
+const allowedImageStates = new Set(["use", "storage", "desk", "mechanism", "spec", "reference"]);
+const allowedImageKinds = new Set(["local-claude-asset", "remote-source-image"]);
+const correctedHigoleImageUrl =
+  "https://www.cnx-software.com/wp-content/uploads/2022/07/mini-pc-with-touchscreen-display.jpg";
+const legacyHigoleLocalImage = "public/images/competitors/local/higole-scene.png";
 
 const requiredLedgerSections = [
   "Products",
@@ -164,6 +171,39 @@ function checkProducts(products) {
       addError(`Product ${product.name ?? productIndex + 1} aliases must be an array`);
     }
 
+    if (!Array.isArray(product.images) || product.images.length === 0) {
+      addError(`Product ${product.name ?? productIndex + 1} images must be a non-empty array`);
+    } else {
+      product.images.forEach((image, imageIndex) => {
+        const label = `Product ${product.name ?? productIndex + 1} image ${imageIndex + 1}`;
+        if (!allowedImageKinds.has(image.kind)) {
+          addError(`${label} has invalid kind: ${image.kind}`);
+        }
+        if (!allowedImageStates.has(image.state)) {
+          addError(`${label} has invalid state: ${image.state}`);
+        }
+        if (typeof image.credit !== "string" || image.credit.trim().length === 0) {
+          addError(`${label} credit is missing`);
+        }
+        if (image.kind === "local-claude-asset") {
+          if (typeof image.path !== "string" || !image.path.startsWith("public/images/competitors/local/")) {
+            addError(`${label} local path is invalid`);
+          }
+          if (Object.hasOwn(image, "url")) {
+            addError(`${label} must not include url for local-claude-asset`);
+          }
+        }
+        if (image.kind === "remote-source-image") {
+          if (typeof image.url !== "string" || !/^https?:\/\//.test(image.url)) {
+            addError(`${label} remote url is invalid`);
+          }
+          if (Object.hasOwn(image, "path")) {
+            addError(`${label} must not include path for remote-source-image`);
+          }
+        }
+      });
+    }
+
     requiredProductFields.forEach((field) => {
       if (product[field] === "unknown-after-claude-html-extract") {
         unknownAfterExtractCount += 1;
@@ -208,15 +248,34 @@ function checkSourceRegistry(sourceRegistryText) {
   }
 }
 
-function checkHigoleSuspectMarker(ledgerText, sourceRegistryText, products) {
+function checkHigoleCorrectedImage(ledgerText, sourceRegistryText, imageInventoryText, products) {
   const productsText = JSON.stringify(products ?? []);
-  const combined = `${ledgerText}\n${sourceRegistryText}\n${productsText}`;
-  if (!combined.includes("suspect/wrong-image-needs-web-replacement")) {
-    addError("Higole suspect/wrong-image-needs-web-replacement marker is missing");
+  const combined = `${ledgerText}\n${sourceRegistryText}\n${imageInventoryText}\n${productsText}`;
+  if (!combined.includes(correctedHigoleImageUrl)) {
+    addError("Corrected Higole CNX image URL is missing");
+  }
+  if (!combined.includes(legacyHigoleLocalImage) || !/higole-scene\.png[\s\S]{0,160}legacy\/non-final/i.test(combined)) {
+    addError("Legacy higole-scene.png must be marked legacy/non-final");
+  }
+
+  const higole = Array.isArray(products)
+    ? products.find((product) => product.id === "higole-gole1-pro")
+    : null;
+  if (!higole) {
+    addError("Higole / Gole1 Pro product row is missing");
+    return;
+  }
+
+  const higoleImages = Array.isArray(higole.images) ? higole.images : [];
+  if (!higoleImages.some((image) => image.url === correctedHigoleImageUrl && image.state === "use")) {
+    addError("Higole images[] must include the corrected CNX image URL with state use");
+  }
+  if (higoleImages.some((image) => image.path === legacyHigoleLocalImage || image.url === legacyHigoleLocalImage)) {
+    addError("Higole images[] must not use legacy higole-scene.png");
   }
 }
 
-async function checkLocalImages() {
+async function checkLocalImages(products) {
   const localImageDir = path.join(repoRoot, "public/images/competitors/local");
   let entries = [];
   try {
@@ -232,6 +291,21 @@ async function checkLocalImages() {
   const files = entries.filter((entry) => entry.isFile());
   if (files.length !== 15) {
     addError(`public/images/competitors/local must contain exactly 15 files, found ${files.length}`);
+  }
+
+  const localFiles = new Set(files.map((file) => file.name));
+  if (Array.isArray(products)) {
+    products.forEach((product) => {
+      if (!Array.isArray(product.images)) return;
+      product.images
+        .filter((image) => image.kind === "local-claude-asset")
+        .forEach((image) => {
+          const fileName = path.basename(image.path ?? "");
+          if (!localFiles.has(fileName)) {
+            addError(`Local image for ${product.name} is missing: ${image.path}`);
+          }
+        });
+    });
   }
 }
 
@@ -284,17 +358,18 @@ async function writeCheckLog() {
 async function main() {
   const products = await readRequiredJson("research/products.json");
   const ledgerText = await readRequiredText("research/html-report-content-ledger.md");
+  const imageInventoryText = await readRequiredText("research/image-inventory.md");
   const sourceRegistryText = await readRequiredText("research/source-registry.md");
   const htmlText = await readRequiredText("research/source-html/claude-report.html");
 
   if (products) checkProducts(products);
   if (ledgerText) checkLedger(ledgerText);
-  if (ledgerText || sourceRegistryText || products) {
-    checkHigoleSuspectMarker(ledgerText, sourceRegistryText, products);
+  if (ledgerText || sourceRegistryText || imageInventoryText || products) {
+    checkHigoleCorrectedImage(ledgerText, sourceRegistryText, imageInventoryText, products);
   }
   if (sourceRegistryText) checkSourceRegistry(sourceRegistryText);
   if (htmlText) checkArchivedClaudeHtml(htmlText);
-  await checkLocalImages();
+  await checkLocalImages(products);
 
   const slidesPath = path.join(repoRoot, "slides.md");
   const slidesExists = await pathExists(slidesPath);

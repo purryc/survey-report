@@ -22,6 +22,14 @@
       "https://psref.lenovo.com/Product/ThinkBook_Plus_G7_Auto_Twist",
       "https://www.techradar.com/pro/lenovo-debuts-usd1-499-convertible-laptop-that-comes-with-a-tongue-twisting-name-thinkbook-plus-gen-7-auto-twist-rotates-and-pivots-on-two-axes",
       "https://www.theverge.com/news/852251/lenovos-auto-twist-laptop-is-going-from-concept-to-real-product"
+    ],
+    "images": [
+      {
+        "url": "https://i0.wp.com/gadgetbond.com/wp-content/uploads/2026/01/Lenovo-ThinkBook-Plus-Gen-7-Auto-Twist_snapshot_00.40_2026-01-09_02.44.13.png?fit=1024%2C576&ssl=1",
+        "kind": "remote-source-image",
+        "state": "mechanism",
+        "credit": "GadgetBond media image; Lenovo PSREF product source, verified in source registry"
+      }
     ]
   },
   {
@@ -48,6 +56,14 @@
       "https://www.tomsguide.com/reviews/amazon-echo-show-10-3rd-gen",
       "https://www.pcworld.com/article/579263/amazon-echo-show-10-review.html",
       "https://www.shi.com/product/41931657/Amazon-Echo-Show-10-%283rd-Generation%29"
+    ],
+    "images": [
+      {
+        "url": "https://cdn.mos.cms.futurecdn.net/85GLxHmBcDs8QMR7rxsZ5Q-2000-80.jpg",
+        "kind": "remote-source-image",
+        "state": "mechanism",
+        "credit": "Tom's Guide / Future media image, verified in source registry"
+      }
     ]
   },
   {
@@ -72,6 +88,26 @@
     "sources": [
       "https://www.lg.com/us/tvs/lg-27lx5qkna",
       "https://www.lg.com/au/tv-soundbars/fhd/27lx5qkna/"
+    ],
+    "images": [
+      {
+        "url": "https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/48e24b8f-e617-4ec1-ac8f-68344e41bcaa/27LX5QKNA_gallery_01_open_3000x3000?io=transform:fill,width:800",
+        "kind": "remote-source-image",
+        "state": "use",
+        "credit": "LG official product gallery, verified in source registry"
+      },
+      {
+        "url": "https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/ccef46c6-d6a5-49be-a494-9a1c06535a7b/27LX5QKNA_gallery_02_closed_3000x3000?io=transform:fill,width:800",
+        "kind": "remote-source-image",
+        "state": "storage",
+        "credit": "LG official product gallery, verified in source registry"
+      },
+      {
+        "url": "https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/2efb9479-eac2-449e-88ee-1149c2b3930e/27LX5QKNA_gallery_03_record_3000x3000?io=transform:fill,width:800",
+        "kind": "remote-source-image",
+        "state": "desk",
+        "credit": "LG official product gallery, verified in source registry"
+      }
     ]
   },
   {
@@ -98,6 +134,26 @@
       "https://aoostar.com/blogs/news/brief-introduction-to-the-g-flip-series-machines",
       "https://aoostar.com/blogs/news/aoostar-g-filp-the-first-ai370-mini-pc-with-removable-memory",
       "https://www.notebookcheck.net/Aoostar-launches-G-Flip-mini-PC-with-built-in-display-AMD-Ryzen-AI-9-HX-370-and-eGPU-support.977865.0.html"
+    ],
+    "images": [
+      {
+        "path": "public/images/competitors/local/gflip-render.png",
+        "kind": "local-claude-asset",
+        "state": "use",
+        "credit": "Claude HTML local asset; source re-verified in source registry"
+      },
+      {
+        "path": "public/images/competitors/local/flip-desk-monitor.png",
+        "kind": "local-claude-asset",
+        "state": "desk",
+        "credit": "Claude HTML local asset; source re-verified in source registry"
+      },
+      {
+        "path": "public/images/competitors/local/flip-table-scene.png",
+        "kind": "local-claude-asset",
+        "state": "storage",
+        "credit": "Claude HTML local asset; source re-verified in source registry"
+      }
     ]
   },
   {
@@ -124,6 +180,14 @@
       "https://www.tomshardware.com/desktops/mini-pcs/nuc-like-ryzen-mini-pc-features-a-4k-flip-up-touchscreen",
       "https://liliputing.com/miniproca-is-a-ryzen-9-6900hx-mini-pc-with-a-flip-up-7-inch-touchscreen-display-crowdfunding/",
       "https://www.kickstarter.com/projects/91388361/miniproca-all-in-1-mini-pc-with-intergarted-display/faqs"
+    ],
+    "images": [
+      {
+        "url": "https://cdn.mos.cms.futurecdn.net/fvs3bMLHv5nqECXeXWgC8a.jpg",
+        "kind": "remote-source-image",
+        "state": "mechanism",
+        "credit": "Tom's Hardware / Future media image, verified in source registry"
+      }
     ]
   },
   {
@@ -150,6 +214,26 @@
       "https://liliputing.com/this-amd-ryzen-mini-pc-has-a-flip-up-display-and-wireless-charging-pad-on-top-crowdfunding/",
       "https://www.kickstarter.com/projects/871976750/viewdock-g2-mini-pc-with-4k-display-and-wireless-charging",
       "https://www.notebookcheck.net/ViewDock-launches-new-mini-PC-globally-with-built-in-display-and-wireless-charging-dock.1254685.0.html"
+    ],
+    "images": [
+      {
+        "url": "https://liliputing.com/wp-content/uploads/2026/03/viewdock-g2_04.jpg",
+        "kind": "remote-source-image",
+        "state": "mechanism",
+        "credit": "Liliputing media image, verified in source registry"
+      },
+      {
+        "path": "public/images/competitors/local/viewdock-wireless-top.png",
+        "kind": "local-claude-asset",
+        "state": "storage",
+        "credit": "Claude HTML local asset; source re-verified in source registry"
+      },
+      {
+        "path": "public/images/competitors/local/viewdock-dock-scene.png",
+        "kind": "local-claude-asset",
+        "state": "desk",
+        "credit": "Claude HTML local asset; source re-verified in source registry"
+      }
     ]
   },
   {
@@ -175,6 +259,26 @@
       "https://www.ayaneo.com/article/893",
       "https://store.ayaneo.com/article/876",
       "https://www.notebookcheck.net/Ayaneo-AM01S-Nostalgic-new-mini-PC-released-with-up-to-AMD-Ryzen-AI-9-HX-370-and-32-GB-RAM.1099946.0.html"
+    ],
+    "images": [
+      {
+        "path": "public/images/competitors/local/am01s-pair.png",
+        "kind": "local-claude-asset",
+        "state": "use",
+        "credit": "Claude HTML local asset; source re-verified in source registry"
+      },
+      {
+        "url": "https://liliputing.com/wp-content/uploads/2025/03/am01s_01.jpg",
+        "kind": "remote-source-image",
+        "state": "desk",
+        "credit": "Liliputing media image, verified in source registry"
+      },
+      {
+        "url": "https://liliputing.com/wp-content/uploads/2025/03/am01s_06.jpg",
+        "kind": "remote-source-image",
+        "state": "mechanism",
+        "credit": "Liliputing media image, verified in source registry"
+      }
     ]
   },
   {
@@ -201,6 +305,20 @@
       "https://liliputing.com/minisforum-uh185-ultra-mini-pc-has-an-intel-core-ultra-185h-chip-and-built-in-touchscreen-and-camera/",
       "https://www.techradar.com/pro/this-could-be-the-most-powerful-mini-pc-ever-and-it-comes-with-two-unexpected-features-a-webcam-and-a-cool-touchscreen-but-you-wont-be-able-to-display-windows-on-it",
       "https://www.notebookcheck.net/Minisforum-UH185-Mini-PC-with-WiFi-7-and-5-GBit-s-supports-powerful-Intel-CPUs-OCuLink-GPUs-and-comes-with-configurable-display.821627.0.html"
+    ],
+    "images": [
+      {
+        "url": "https://liliputing.com/wp-content/uploads/2024/01/uh185_01.jpg",
+        "kind": "remote-source-image",
+        "state": "use",
+        "credit": "Liliputing media image, verified in source registry"
+      },
+      {
+        "path": "public/images/competitors/local/uh185-stand.png",
+        "kind": "local-claude-asset",
+        "state": "desk",
+        "credit": "Claude HTML local asset; source re-verified in source registry"
+      }
     ]
   },
   {
@@ -227,6 +345,14 @@
       "https://aoostar.com/blogs/news/what-can-i-do-with-the-secondary-screen-of-the-gem12-pro-max",
       "https://www.notebookcheck.net/Aoostar-GEM12-Pro-Max-mini-PC-launches-with-built-in-screen-OCuLink-and-two-USB4-ports.925711.0.html",
       "https://www.techspot.com/news/105941-aoostar-new-mini-pc-supports-up-four-8k.html"
+    ],
+    "images": [
+      {
+        "path": "public/images/competitors/local/gem12-promax.png",
+        "kind": "local-claude-asset",
+        "state": "use",
+        "credit": "Claude HTML local asset; source re-verified in source registry"
+      }
     ]
   },
   {
@@ -253,6 +379,14 @@
       "https://acemagic-store.com/acemagic-s1/",
       "https://www.techradar.com/pro/acemagic-s1-mini-pc-review",
       "https://www.cnx-software.com/2023/09/26/acemagic-s1-processor-n95-mini-pc-lcd-information-display/"
+    ],
+    "images": [
+      {
+        "path": "public/images/competitors/local/acemagic-s1.png",
+        "kind": "local-claude-asset",
+        "state": "use",
+        "credit": "Claude HTML local asset; source re-verified in source registry"
+      }
     ]
   },
   {
@@ -279,6 +413,26 @@
       "https://www.ayaneo.com/article/808",
       "https://liliputing.com/ayaneo-retro-mini-pc-am02-review/",
       "https://www.tomshardware.com/desktops/mini-pcs/ayaneo-lists-the-retro-mini-pc-am02-on-indiegogo-comes-with-ryzen-7-7840hs-and-4-inch-touchscreen"
+    ],
+    "images": [
+      {
+        "url": "https://liliputing.com/wp-content/uploads/2024/05/01.png",
+        "kind": "remote-source-image",
+        "state": "use",
+        "credit": "Liliputing review image, verified in source registry"
+      },
+      {
+        "url": "https://liliputing.com/wp-content/uploads/2024/05/02.png",
+        "kind": "remote-source-image",
+        "state": "desk",
+        "credit": "Liliputing review image, verified in source registry"
+      },
+      {
+        "url": "https://liliputing.com/wp-content/uploads/2024/05/19.png",
+        "kind": "remote-source-image",
+        "state": "mechanism",
+        "credit": "Liliputing review image, verified in source registry"
+      }
     ]
   },
   {
@@ -308,6 +462,14 @@
       "https://www.cnx-software.com/2022/07/26/gole1-pro-mini-pc-comes-with-5-5-inch-touch-screen-display-gemini-lake-processor-crowdfunding/",
       "https://goleminipc.com/products/higole-gole-1-pro-mini-pc-windows-11-pro-intel-celeron-j4125-8gb-ram-256gb-rom",
       "https://liliputing.com/gole1-pro-2022-is-a-pocket-sized-pc-with-a-5-5-inch-display-and-intel-gemini-lake-processor-crowdfunding/"
+    ],
+    "images": [
+      {
+        "url": "https://www.cnx-software.com/wp-content/uploads/2022/07/mini-pc-with-touchscreen-display.jpg",
+        "kind": "remote-source-image",
+        "state": "use",
+        "credit": "CNX Software corrected Higole/Gole1 Pro image; Gole retail page cross-check, verified in source registry"
+      }
     ]
   },
   {
@@ -334,6 +496,14 @@
       "https://liliputing.com/pipo-x8-is-a-windows-mini-pc-with-its-own-touchscreen-display/",
       "https://www.pipo.com/supplier-4697607-7",
       "https://hometheatrelife.com/pipo-x8-impressions-a-dual-os-pc-with-a-built-in-screen/"
+    ],
+    "images": [
+      {
+        "path": "public/images/competitors/local/pipo-x8.png",
+        "kind": "local-claude-asset",
+        "state": "use",
+        "credit": "Claude HTML local asset; source re-verified in source registry"
+      }
     ]
   },
   {
@@ -362,6 +532,20 @@
       "https://liliputing.com/this-8-inch-mini-laptop-has-an-intel-n150-processor-and-12gb-ram/",
       "https://x-plus.store/products/n150-netbook",
       "https://www.amazon.com/1280x800-Touchscreen-Pressure-Sensitive-Portable-Convertible/dp/B0DFQBSQBL"
+    ],
+    "images": [
+      {
+        "path": "public/images/competitors/local/n150-8inch-views.png",
+        "kind": "local-claude-asset",
+        "state": "use",
+        "credit": "Claude HTML local asset; source re-verified in source registry"
+      },
+      {
+        "path": "public/images/competitors/local/tablet-8inch-pink.png",
+        "kind": "local-claude-asset",
+        "state": "desk",
+        "credit": "Claude HTML local asset; source re-verified in source registry"
+      }
     ]
   },
   {
@@ -387,6 +571,14 @@
     "sources": [
       "https://wiki.seeedstudio.com/reTerminal/",
       "https://www.seeed.cc/product/reterminal-5-hmi-cm4108032-all-in-one-modular-design-ips-multi-touch-screen-rich-interfaces"
+    ],
+    "images": [
+      {
+        "path": "public/images/competitors/local/reterminal-banner.png",
+        "kind": "local-claude-asset",
+        "state": "use",
+        "credit": "Claude HTML local asset; source re-verified in source registry"
+      }
     ]
   },
   {
@@ -414,6 +606,14 @@
       "https://www.baimatech.com/bmg800-gateway-pm.html",
       "https://en.baimatech.com/BMG800byjswg.html",
       "https://www.baimatech.com/pdgznyh.html"
+    ],
+    "images": [
+      {
+        "path": "public/images/competitors/local/bmg800-diagram.png",
+        "kind": "local-claude-asset",
+        "state": "spec",
+        "credit": "Claude HTML local asset; source re-verified in source registry"
+      }
     ]
   },
   {
@@ -439,6 +639,14 @@
       "https://violoop.ai/",
       "https://eu.36kr.com/en/p/3720802557376902",
       "https://pandaily.com/violoop-secures-millions-in-funding-to-build-the-world-s-first-physical-level-ai-operator"
+    ],
+    "images": [
+      {
+        "url": "https://violoop.ai/media/cube.webp",
+        "kind": "remote-source-image",
+        "state": "use",
+        "credit": "Violoop official media image, verified in source registry"
+      }
     ]
   },
   {
@@ -466,6 +674,14 @@
       "https://videocardz.com/newz/moore-threads-launches-mtt-aicube-home-ai-box-with-50-custom-chinese-soc",
       "https://www.leikeji.com/article/76841",
       "https://www.sohu.com/a/1038253181_114760"
+    ],
+    "images": [
+      {
+        "url": "https://img.leikeji.com/resource/img/2bbc1dd2cd70443da1d63b44094c09fd.jpg",
+        "kind": "remote-source-image",
+        "state": "use",
+        "credit": "雷科技 media image, verified in source registry"
+      }
     ]
   },
   {
@@ -491,6 +707,14 @@
     "sources": [
       "https://docs.nvidia.com/dgx/dgx-spark/hardware.html",
       "https://www.nvidia.com/en-us/products/workstations/dgx-spark/"
+    ],
+    "images": [
+      {
+        "url": "https://www.nvidia.com/content/dam/en-zz/Solutions/dgx-spark/DGX-Spark-og.jpg",
+        "kind": "remote-source-image",
+        "state": "reference",
+        "credit": "NVIDIA official product page image, verified in source registry"
+      }
     ]
   },
   {
@@ -518,6 +742,14 @@
       "https://www.apple.com/mac-mini/specs/",
       "https://support.apple.com/en-us/121555",
       "https://support.apple.com/guide/mac-mini/take-a-tour-of-mac-mini-apd4e7055d3cmm/mac"
+    ],
+    "images": [
+      {
+        "url": "https://www.apple.com/v/mac-mini/specs/a/images/meta/mac-mini__dvce2jrm11w2_og.jpg?202606241942",
+        "kind": "remote-source-image",
+        "state": "reference",
+        "credit": "Apple official technical specifications page image, verified in source registry"
+      }
     ]
   }
 ]
