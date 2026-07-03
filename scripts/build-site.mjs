@@ -54,13 +54,14 @@ async function patchNestedSlidevHashRoutes(slidevDir, routePrefix) {
   const text = await readFile(entryPath, "utf8");
   const needle = `return\`${normalizedRoutePrefix}/\${n?\`export/\${r}\`:t?\`presenter/\${r}\`:\`\${r}\`}\``;
   const replacement = "return`/${n?`export/${r}`:t?`presenter/${r}`:`${r}`}`";
+  const relativeReplacement = "return`./${n?`export/${r}`:t?`presenter/${r}`:`${r}`}`";
 
   if (text.includes(needle)) {
     await writeFile(entryPath, text.replace(needle, replacement));
     return;
   }
 
-  if (!text.includes(replacement)) {
+  if (!text.includes(replacement) && !text.includes(relativeReplacement)) {
     throw new Error(`Could not find nested Slidev route prefix to patch: ${normalizedRoutePrefix}`);
   }
 }

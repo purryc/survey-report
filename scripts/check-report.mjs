@@ -68,7 +68,7 @@ const requiredReportRoutes = [
     markers: [
       "Agent PC 设计 Option 报告",
       "slidev:version",
-      "/survey-report/reports/agent-pc-design-options/assets/index-",
+      "./assets/index-",
     ],
   },
   {
@@ -455,8 +455,11 @@ async function checkAgentPcDesignOptionsRouting() {
   if (entryText.includes("return`/survey-report/reports/agent-pc-design-options/${n?`")) {
     addError("Agent PC design options Slidev route generator still includes the GitHub Pages base");
   }
-  if (!entryText.includes("return`/${n?`export/${r}`:t?`presenter/${r}`:`${r}`}`")) {
-    addError("Agent PC design options Slidev route generator must use short hash routes");
+  const hasShortHashRoute =
+    entryText.includes("return`/${n?`export/${r}`:t?`presenter/${r}`:`${r}`}`") ||
+    entryText.includes("return`./${n?`export/${r}`:t?`presenter/${r}`:`${r}`}`");
+  if (!hasShortHashRoute) {
+    addError("Agent PC design options Slidev route generator must use short or relative hash routes");
   }
 }
 

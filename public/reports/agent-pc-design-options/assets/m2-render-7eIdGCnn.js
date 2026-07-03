@@ -1,0 +1,1 @@
+var e=``+new URL(`m2-render-Ci_8oMOk.png`,import.meta.url).href;export{e as t};

@@ -1,0 +1,1 @@
+var e=``+new URL(`c2-render-Cy_XQWX7.png`,import.meta.url).href;export{e as t};

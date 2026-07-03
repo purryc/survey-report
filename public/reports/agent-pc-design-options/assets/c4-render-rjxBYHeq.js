@@ -1,0 +1,1 @@
+var e=``+new URL(`c4-render-BvFHM-FG.png`,import.meta.url).href;export{e as t};

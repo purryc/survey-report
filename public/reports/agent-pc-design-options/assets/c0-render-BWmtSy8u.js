@@ -1,1 +1,0 @@
-var e=`/survey-report/reports/agent-pc-design-options/assets/c0-render-B3sxSpkN.png`;export{e as t};
