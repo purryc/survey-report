@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="data:," />
     <title>Report not found · Survey Report</title>
+    <script>
+      function normalizeKnownReportRoute() {
+        const reportBase = "/survey-report/reports/agent-pc-design-options/";
+        const directSlide = location.pathname.startsWith(reportBase)
+          ? location.pathname.slice(reportBase.length).replace(/\/$/, "")
+          : "";
+        if (/^\d+$/.test(directSlide)) {
+          location.replace(`${reportBase}#/${directSlide}`);
+          return;
+        }
+        const badPrefix = "#/survey-report/reports/agent-pc-design-options/";
+        if (location.hash.startsWith(badPrefix)) {
+          location.replace(`${reportBase}#/${location.hash.slice(badPrefix.length)}`);
+        }
+      }
+      normalizeKnownReportRoute();
+      window.addEventListener("hashchange", normalizeKnownReportRoute);
+    </script>
     <style>
       body {
         margin: 0;
